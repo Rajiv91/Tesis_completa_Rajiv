@@ -1,18 +1,18 @@
 ./Documento/*.aux
 ./Documento/*.log
 ./Documento/*.blg
-*.bbl
-*.lol
-*.lot
-*.tcp
-*.tps
-*.out
-*.synctex.gz
-*.toc
-*.fdb_latexmk
+./Documento/*.bbl
+ ./Documento/*.lol
+ ./Documento/*.lot
+ ./Documento/*.tcp
+ ./Documento/*.tps
+ ./Documento/*.out
+ ./Documento/*.synctex.gz
+ ./Documento/*.toc
+ ./Documento/*.fdb_latexmk
 classicthesis-article.pdf
-*~
-.Rhistory
-*.fls
+ ./Documento/*~
+ ./Documento/.Rhistory
+ ./Documento/*.fls
 
 tesis.pdf
