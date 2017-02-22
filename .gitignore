@@ -1,6 +1,6 @@
 ./Documento/*.aux
-*.log
-*.blg
+./Documento/*.log
+./Documento/*.blg
 *.bbl
 *.lol
 *.lot
