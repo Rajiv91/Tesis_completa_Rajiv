@@ -1,4 +1,4 @@
-*.aux
+./Documento/*.aux
 *.log
 *.blg
 *.bbl
