@@ -13,16 +13,16 @@ LDFLAGS = -lm -lblas -llapack -lrt
 all:test
 
 test: objs/levenberg.o objs/tools.o
-	g++ -o $@ $^ $(CFLAGS) $(LDFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)
+	g++ -O2 -o $@ $^ $(CFLAGS) $(LDFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)
 
 #we define a rule that applies to all files ending in the .o suffix. The rule says that the .o file depends upon the .c version of the file
 objs/levenberg.o: levenberg.cpp  $(INCLUDE)functions.h 
-	g++ -c -o $@ $< $(CFLAGS2) $(CLIBS) $(INCLUDEDIR)   
+	g++ -O2 -c -o $@ $< $(CFLAGS2) $(CLIBS) $(INCLUDEDIR)   
 	#g++ -I$(INCLUDE) -c -o objs/main.o main.cpp #Igual funciona
 #-I$(INCLUDE)
 
 objs/tools.o: $(INCLUDE)tools.cpp  $(INCLUDE)tools.h 
-	g++ -c -o  $@ $< $(CFLAGS2)  
+	g++ -O2 -c -o  $@ $< $(CFLAGS2)  
 
 #testMarcas: objs/marcas.o $(INCLUDE)Tools.h
 #	g++ -o $@ $^ $(CFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)

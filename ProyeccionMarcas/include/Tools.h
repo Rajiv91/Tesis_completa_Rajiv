@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cstdio>
 //#include <Tools2.h>
+#define GRAM 0
 
 using namespace std;
 using namespace cv;
@@ -106,15 +107,13 @@ void getPlaneOrientation2 (Mat &scenePts, Mat &imagePts, Point3f &N, double &D, 
     H = findHomography(scP, imP, CV_LMEDS );
     //H=homography_dlt(scP, imP);
     cout<<"H="<<H<<endl;
-    //Mat T2;
-    //T2=H(Rect(2,0,1,3));
-    //cout<<endl<<"T antes de norm="<<T2<<endl;
 
     //Se entiende que la H se puede descomponer como H=[R1,R2, T)
     //Donde R1, y R2, son las dos primeras columnas de la matriz de rotacion
     //y T es el vector de Translación.
     //Primero normalizamos la H, a sabiendas que la norma de R1 debe ser 1.
     
+#if GRAM
     R1=H(Rect(0,0,1,3));
     n = sqrt(R1.dot(R1));
     assert (n != 0.0);
@@ -134,9 +133,10 @@ void getPlaneOrientation2 (Mat &scenePts, Mat &imagePts, Point3f &N, double &D, 
     hconcat (R2, R3, R);
     R.copyTo(Rnew);
     T.copyTo(Tnew);
-    
+    cout<<"GRAM"<<endl;
+#else 
   //G obtenida de: http://dsp.stackexchange.com/questions/1484/how-to-compute-camera-pose-from-homography-matrix
-    /*Mat pose = Mat::eye(3, 4, CV_64FC1); //3x4 matrix
+    Mat pose = Mat::eye(3, 4, CV_64FC1); //3x4 matrix
     float norm1 = (float)norm(H.col(0)); 
     float norm2 = (float)norm(H.col(1));
     float tnorm = (norm1 + norm2) / 2.0f;
@@ -168,8 +168,8 @@ void getPlaneOrientation2 (Mat &scenePts, Mat &imagePts, Point3f &N, double &D, 
     hconcat (R2, R3, R);
 
     R.copyTo(Rnew);
-    T.copyTo(Tnew);*/
-
+    T.copyTo(Tnew);
+#endif
     //La normal al plano está dada por el eje Z (i.e. [0,0,1]^T) en
     //el marco de referencia del plano, transladado al marco de referencia
     //de la cámara. 

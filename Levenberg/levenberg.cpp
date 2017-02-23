@@ -60,6 +60,7 @@ void evalFunc( void* param, double* X,  double *F, Mat& Xscn,  Mat& Ximg)
    Column=(Mat_<double>(3,1)<<Xscn.at<double>(0,nColN),
                               Xscn.at<double>(1,nColN),
                               Xscn.at<double>(2,nColN));
+  //Column=Xscn(Rect(0,0,1,3));
 
    //Column = Xscn(Rect(0,0,1,3));
   scPt=Rtemp * Column;
@@ -159,7 +160,7 @@ int main( void )
       Point3d W;
       setW(W,Wnorm, R);
       cout<<"W="<<endl<<W<<endl; 
-      int nP=48;//número de puntos con los que se trabajará
+      int nP=12;//número de puntos con los que se trabajará!!!!!!!!!!!!!!!!!!
 
       Mat Xscn(Size2i(3,nP), CV_64FC1);//Puntos establecidos en el marco de ref. de la escena
       Mat Ximg(Xscn.size(),Xscn.type());//Puntos obtenidos de la imagen con los que queremos optimizar la R y T
@@ -186,6 +187,15 @@ int main( void )
 
 	timespec inicio, fin;
 	ofstream file( "salida.dat" );
+	ofstream F_x( "f_x.txt" );
+        ofstream gFile("g.txt");
+        ofstream Wxfile("Wx.txt");
+        ofstream Wyfile("Wy.txt");
+        ofstream Wzfile("Wz.txt");
+        ofstream TxFile("Tx.txt");
+        ofstream TyFile("Ty.txt");
+        ofstream TzFile("Tz.txt");
+        ofstream WnormFile("Wnorm.txt");
 	
 	// parametros de la función
 	const int N = 7;//Wx, Wy, Wz, Tx, Ty, Tz, Wnorm, Wnorm es necesario optimizarlo porque W depende de él
@@ -265,6 +275,8 @@ int main( void )
 	//guarda secuencia
 	file<<"# iter	F(x)	||g||	mu"<<endl;
 	file<<"	"<<k<<"	"<<(0.5*ddot_(M,f,1,f,1))<<"	"<<normG<<"	"<<mu<<endl;
+        F_x<<"F=[";//Comienza a guardar la F(x)
+        gFile<<"g=[";
 	dcopy_( N*M, B, 1, J, 1 ); 	
 	//inicia iteraciones
 	bool found=(normG<=epsilon1);
@@ -352,9 +364,19 @@ int main( void )
 		//incrementa contador, guarda secuencia
 		k++;			//contador
 		file<<"	"<<k<<"	"<<(0.5*ddot_(M,f,1,f,1))<<"	"<<normG<<"	"<<mu<<endl;		
-      waitKey(0);
+                F_x<<(0.5*ddot_(M,f,1,f,1))<<", ";
+                gFile<<normG<<", ";
+
+	for(int r=0;r<N;r++)
+        {
+		<<"	"<<x[r]<<endl;
+
+        }
+      //waitKey(1);
 
 	}  
+        F_x<<"];";
+        gFile<<"];";
 	
 	// termina programa  
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &fin);
