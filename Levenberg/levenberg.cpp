@@ -160,7 +160,7 @@ int main( void )
       Point3d W;
       setW(W,Wnorm, R);
       cout<<"W="<<endl<<W<<endl; 
-      int nP=12;//número de puntos con los que se trabajará!!!!!!!!!!!!!!!!!!
+      int nP=48;//número de puntos con los que se trabajará!!!!!!!!!!!!!!!!!!
 
       Mat Xscn(Size2i(3,nP), CV_64FC1);//Puntos establecidos en el marco de ref. de la escena
       Mat Ximg(Xscn.size(),Xscn.type());//Puntos obtenidos de la imagen con los que queremos optimizar la R y T
@@ -192,10 +192,10 @@ int main( void )
         ofstream Wxfile("Wx.txt");
         ofstream Wyfile("Wy.txt");
         ofstream Wzfile("Wz.txt");
-        ofstream TxFile("Tx.txt");
-        ofstream TyFile("Ty.txt");
-        ofstream TzFile("Tz.txt");
-        ofstream WnormFile("Wnorm.txt");
+        ofstream Txfile("Tx.txt");
+        ofstream Tyfile("Ty.txt");
+        ofstream Tzfile("Tz.txt");
+        ofstream Wnormfile("Wnorm.txt");
 	
 	// parametros de la función
 	const int N = 7;//Wx, Wy, Wz, Tx, Ty, Tz, Wnorm, Wnorm es necesario optimizarlo porque W depende de él
@@ -277,6 +277,13 @@ int main( void )
 	file<<"	"<<k<<"	"<<(0.5*ddot_(M,f,1,f,1))<<"	"<<normG<<"	"<<mu<<endl;
         F_x<<"F=[";//Comienza a guardar la F(x)
         gFile<<"g=[";
+        Wxfile<<"Wx =[";
+        Wyfile<<"Wy =[";
+        Wzfile<<"Wz =[";
+        Txfile<<"Tx =[";
+        Tyfile<<"Ty =[";
+        Tzfile<<"Tz =[";
+        Wnormfile<<"Wnorm =[";
 	dcopy_( N*M, B, 1, J, 1 ); 	
 	//inicia iteraciones
 	bool found=(normG<=epsilon1);
@@ -366,17 +373,28 @@ int main( void )
 		file<<"	"<<k<<"	"<<(0.5*ddot_(M,f,1,f,1))<<"	"<<normG<<"	"<<mu<<endl;		
                 F_x<<(0.5*ddot_(M,f,1,f,1))<<", ";
                 gFile<<normG<<", ";
+        Wxfile<<x[0]<<", ";
+        Wyfile<<x[1]<<", ";
+        Wzfile<<x[2]<<", ";
+        Txfile<<x[3]<<", ";
+        Tyfile<<x[4]<<", ";
+        Tzfile<<x[5]<<", ";
+        Wnormfile<<x[6]<<", ";
 
-	for(int r=0;r<N;r++)
-        {
-		<<"	"<<x[r]<<endl;
-
-        }
       //waitKey(1);
 
 	}  
         F_x<<"];";
         gFile<<"];";
+        Wxfile<<"];";
+        Wyfile<<"];";
+        Wzfile<<"];";
+        Txfile<<"];";
+        Tyfile<<"];";
+        Tzfile<<"];";
+        Wnormfile<<x[6]<<", ";
+
+
 	
 	// termina programa  
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &fin);

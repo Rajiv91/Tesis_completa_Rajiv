@@ -356,6 +356,47 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
     \end{itemize} 
     
     \subsection{Cálculo de todas las rotaciones posibles}
+    
+    \section{Proyección de marcas en el piso}
+    Como se mencionó anteriormente para la etapa de entrenamiento del algoritmo de apendizaje automático se debe tener control sobre las capturas que se van a tomar de cada sujeto de experimento incluyendo las posiciones en la escena donde se colocarán al capturar los datos.
+    Una vez calculada las mejores posiciones en la escena para capturar los datos con las que se va a entrenar el algoritmo, la siguiente etapa consiste en colocar estos puntos con marcas en el piso para saber durante los experimento en qué posiciones se deben colocar las personas.
+    Como se había mencionado las marcas son con respecto al marco de referencia centrado en la cámara, la cual se encuentra sobre la pantalla, dichas marcas se pueden pintar en el piso midiendo sus coordenadas a partir de la cámara mediante un flexómetro o cinta métrica, sin embargo al realizarlo de esta forma se tienen los siguientes problemas:
+    \begin{itemize}
+    	\item Hay bastante inexactitud, por ejemplo en caso de que no se mida sobre la misma dirección de los ejes debido a pequeños \underline{errores humanos} y esto tiende a agravarse cuando las marcas son lejanas.
+    	\item El sistema de coordenadas centrado en la cámara no es paralela al plano del piso donde se colocarán las marcas ya que se debe rotar en dirección al piso para así tener una mejor vista de los rostros de las personas que se encuentran más cercanas a la cámara. Por lo tanto si rotamos la cámara de igual manera rotamos el marco de referencia y es más complicado colocar las marcas, lo anterior se puede ver ilustrado en la figura 11.1. 
+    \end{itemize}
+            \begin{figure}[htbp]
+            	\centering
+            	\includegraphics[width=.5\textwidth]{./pictures/ejesRot}
+            	\caption{}\label{fig: figura}
+            \end{figure}
+     Como solución al problema anterior se desarrollaron algoritmos utilizando visión computacional, geometría y otimización numérica para colocar en el piso de manera más precisa las marcas.
+     
+    \subsection{Proyección de marcas mediante visión computacional, geometría y optimización numérica}
+    %Se puede explicar a grandes rasgos en que consiste homografía, R y T proyección en el piso y luego detallar
+    Para utilizar el método que se describirá a continuación es necesario conocer la matriz de parámetros intrínsecos $K$. Lo anterior fue realizado mediante el software de Matlab: Camera Calibration Toolbox, dando como resultado la siguiente matriz.
+    \[K=
+    \begin{bmatrix}
+    	fx & 0 & c_x\\
+    	0 & f_y & c_y\\
+    	0 & 0 & 1
+    \end{bmatrix}
+      =
+      \begin{bmatrix}
+      616.164 & 0 & 325.528\\
+      0 & 616.82 & 228.66\\
+      0 & 0 & 1
+      \end{bmatrix}
+    \]
+    
+     se basan en un modelo conocido
+    3D y su correspondencia en el plano imagen 2D
+    
+    
+    
+    
+    
+    \subsection{Optimización levenberg marquardt}
 
     
     % bib stuff
