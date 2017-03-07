@@ -367,14 +367,14 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
     \end{itemize}
             \begin{figure}[htbp]
             	\centering
-            	\includegraphics[width=.5\textwidth]{./pictures/ejesRot}
+            	\includegraphics[width=.6\textwidth]{./pictures/ejesRot2}
             	\caption{}\label{fig: figura}
             \end{figure}
      Como solución al problema anterior se desarrollaron algoritmos utilizando visión computacional, geometría y otimización numérica para colocar en el piso de manera más precisa las marcas.
      
     \subsection{Proyección de marcas mediante visión computacional, geometría y optimización numérica}
     %Se puede explicar a grandes rasgos en que consiste homografía, R y T proyección en el piso y luego detallar
-    Para utilizar el método que se describirá a continuación es necesario conocer la matriz de parámetros intrínsecos $K$. Lo anterior fue realizado mediante el software de Matlab: Camera Calibration Toolbox, dando como resultado la siguiente matriz.
+    Para utilizar el método que se describirá a continuación es necesario conocer la matriz de parámetros intrínsecos $K$. La obtención de esta matriz se logró mediante el software de Matlab: Camera Calibration Toolbox, dando como resultado la siguiente matriz.
     \[K=
     \begin{bmatrix}
     	fx & 0 & c_x\\
@@ -388,7 +388,7 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
       0 & 0 & 1
       \end{bmatrix}
     \]
-    
+    Durante la primera etapa se debe hallar la homografía que mapea puntos en el plano del piso y los respectivos puntos en la imagen de ese plano, las medidas deben ser en metros.
      se basan en un modelo conocido
     3D y su correspondencia en el plano imagen 2D
     
