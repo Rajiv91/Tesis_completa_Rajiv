@@ -370,7 +370,7 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
             	\includegraphics[width=.6\textwidth]{./pictures/ejesRot2}
             	\caption{}\label{fig: figura}
             \end{figure}
-     Como solución al problema anterior se desarrollaron algoritmos utilizando visión computacional, geometría y otimización numérica para colocar en el piso de manera más precisa las marcas.
+     Como solución al problema anterior se desarrollaron algoritmos utilizando visión computacional, geometría y optimización numérica para colocar en el piso de manera más precisa las marcas, el método consiste en conocer cual es la distancia y orientación del plano del piso donde se situarán las personas y  proyectar las marcas en éste tomando como marco de referencia la cámara.
      
     \subsection{Proyección de marcas mediante visión computacional, geometría y optimización numérica}
     %Se puede explicar a grandes rasgos en que consiste homografía, R y T proyección en el piso y luego detallar
@@ -388,15 +388,167 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
       0 & 0 & 1
       \end{bmatrix}
     \]
-    Durante la primera etapa se debe hallar la homografía que mapea puntos en el plano del piso y los respectivos puntos en la imagen de ese plano, las medidas deben ser en metros.
-     se basan en un modelo conocido
-    3D y su correspondencia en el plano imagen 2D
+    \subsubsection{Homografía}
+    Durante la primera etapa se debe hallar la homografía que mapea puntos en el plano del piso y los respectivos puntos en la imagen de ese plano, todas coordenadas deben estar en metros, los puntos en el plano del piso deben tener las medidas reales que hay entre ellos, tener uno de los puntos como origen y con respecto a éste establecer las coordenadas de las demás.\\
+    La matriz de homografía se descompone y a partir de ella se encuentra la matriz de rotación y el vector de traslación que existe entre el plano del piso y la cámara, es decir, este método se basa en un modelo conocido 3D y su correspondencia en el plano imagen 2D.\\
+    Inicialmente se creó un software para capturar con el mouse 4 puntos marcados en el piso siguiendo un orden en específico, la matriz con los puntos establecidos con las medidas reales se denomina $scnPts_{4x4}$ y la matriz obtenida con los puntos capturados con el mouse se denomina $imgPts_{3x4}$. Los puntos establecidos en el piso tienen forma cuadrangular y están separados entre sí a $0.4m$, tomando como origen el punto de la esquina superior izquierda y como primera captura, como segundo punto la esquina inferior izquierda, tercer punto la esquina inferior derecha y último la esquina superior derecha establecemos la siguiente matriz:
+    \[scnPts=
+    \begin{bmatrix}
+    0 & 0 & 0.4\\
+    0 & 0.4 & 0.4\\
+    0 & 0 & 0\\
+    1 & 1 & 1 
+    \end{bmatrix}
+      \]
+    donde cada columna es un punto, la primera fila representa la coordena en el eje $x$, la segunda en $y$ y la tercera en $z$. Nótese que son coordenadas homogéneas y el valor en $z$ es cero ya que todos los puntos yacen sobre el mismo plano. Como se puede observar la matriz $scnPts$ está en metros por lo tanto se requiere que $imgPts$ igual esté en metros, esto se consigue simplemente multiplicando la matriz $imgPts$ por la inversa de la matriz $K$.\\
+    Como resultado del proceso anterior se obtuvo una homografía inexacta ya que al comprobar si mapeaba los puntos de la escena a la imagen ésta no lo hacía correctamente, los puntos tenían bastante error.
+	El error en la matriz de homografía podría deberse a los siguientes motivos:
+	\begin{itemize}
+		\item  Hay una distancia considerable entre los puntos del plano y la imagen
+		\item La captura de los puntos en la imagen mediante el mouse es realizada por simple inspección y seleccionando los puntos lo cual podría generar capturas erróneas.
+		\item Son pocos puntos para calcular la homografía
+	\end{itemize}
+	Para solucionar los inconvenientes anteriores se optó por utilizar más puntos, para ello se colocó una manta con un tablero de ajedrez con 48 intersecciones o en este caso 48 puntos con una longitud de $12cm$ cada lado, esto quiere decir que los puntos estarán separados a $0.12m$, además con el objetivo de que sea más precisa la captura y automática se modificó el programa para localizar las intersecciones automáticamente mediante bibliotecas de openCV y no estar capturando manualmente los puntos. Ahora la matriz $scnPts$ tiene una dimensión de $4x48$ y imgPts $3x48$. En la imagen 11.2 se pueden notar el buen desempeño que tiene algoritmo al encontrar las intersecciones en la manta con el tablero de ajedrez.
+     \begin{figure}[htbp]
+           	\centering
+           	\includegraphics[width=.6\textwidth]{./pictures/ajedrez}
+           	\caption{}\label{fig: figura}
+     \end{figure}
+	
+	\subsubsection{Rotación y traslación de la cámara}
+	Ya con la homografía $H$ se calcula la pose de la cámara (matriz de rotación $R_{3x3}$ y vector de traslación $T_{3x1}$) con respecto al plano del piso, además, se puede calcular la ecuación del plano la cual será útil más adelante.\\
+	    \[H=
+	    \begin{bmatrix}
+	    h_{11} & h_{12} & h_{13}\\
+	    h_{21} & h_{22} & h_{23}\\
+	    h_{31} & h_{32} & h_{3}\\
+	    \end{bmatrix}
+	    \]
+	La primera columna de $H$ contiene la primera columna de $R$ ($R_1$), es decir, la rotación al rededor del primer eje, la segunda columna es la segunda columna de $R$ ($R_2$) y la tercera columna de $H$ es el vector de traslación $T$, solamente queda por calcular la tercera columna de $R$ ($R_3$) la cual tiene que ser ortogonal a las dos primeras, por lo tanto se puede calcular mediante el producto cruz de la primera columna de h con la segunda. Adicionalmente antes de calcular la tercera columna de la matriz de rotación es necesario normalizar $R$ y $T$ debido a redundacias. La normalización se realiza de la siguiente manera:
+	\begin{eqnarray}
+		norm1=||[h_{11} h_{21} h_{31}]^T||\\
+		norm2=||[h_{12} h_{22} h_{32}]^T||\\
+		normT=\frac{norm1+norm2}{2}			
+	\end{eqnarray}
+	\[R=
+	\begin{bmatrix}
+	\frac{h_{11}}{norm1} & \frac{h_{12}}{norm2} & R_{13}\\
+	\frac{h_{21}}{norm1} & \frac{h_{22}}{norm2} & R_{23}\\
+	\frac{h_{31}}{norm1} & \frac{h_{32}}{norm2} & R_{33}\\
+	\end{bmatrix}
+	, T=
+	\begin{bmatrix}
+	\frac{T_x}{normT}\\
+	\frac{T_y}{normT}\\
+	\frac{T_z}{normT}	
+	\end{bmatrix}
+	\]
+	Luego simplemente se aplica el producto cruz para obtener la tercera columna
+	\begin{eqnarray}
+	R_3=R_1 \otimes R_2
+	\end{eqnarray}
+	Para hallar la ecuación del plano con respecto a la cámara (marco de referencia): $Ax+By+Cz=d$ únicamente es necesario la $R$, $T$ de la cámara y un punto de la escena de los que se utilizaron para el cálculo de la homografía.
+	\subsubsection{Cálculo de la ecuación del plano}
+	Como es bien sabido la normal  $n$ al plano $\Pi$ está dado por los componentes: $A$, $B$ y $C$ de la ecuación del plano y la distancia más cercana del plano al origen por: $d$, figura
+	
+     \begin{figure}[htbp]
+           	\centering
+           	\includegraphics[width=.4\textwidth]{./pictures/plane}
+           	\caption{Representación de un plano en el espacio}\label{fig: figura}
+     \end{figure}
+	Tomando como marco de referencia el plano (puntos establecidos en $scnPts$) la normal está dada por el eje $Z$ por lo tanto para obtener la normal con respecto al marco de referencia en la cámara unicamente rotamos este vector con la matriz de rotación:
+		 \[n=R*\begin{bmatrix}
+		 0\\
+		 0\\
+		 1	
+		 \end{bmatrix}\]
+	Sea $scnPts1_{3x1}$ el primer punto de la matriz de puntos establecidos en la escena, entonces la distancia $d$ del plano al origen es este punto rotado y trasladado hacia la cámara, y al resultado se le aplica el producto punto con la normal al plano:
+		\begin{eqnarray}
+			scnPtsRot=R*scnPts1+T\\
+			d=<N,scnPtsRot>
+		\end{eqnarray}
+	
+	\subsubsection{Reproyección de puntos en la imagen}
+Todo el proceso anterior fue con el objetivo de poder proyectar puntos en la imagen sobre el plano del piso tomando como marco de referencia la cámara. Lo anterior se consigue únicamente estableciendo la matriz con las marcas en el piso que se necesitan y proyectándolas en la imagen multiplicando por la matriz de parámetros intrínsecos para pasar las coordenadas a pixeles.\\
+Antes de pasar a esa etapa es necesario verificar que los parámetros encontrados en la sección anterior: $R$, $T$, $n$ y $d$ son correctos. 
+\begin{itemize}
+	\item La verificación de $n$ y $d$ consiste en utilizar los puntos obtenidos de $imgPts$ y proyectarlos desde el origen hacia el plano (formando rectas) y encontrar las coordenadas en las cuales se intersectan dichas proyecciones con el plano, estas intersecciones deben ser las mismas que las coordenadas de $scnPts$. Sea $L$ la recta en el espacio, $rh$ el vector que va del punto más cercano de $L$ al origen y $m$ el vector unitario que indica la orientación de $L$. 
+	     \begin{figure}[htbp]
+	     	\centering
+	     	\includegraphics[width=.35\textwidth]{./pictures/intersec}
+	     	\caption{intersección de una recta con un plano}\label{fig: figura}
+	     \end{figure}
+	
+	La intersección de $L$ con el plano $\Pi$ en $r$ está dada por:
+		\begin{eqnarray}
+			r=r_H+\frac{d-<n_{\Pi}, r_H>}{<n_{\Pi},m>}m
+		\end{eqnarray}
+	En este caso las lineas (proyecciones de imgPts) parten de la cámara por lo tanto el vector $rh$ es igual cero, simplificando la intersección es:
+		\begin{eqnarray}
+		r=\frac{d}{<n_{\Pi},m>}m
+		\end{eqnarray}	
+
+	\item La verificación de $R$ y $T$ simplemente se realiza tomando los puntos de $scnPts$ rotándolos, traslandándolos y proyectándolos en la imagen, en caso de que los cálculos de la $R$ y $T$ sean correctos estas proyecciones deben ser las mismas que $imgPts$.
+\end{itemize}
+El resultado de los dos comprobaciones se pude ver en la imagen 11.5, las marcas rojas son la proyección en la imagen de la intersecciones con el plano y las verdes son los puntos de $scnPts$ rotados, trasladados y proyectados. Como se puede observar el cálculo de la $n$ y $d$ del plano es bastante precisa, mientras que la $R$ y $T$ tienen error, y parece ser mayor con el desplazamiento sobre el eje $Y$. 
+\begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=.5\textwidth]{./pictures/rep}
+ 	\caption{Reproyección de puntos}\label{fig: figura}
+\end{figure}
+
+Se realizó un análisis de la distancia que hay entre los que se obtiene de los puntos rotados, traslados y proyectados con lo que debiera ser ($imgPts$) en pixeles y se obtuvo que en el primer punto (primera fila de arriba a abajo y la primera columna de izquierda a derecha): 0.27 pixeles de diferencia en el eje $x$ y 0.15 en $Y$, en el último punto (fila 8 y columna 6) y la distancia es de: $52$ pixeles en $X$ y 107 en $Y$.\\
+El error en metros en tres dimensiones con con respecto al primer y último punto es el siguiente: en el primer punto hay una distancia de $0.0002978m$ en $X$, $0.00003559m$ en $Y$ y $0.000467m$ en $Z$; y en el último punto $0.265m$ en $X$, $0.0268$ en $Y$ y $0.128m$ en $Z$. Como se puede observar el error se va expandiendo conforme los puntos se alejan del primer punto. El error en $R$ y $T$ es mucho mayor que el que hay en $n$ y $d$ esto se debe a que estos últimos parámetros se calculan con respecto al primer punto el cual como ya se analizó tiene menos error, sin embargo; es necesario que $R$ y $T$ sean más precisos porque se utilizan bastante en etapas posteriores, por lo que fue necesario optimizar estos parámetros.
+	
+     %los puntos obtenidos y estableciendo la distancia a la que estaban los puntos entre si. La matriz con los puntos reales
+       
+     %se pusieron marcas en el piso (en lugar donde se trabajó) en la intersección la distancia se pusieroncreó un software para captura
+        
+\subsection{Optimización levenberg marquardt}
+Como se había mencionado la rotación y traslación no son lo suficientemente precisas para empezar a realizar experimentos, en uno de los peores casos hay una diferencia de $26cm$ con la coordenada sobre el eje $X$ que debiera ser. Por lo tanto se optó por utilizar un algoritmo de optimización numérica para minimizar el error que existe en la rotación y traslación. Se eligió el algoritmo de Levenberg-Marquardt debido a que es uno de los más eficientes, con él se busca el vector de parámetros $p$ que minimice.
+	\begin{eqnarray}
+		F(p)=\frac{1}{2}\sum\limits_1^m(f_i(p))^2	
+	\end{eqnarray}
+	donde $f_i: \mathbb{R}^n\rightarrow \mathbb{R}, i=1,....,m$ son las funciones dadas y $m\geq n$.\\
+
+Las funciones a optimizar deben tener los parámetros de $R$ y $T$, estar descritas de tal forma que sean iguales o cercanas a cero, e incluir a los 48 puntos, por lo tanto el número de ecuaciones a minimizar es $m=144$ (tomando en cuenta los tres componentes de cada punto) y se plantean de la siguiente forma:
+	\begin{eqnarray}
+	f_{xyz}(p)=X_{rt}-X_{intersec}
+	\end{eqnarray}
+ donde $X_{rt}$ es el conjunto de puntos $scnPts$ rotados y trasladados, y $X_{intersec}$ es el conjunto de puntos $imgPts$ que se proyectan e intersectan con el plano. Por cada conjunto de tres ecuaciones se tiene:
+ 	\begin{eqnarray}
+ 	f_{xyz}(p)= \{R*X_{scn}+T\}-\{ \frac{d}{<n_{\Pi},X_{img}>}X_{img} \}
+ 	\end{eqnarray}
+Como se explicó anteriormente la $n$ y $d$ del plano dependen de la rotación y traslación por lo que es importante también ir actualizando estos parámetros en cada paso de la optimización. \\
+No es congruente estar optimizando los 9 parámetros de la matriz de rotación, esto puede generar errores por lo que se optimizará el eje de rotación y su magnitud del ángulo de rotación, ya que como indica la fórmula de Rodrigues cualquier matriz de rotación se puede realizar mediante la rotación alrededor de un eje fijo $\omega$ por un cierto ángulo $\parallel\omega\parallel$:
+ 	\begin{eqnarray}
+ 	R=I+\frac{\hat{\omega}}{\parallel\omega\parallel}sin(\parallel\omega\parallel)+ \frac{\hat{\omega}^2}{\parallel\omega\parallel^2}(1-cos(\parallel\omega\parallel))
+	\end{eqnarray}
+	Donde los valores del eje y el ángulo de una matriz $R$:
+		\[R=
+		\begin{bmatrix}
+		r_{11} & r_{12} & r_{13}\\
+		r_{21} & r_{22} & r_{23}\\
+		r_{31} & r_{32} & r_{33}\\
+		\end{bmatrix}
+		\]
+	 se obtienen por medio de:
+	\begin{eqnarray}
+	\parallel\omega\parallel=cos^{-1}  \lgroup \frac{traza(R)-1}{2}\rgroup, \frac{\omega}{\parallel\omega\parallel}=\frac{1}{2sin(\parallel\omega\parallel)} \begin{bmatrix}
+	r_{32}-r_{23}\\
+	r_{13}-r_{31}\\
+	r_{21}-r_{12} \\
+	\end{bmatrix}	
+	\end{eqnarray}
+	
+Los 7 parámetros optimizar son los siguientes:
+	\begin{eqnarray}
+	p=[\omega_x, \omega_y, \omega_z, \parallel\omega\parallel, T_x, T_y, T_z]
+	\end{eqnarray}
+
+
+
     
-    
-    
-    
-    
-    \subsection{Optimización levenberg marquardt}
 
     
     % bib stuff
