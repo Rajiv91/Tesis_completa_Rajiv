@@ -543,9 +543,71 @@ No es congruente estar optimizando los 9 parámetros de la matriz de rotación, es
 	
 Los 7 parámetros optimizar son los siguientes:
 	\begin{eqnarray}
-	p=[\omega_x, \omega_y, \omega_z, \parallel\omega\parallel, T_x, T_y, T_z]
+	\begin{array}{c}
+		p=[\omega_x, \omega_y, \omega_z, \parallel\omega\parallel, T_x, T_y, T_z]
+	\end{array}
+	\end{eqnarray}
+	En el algoritmo de levenberg-marquardt se debe definir cuales son cada una de las funciones y no es suficiente con 48 ecuaciones como la de 11.10 ya que ésta involucra multiplicaciones de matrices de 3 filas (son conjuntos de puntos de 3 coordenadas) teniendo en realidad 144 funciones a optimizar. Por lo tanto es necesario expresar la ecuación 11.10 en términos de $\omega_x, \omega_y, \omega_z, \parallel\omega\parallel, T_x, T_y, T_z$ con ayuda de la fórmula de Rodrigues para poder utilizar el algoritmo de optimización. Por lo que para cada una de las $x$ de las 48 de la ecuación 11.10 de $X_{rt}$ (la parte de $X_{intersec}$ está más claro como usarla debido a la ecuación 11.11) la función de optimización es:
+%	\begin{equation}
+%	\resizebox{1.2\hsize}{!}{$%
+%	f_{xi}(p)= \{[(\omega_x^2-1)(1-cos(\parallel\omega\parallel))+1]X_{scnxi}+ [\omega_x\omega_y(1-cos(\parallel\omega\parallel))-\omega_z(sin(\parallel\omega\parallel))]X_{scnyi}+[\omega_ysin(\parallel\omega\parallel)+\omega_x\omega_z(1-cos(\parallel\omega\parallel))]X_{scnzi}\}+T_x 
+%	$%
+%	}%
+%	\end{equation}
+
+	\begin{eqnarray}
+	\begin{array}{c}
+		f_{xi}(p)=[(\omega_x^2-1)(1-cos(\parallel\omega\parallel))+1]X_{scnxi}+\\
+	\qquad \qquad \qquad  \left[\omega_x\omega_y(1-cos(\parallel\omega\parallel))-\omega_z(sin(\parallel\omega\parallel))\right]X_{scny}+\\
+		\qquad \qquad \qquad \qquad
+		\left[\omega_ysin(\parallel\omega\parallel)+\omega_x\omega_z(1-cos(\parallel\omega\parallel))\right]X_{scnzi}\}+T_x 
+	\end{array}
+	\end{eqnarray}
+	
+	Para cada una de los puntos en y de los 48 la función de optimización es:
+%		\begin{equation}
+%		\resizebox{1.2\hsize}{!}{$%
+%		f_{yi}(p)=[\omega_zsin(\parallel\omega\parallel)+\omega_x\omega_y(1-cos(\parallel\omega\parallel))]X_{scnxi}+
+%		[(\omega_y^2-1)(1-cos(\parallel\omega\parallel))+1]X_{scnyi}-
+%		[\omega_xsin(\parallel\omega\parallel)+\omega_y omega_z(1-cos(\parallel\omega\parallel))]X_{scnzi}+T_y
+%	$% 
+%	}%
+%\end{equation}	
+	\begin{eqnarray}
+	\begin{array}{c}
+	f_{yi}(p)=[\omega_zsin(\parallel\omega\parallel)+\omega_x\omega_y(1-cos(\parallel\omega\parallel))]X_{scnxi}+\\
+	\left[(\omega_y^2-1)(1-cos(\parallel\omega\parallel))+1\right]X_{scnyi}-\\
+	\qquad \qquad \qquad \qquad
+	\left[\omega_xsin(\parallel\omega\parallel)+\omega_y omega_z(1-cos(\parallel\omega\parallel))\right]X_{scnzi}+T_y
+	\end{array}
+	\end{eqnarray}
+	
+Finalmente en los puntos pertenecientes a la coordenada z la función es:
+%		\begin{equation}
+%		\resizebox{1.2\hsize}{!}{$%
+%		f_{zi}(p)=[\omega_x\omega_z(1-cos(\parallel\omega\parallel))-\omega_y\sin(\omega)]X_{scnxi}+
+%		[\omega_xsin(\parallel\omega\parallel)+\omega_y\omega_z(1-cos(\parallel\omega\parallel))]X_{scnyi}+
+%		[(\omega_z^2-1)(1-cos(\parallel\omega\parallel))+1]X_{scnzi}+T_z
+%		$% 
+%		}%
+%		\end{equation}
+	\begin{eqnarray}
+	\begin{array}{c}
+	f_{zi}(p)=[\omega_x\omega_z(1-cos(\parallel\omega\parallel))-\omega_y\sin(\omega)]X_{scnxi}+\\
+		\qquad \qquad
+	\left[\omega_xsin(\parallel\omega\parallel)+\omega_y\omega_z(1-cos(\parallel\omega\parallel))\right]X_{scnyi}+\\
+	\qquad	
+	\left[(\omega_z^2-1)(1-cos(\parallel\omega\parallel))+1\right]X_{scnzi}+T_z
+	\end{array}
 	\end{eqnarray}
 
+Se creó un programa de optimización con Levenberg-Marquardt tomando en cuenta todos los aspectos anteriores y para probar y comparar la eficiencia se utilizan los mismo 48 puntos de la sección anterior. Al programa le toma 20 iteraciones llegar al mínimo con un valor de:
+	\begin{eqnarray}
+	F(p)=1.588771e^{-3}
+	\end{eqnarray}
+	  %(1-cos(\parallel\omega\parallel))
+	  %sin(\parallel\omega\parallel)
+Se compararon los resultados del mismo modo que en la sección anterior, midiendo la distancia de los puntos en metros rotados y trasladados con la $R$ y $T$ resultantes de la optimización con lo que en realidad debería ser, esto es, los puntos que resultan de la intersección de la proyección de los puntos con el plano del piso. En el primer punto se obtuvo un error en el primer punto: en $X$ $-0.00145m$, en $Y$ $0.00594m$ y en $Z$ $0.01289m$. En el último en el cual se notaba más el error de la rotación y traslación con la optimización se obtuvieron los siguientes resultados: en $X$ $-0.0449m$, en $Y$ $0.0423$ y en $Z$ $0.1424m$. La mayor diferencia se puede ver el último punto en la coordenada $X$ ya que pasa de una diferencia de $26.5cm$ a $4cm$.
 
 
     
