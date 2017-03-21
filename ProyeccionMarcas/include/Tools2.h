@@ -18,6 +18,9 @@ using namespace cv;
 
 void setCam(VideoCapture& capture)
 {
+    int width=capture.get(CV_CAP_PROP_FRAME_WIDTH);
+    int height=capture.get(CV_CAP_PROP_FRAME_HEIGHT);
+
     Mat frameLine;
     cvNamedWindow("line", WINDOW_NORMAL);
     //Acomodar la cámara
@@ -25,7 +28,7 @@ void setCam(VideoCapture& capture)
     {
       capture>>frameLine;
       //flip(frameLine, frameLine, 1);
-      line( frameLine, Point(IM_WIDTH_FULLHD/2, 0), Point(IM_WIDTH_FULLHD/2,  IM_HEIGHT_FULLHD), Scalar( 0, 0, 0 ), 5 );
+      line( frameLine, Point(width/2, 0), Point(width/2,  height), Scalar( 0, 0, 0 ), 5 );
       imshow("line", frameLine);
       char keyExit=waitKey(1);
       if(keyExit=='q') break;
