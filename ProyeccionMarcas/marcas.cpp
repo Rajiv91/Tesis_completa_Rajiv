@@ -14,6 +14,7 @@
 #include <Tools.h>
 #include <Tools2.h>
 #include <functions.h>
+#include <levenberg.h>
 
 
 using namespace std;
@@ -21,7 +22,7 @@ using namespace cv;
 
 int main(int argc, char **argv)
 {
-  Mat frame;
+  Mat frame, frameOriginal;
   VideoCapture capture;
   char key; 
   int filsGrid=8;
@@ -97,9 +98,8 @@ int main(int argc, char **argv)
     pointsSelect3dTo2D(P, vps2d, K, N, D, dummy);//Con los puntos seleccionados del tablero se halla la intersección en el plano y se proyectan en 2D
 
     //cout<<"Número de marcas verdes: "<<marcas2d.cols<<endl;
-    for(;;)
-    {
       capture>>frame;
+      frameOriginal=frame.clone();
       for(int j=0; j<marcas2d.cols; j++)
       {
         drawLine(frame, vanishingLine, colors[0]);//Se pinta la linea de fuga
@@ -111,9 +111,9 @@ int main(int argc, char **argv)
       }
     
       imshow("frame", frame);
-      key=waitKey(1);
-      if(key=='q') break;
-    }
+      key=waitKey(0);
+      levenbergMain(R, T, K, frameOriginal, imgPts, scnPts, P);
+
 #endif
 
   return 0;
