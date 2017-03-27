@@ -30,7 +30,7 @@ int main(int argc, char **argv)
   int nP=filsGrid*colsGrid;//número de puntos
     //*************Cámara**********
     cvNamedWindow("frame",WINDOW_NORMAL );//WINDOW_NORMAL);//WINDOW_AUTOSIZE );
-    if (!capture.open(0))
+    if (!capture.open(1))
     {
       cout<<"no pudo abrir la camara"<<endl; //si no se puede acceder a la cámara USB usa la webcam de la laptop
       return -1;
@@ -98,7 +98,8 @@ int main(int argc, char **argv)
     pointsSelect3dTo2D(P, vps2d, K, N, D, dummy);//Con los puntos seleccionados del tablero se halla la intersección en el plano y se proyectan en 2D
 
     //cout<<"Número de marcas verdes: "<<marcas2d.cols<<endl;
-      capture>>frame;
+    //  capture>>frame;
+    frame=imread("chessboard2.jpg",1);
       frameOriginal=frame.clone();
       for(int j=0; j<marcas2d.cols; j++)
       {
@@ -111,6 +112,8 @@ int main(int argc, char **argv)
       }
     
       imshow("frame", frame);
+      cout<<"Antes de levenberg"<<endl;
+      //cout<<"scnPts = "<<endl<<scnPts<<endl;
       key=waitKey(0);
       levenbergMain(R, T, K, frameOriginal, imgPts, scnPts, P);
 

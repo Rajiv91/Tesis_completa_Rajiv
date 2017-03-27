@@ -45,7 +45,7 @@ void findCorners(VideoCapture& capture, int filsGrid, int colsGrid, vector<Point
   int idxP=0;
 
     //capture>>Icol;//Se captura el tablero para encontrar las intersecciones
-    Icol=imread("Reticula0.png",1);
+    Icol=imread("chessboard2.jpg",1);
 
    cvtColor(Icol, I, CV_RGB2GRAY);
     cvNamedWindow("chessboard",WINDOW_NORMAL );
@@ -113,6 +113,16 @@ void buildScnP(int filsGrid, int colsGrid, Mat& scnPts)
         }
       }
     }
+    int origen= 0;
+    Mat mPoint=(Mat_<double>(4,1)<<scnPts.at<double>(0,origen),
+                                  scnPts.at<double>(1,origen),
+                                  scnPts.at<double>(2,origen), 
+                                  scnPts.at<double>(3,origen));
+    //scnPts-=scnPts(Rect(23, 0, 1, 4));
+    scnPts-=mPoint;
+    //cout<<"subscnPts = "<<scnPts(Rect(23, 0, 1, 4))<<endl;
+    //cout<<"scnPts movido = "<<scnPts<<endl;
+
 }
 
 
