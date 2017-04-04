@@ -514,14 +514,16 @@ Como se había mencionado la rotación y traslación no son lo suficientemente prec
 
 Las funciones a optimizar deben tener los parámetros de $R$ y $T$, estar descritas de tal forma que sean iguales o cercanas a cero, e incluir a los 48 puntos, por lo tanto el número de ecuaciones a minimizar es $m=144$ (tomando en cuenta los tres componentes de cada punto) y se plantean de la siguiente forma:
 	\begin{eqnarray}
-	f_{xyz}(p)=X_{rt}-X_{intersec}
+	f_{xyz}(p)=||X_{rt}-X_{intersec}||
 	\end{eqnarray}
  donde $X_{rt}$ es el conjunto de puntos $scnPts$ rotados y trasladados, y $X_{intersec}$ es el conjunto de puntos $imgPts$ que se proyectan e intersectan con el plano. Por cada conjunto de tres ecuaciones se tiene:
  	\begin{eqnarray}
  	f_{xyz}(p)= \{R*X_{scn}+T\}-\{ \frac{d}{<n_{\Pi},X_{img}>}X_{img} \}
  	\end{eqnarray}
 Como se explicó anteriormente la $n$ y $d$ del plano dependen de la rotación y traslación por lo que es importante también ir actualizando estos parámetros en cada paso de la optimización. \\
-No es congruente estar optimizando los 9 parámetros de la matriz de rotación, esto puede generar errores por lo que se optimizará el eje de rotación y su magnitud del ángulo de rotación, ya que como indica la fórmula de Rodrigues cualquier matriz de rotación se puede realizar mediante la rotación alrededor de un eje fijo $\omega$ por un cierto ángulo $\parallel\omega\parallel$:
+%No es congruente estar optimizando los 9 parámetros de la matriz de rotación, esto puede generar errores 
+En problemas de optimización numérica la redundancia de las matrices de rotación es incoveniente y a menudo es preferible una representación mínima.
+por lo que se optimizará el eje de rotación y su magnitud del ángulo de rotación, ya que como indica la fórmula de Rodrigues cualquier matriz de rotación se puede realizar mediante la rotación alrededor de un eje fijo $\omega$ por un cierto ángulo $\parallel\omega\parallel$:
  	\begin{eqnarray}
  	R=I+\frac{\hat{\omega}}{\parallel\omega\parallel}sin(\parallel\omega\parallel)+ \frac{\hat{\omega}^2}{\parallel\omega\parallel^2}(1-cos(\parallel\omega\parallel))
 	\end{eqnarray}
