@@ -1,7 +1,6 @@
 #ifndef __FUNCTIONS__
 #define __FUNCTIONS__
 
-
 #include <cv.h>
 #include <highgui.h>
 #include <iostream>
@@ -39,13 +38,18 @@ void setRes(VideoCapture& capture)
   
 }
 
-void findCorners(VideoCapture& capture, int filsGrid, int colsGrid, vector<Point2d>& P)
+void findCorners(Mat& mChessboard, int filsGrid, int colsGrid, vector<Point2d>& P)
 {
   Mat I, Icol, Corners; 
   int idxP=0;
 
     //capture>>Icol;//Se captura el tablero para encontrar las intersecciones
-    Icol=imread("chessboard2.jpg",1);
+    //Icol=imread("chessboard.jpg",1);
+    //Icol=imread("/home/rajiv/Documentos/seminario3/chessboard720/chessboard3_720.jpg", 1);
+    Icol=mChessboard.clone();
+    //Icol=imread("/home/rajiv/Documentos/seminario3/picturesCalib/L_Clbr_000004.jpg",1);
+
+      //remap (Icol, Icol, Mx, My, INTER_LINEAR, BORDER_TRANSPARENT);
 
    cvtColor(Icol, I, CV_RGB2GRAY);
     cvNamedWindow("chessboard",WINDOW_NORMAL );
