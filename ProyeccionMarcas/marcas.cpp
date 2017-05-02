@@ -63,7 +63,7 @@ int main(int argc, char **argv)
     cout << "Kn = " << Kn << endl << endl;
     Mat I, O;
       //I = imread("chessboard.jpg", 1);
-      I = imread("/home/rajiv/Documentos/seminario3/chessboard1080/chessboard5_1080.jpg", 1);//el 2 es el que presenta más error, el 5
+      I = imread("/home/rajiv/Documentos/seminario3/chessboard1080/chessboard1_1080.jpg", 1);//el 2 es el que presenta más error, el 5
     //I=imread("/home/rajiv/Documentos/seminario3/logitech720Selec/L_000025.jpg",1);
       remap (I, O, Mx, My, INTER_LINEAR, BORDER_TRANSPARENT);
     //cvNamedWindow("antes",0);
