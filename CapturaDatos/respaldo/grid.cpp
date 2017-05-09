@@ -28,9 +28,6 @@
 #define L 0.615
 #define CY 0.028
 
-#define SX 6 
-#define SY 7 
-#define SZ 8 
 
 using namespace std;
 using namespace cv;
@@ -117,6 +114,7 @@ int main(int argc, char **argv)
   Mat localFrame;
   while(getline(in, line))
   {
+
     //sleep(1);
     //imshow("Grid", Grid);
     getCoordinate(coordinate, line);
@@ -265,9 +263,9 @@ void getCoordinate(Point2f& coordinates, string line)
   for(int i=0; i<6; i++)
   {
     pos=line.find(',', pos_ant);
-    if(i==SX)
+    if(i==SxField)
       SxTemp=line.substr(pos_ant, pos-pos_ant).c_str();
-    if(i==SY)
+    if(i==SyField)
       SyTemp=line.substr(pos_ant, pos-pos_ant).c_str();
     pos_ant=pos+1;
   }
