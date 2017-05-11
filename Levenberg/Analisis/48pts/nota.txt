@@ -1,4 +1,0 @@
-Análisis realizado con la G de 48 puntos con marcas encontradas con findchessb.., con .12m de dif entre ellas
-
-matrizG.txt es con Gram-sch..
-matrizG2.txt es sin
