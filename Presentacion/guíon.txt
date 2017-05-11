@@ -1,0 +1,17 @@
+﻿¿Por qué una persona mueve su cabeza?
+-Transmitir información interpersonal.
+-Indicar quién es el objetivo de una conversación.
+-Si se está de acuerdo en una discusión.
+-Un movimiento rápido podrı́a indicar una situación de alarma.
+-Para enfocar su atención en algún punto o región de interés.
+
+Importancia de conocer la posición y orientación de la cabeza de una persona
+Conocer la posición, orientación y movimiento de la cabeza son cuestiones de gran importancia ya que pueden ayudar a las personas a interactuar con las computadoras de una forma más natural a como se realiza actualmente, dando como resultado en útiles en aplicaciones como: video conferencias, controles o interfaces hombre-máquina especiales, aplicaciones de realidad virtual. Además, si se toma en cuenta hacia dónde está mirando la persona y el tiempo que lleva en cierta posición puede proporcionar información adicional que ayudaría a inferir si está muy atenta a lo que está observando o si la persona está durmiendo.
+Lo que nos importa de todo esto es que:
+Por medio del análisis de imágenes capturadas a personas y en combinación con algoritmos de aprendizaje automático es posible conocer la posición y orientación de sus cabezas con respecto a un marco de referencia, la información obtenida puede ayudar a conocer qué es lo que están observando las personas.
+
+Objetivo
+Detectar el rostro de las personas y estimar su pose mediante una cámara monocular con el objetivo de inferir la región que estén mirando en un plano virtual enfrente de ellas.
+
+¿Qué es la estimación de la pose de una cabeza?
+En el área de visión computacional la estimación de la pose de una cabeza es el proceso de inferir la orientación y la posición de una cabeza humana a partir de las imágenes [Murphy et al, 2009]. El estimador debe ser robusto a distorsiones causadas por la cámara, a las expresiones faciales, al cabello, al vello facial y a objetos que ocluyan la cabeza como por ejemplo unos lentes o sombreros.

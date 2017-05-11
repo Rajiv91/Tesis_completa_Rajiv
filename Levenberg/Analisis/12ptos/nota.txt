@@ -1,0 +1,3 @@
+Análisis realizado con la G de 12 puntos con marcas pintadas con plumón .4m de dif entre ellas, partiendo del centro
+matrizG.txt es con Gram-sch..
+matrizG2.txt es sin
