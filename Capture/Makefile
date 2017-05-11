@@ -12,7 +12,7 @@ testCapture: objs/capture.o
 	g++ -o $@ $^ $(CFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)
 
 #we define a rule that applies to all files ending in the .o suffix. The rule says that the .o file depends upon the .c version of the file
-objs/%.o: %.cpp $(INCLUDE)functions.h $(INCLUDE)Blob.h
+objs/%.o: %.cpp #$(INCLUDE)functions.h #$(INCLUDE)Blob.h
 	g++ -fPIE -c -o $@ $< $(CLIBS) $(INCLUDEDIR) #$(LIBDIRS) $(LIBS)
 	#g++ -I$(INCLUDE) -c -o objs/main.o main.cpp #Igual funciona
 #-I$(INCLUDE)
