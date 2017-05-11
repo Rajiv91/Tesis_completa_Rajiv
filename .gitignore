@@ -14,5 +14,7 @@ classicthesis-article.pdf
  ./Documento/*~
  ./Documento/.Rhistory
  ./Documento/*.fls
+ ./Capture/pictures/*.jpg
+
 
 tesis.pdf
