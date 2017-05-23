@@ -9,11 +9,11 @@ LIBS =  -lm $(OPENCV_LIBS) -lrt -lm -ldl -pthread
 all:testCapture
 
 testCapture: objs/capture.o
-	g++ -std=c++11 -o $@ $^ $(CFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)
+	g++ -o $@ $^ $(CFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)
 
 #we define a rule that applies to all files ending in the .o suffix. The rule says that the .o file depends upon the .c version of the file
-objs/%.o: %.cpp $(INCLUDE)Tools.h $(INCLUDE)Rot.h
-	g++ -std=c++11 -fPIE -c -o $@ $< $(CLIBS) $(INCLUDEDIR) #$(LIBDIRS) $(LIBS)
+objs/capture.o: capture.cpp $(INCLUDE)#Roth.h $(INCLUDE)Tools.h
+	g++ -c -o $@ $< $(CLIBS) $(INCLUDEDIR) #$(LIBDIRS) $(LIBS)
 	#g++ -I$(INCLUDE) -c -o objs/main.o main.cpp #Igual funciona
 #-I$(INCLUDE)
 clean:

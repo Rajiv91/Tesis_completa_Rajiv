@@ -25,7 +25,12 @@ int main(int argc, char **argv)
   K=(Mat_<float>(3,3)<<1.3894941650485114e+03, 0, 9.3813807262703551e+02,
                         0, 1.3894941650485114e+03, 5.1721974936200786e+02,
                         0, 0, 1);//1080
-  frame = imread("/home/rajiv/Documentos/seminario3/chessboard1080/chessboard1_1080.jpg", 1);
+  capture.open(1);
+  capture.set(CV_CAP_PROP_FRAME_WIDTH,1920);
+  capture.set(CV_CAP_PROP_FRAME_HEIGHT, 1080);
+
+  capture>>frame;
+  //frame = imread("/home/rajiv/Documentos/seminario3/experimentosMay17/tp-350_1080.jpg", 1);
   namedWindow("frame",0 );
   int coordinates=3;
   int pos, pos_ant;
@@ -93,18 +98,25 @@ int main(int argc, char **argv)
         mPointsP(Rect(i, 0, 1, 3)) /= mPointsP.at<float>(2, i);//En pixeles
 //Se pintan los puntos en la imagen
     stringstream nPoint, pointCo;
-    Point3f N=Point3d(1.225178e-03, 9.153896e-01, 3.956665e-01), nNorm, pTemp2, pHeight;
-    double d= 1.257479e+00;
+    Point3f N=Point3d(-1.513929e-02, 9.542600e-01, 3.126682e-01), nNorm, pTemp2, pHeight;
+    double d=  2.157112;
     float x, y, z, startXZ=0, norma;
     Mat headP;
     norma=norm(N);
     nNorm=Point3f(N.x/norma, N.y/norma, N.z/norma);
-    float heightP=1.2;//Altura de la persona
+    nNorm=N;
+
+    float heightP=1.67;//Altura de la persona
     pHeight=nNorm*-heightP;
     
     Point pTemp, hP;
+    for(;;)
+    {
+      capture>>frame;
+
     for (int i=0;i<mPoints.cols;++i)
     {
+      //capture>>frame;
       nPoint.str("");
       pointCo.str("");
       nPoint<<i;
@@ -123,7 +135,7 @@ int main(int argc, char **argv)
       headP=K*headP;//Se proyecta en la imagen
       headP(Rect(0, 0, 1, 3)) /= headP.at<float>(2, 0);
       hP=Point(headP.at<float>(0, 0), headP.at<float>(1, 0));
-      cv::line(frame, hP,tempPoint, Scalar(9, 167, 178) ,3);
+      //cv::line(frame, hP,tempPoint, Scalar(9, 167, 178) ,3);
 
 
       //Dibujamos alrededor del punto líneas que yacen en el plano
@@ -133,6 +145,7 @@ int main(int argc, char **argv)
       startXZ=-.5;
       for(int j=0; j<11; j++)
       {
+        //capture>>frame;
         if(j==0)
           z+=startXZ;//10cm
 
@@ -171,12 +184,17 @@ int main(int argc, char **argv)
         pTemp=Point(tempP.at<float>(0, 0), tempP.at<float>(1, 0));
         circle(frame, pTemp,5, Scalar(30, 45, 131) ,2);
         cv::line(frame, tempPoint, pTemp, Scalar(30, 45, 131), 1, CV_AA);
+
       }
 
+      //imshow("frame", frame);
+      //waitKey(1);
 
     }
     imshow("frame", frame);
-    waitKey();
+    waitKey(100);
+    //sleep(1);
+    }//for(;;)
 
 
 

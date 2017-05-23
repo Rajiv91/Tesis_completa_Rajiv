@@ -14,6 +14,9 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <termios.h>
+#include "Tools.h"
+#include "Rot.h"
+
 #define ROWS_GRID 1000//1000
 #define COLS_GRID 1780//1560
 #define CIRCLE_RAD 20
@@ -24,11 +27,20 @@
 #define IM_WIDTH_HD 1280
 #define IM_HEIGHT_HD 720
 //Dimensiones de la pantalla
-#define W .48//1.095
-#define L .27//0.615
-#define CY 0.037
-#define DCU 0.0
+//#define W .48//Pantalla de 21 pulgadas
+#define W 2.375//Pintarrón
+//#define L .27//Pantalla
+#define L 1.17
+//#define CY 0.037
+#define CY .2
+#define DCU 0.06
 
+#define F1X 0 
+#define F1Y 1 
+#define F1Z 2
+#define F2X 3 
+#define F2Y 4 
+#define F2Z 5
 #define SX 6 
 #define SY 7 
 #define SZ 8 
@@ -56,6 +68,7 @@ VideoCapture capture;
 void paintGrid(Mat &Grid, Point3f coordinate, int width, int height, float rotP, Point2f& coordinate2d);
 void setRes(VideoCapture& cap);
 void getCoordinate(Point3f& coordinates, string line);
+void getMarkF(P* myP1, P* myP2, Point3f& pHeight, string line);
 
 int main(int argc, char **argv)
 {
@@ -68,14 +81,25 @@ int main(int argc, char **argv)
   int width, height;
   float rotPT=0;//Rotación en grados de la unidad pan-tilt, negativa por regla de la mano derecha
   rotPT=rotPT*M_PI/180;
-  cout<<"ángulo = "<<rotPT<<endl;
-  
+  cout<<"ángulo = "<<rotPT<<endl;  
 
   width =COLS_GRID/100;
   height=ROWS_GRID/ 100;
   ifstream in(argv[1]);
   ofstream out(argv[2]);
+  //Variables para el cálculo de rotación de la mirada
   
+  Point3f N=Point3d(1.225178e-03, 9.153896e-01, 3.956665e-01), nNorm, pTemp2, pHeight;
+  double d= 1.257479e+00;
+  float x, y, z, startXZ=0, norma;
+  Mat headP;
+  norma=norm(N);
+  nNorm=Point3f(N.x/norma, N.y/norma, N.z/norma);
+  float heightP=1.7;//Altura de la persona
+  pHeight=nNorm*-heightP;//Ahora solo hay que trasladarlo hacia la marca en el piso
+  Point pTemp, hP;
+  //***********
+
   Point3f coordinate;
   Point2f coordinate2d;
   char key; 
@@ -134,11 +158,31 @@ int main(int argc, char **argv)
           imshow("frame", localFrame);
           stringstream numString;
           numString<<contFrames;
+          Rotation *myRot;
+          P* myP1;
+          P* myP2;
+          S* myS;
+          //Calculo de la rotación de la mirada
+          if(nPos==0)
+          {
+            myP1=new P();
+            myP2=new P();
+            myS=new S(coordinate);//Objeto en pantalla
+            getMarkF(myP1, myP2, pHeight, line);//Obtiene la marca en el piso y la guarda en myP
+            //cout<<"myP1->phix = "<<myP1->phix<<endl;
+            myP1->computeA(myS);//Calcula el ángulo de mirada phix y phiy de P1 a S
+            myP2->computeA(myS);
+            /*cout<<"P1 phix = "<<myP1->phix<<", P1->Fx = "<<myP1->Fx<<", P1->Fy = "<<myP1->Fy<<", P1->Fz = "<<myP1->Fz<<", myP1->Px = "<<myP1->Px<<", myP1->Py = "<<myP1->Py<<", myP1->Pz = "<<myP1->Pz<<endl;
+            cout<<"P2 phix = "<<myP2->phix<<", P2->Fx = "<<myP2->Fx<<", P2->Fy = "<<myP2->Fy<<", P2->Fz = "<<myP2->Fz<<", myP2->Px = "<<myP2->Px<<", myP2->Py = "<<myP2->Py<<", myP2->Pz = "<<myP2->Pz<<endl;
+            cout<<"myS->Sx = "<<myS->Sx<<", myS->Sy = "<<myS->Sy<<", myS->Sz = "<<myS->Sz<<endl;*/
+            myRot=new Rotation(myP1, myP2);//Calcula la rotación que hay entre P1 y P2
+            //cout<<"thetaX = "<<myRot->thetaX<<", thetaY = "<<myRot->thetaY<<endl;
+          }
           snprintf(fileNameTemp, 99,"%s%s%06d%s",currentPath,fileName,contFrames, ext);
           cout<<"Nombre: "<<fileNameTemp<<endl;
           imwrite(fileNameTemp, localFrame);
           //cout<<"Cols: "<<localFrame.cols<<", Rows: "<<localFrame.rows<<endl;
-          out<<fileNameTemp<<", "<<coordinate.x<<", "<<coordinate.y<<coordinate.z<<endl;
+          out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP1->phix<<", "<<myP1->phiy<<", "<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
           cout<<"Guardado!!"<<endl;
           //out
           contFrames++;
@@ -213,6 +257,8 @@ void paintGrid(Mat &Grid, Point3f coordinate, int width, int height, float rotPT
   coordinate2d=Point2f(pS.at<float>(0,0), pS.at<float>(1,0));
 #if 1
   //Se cambia el marco de referencia y se pasa a pixeles
+  cout<<"***Marco de referencia esquina superior izquierda de la pantalla***"<<endl;
+  cout<<"x = "<<W/2.0-coordinate2d.x<<", y = "<<coordinate2d.y-(CY+DCU)<<endl;
   xGrid=(W/2.0-coordinate2d.x)/dimXPix;//Se pasa de m a pix dividiendo entre dimXPix 
   yGrid = (coordinate2d.y-(CY+DCU))/dimYPix;
   cout<<"xGrid: "<<xGrid<<", yGrid: "<<yGrid<<endl;
@@ -245,4 +291,37 @@ void getCoordinate(Point3f& coordinates, string line)
   //coordinates.x=-W/2;
   //coordinates.y=CY;
   cout<<"Sx = "<<coordinates.x<<", Sy = "<<coordinates.y<<", Sz = "<<coordinates.z<<endl;
+}
+
+void getMarkF(P* myP1, P* myP2, Point3f& pHeight, string line)
+{
+  int pos=0, pos_ant=0;
+  for(int i=0; i<8; i++)
+  {
+    pos=line.find(',', pos_ant);
+    if(i==F1X)
+      myP1->Fx=atof(line.substr(pos_ant, pos-pos_ant).c_str());
+    if(i==F1Y)
+      myP1->Fy=atof(line.substr(pos_ant, pos-pos_ant).c_str());
+    if(i==F1Z)
+      myP1->Fz=atof(line.substr(pos_ant, pos-pos_ant).c_str());
+    pos=line.find(',', pos_ant);
+    if(i==F2X)
+      myP2->Fx=atof(line.substr(pos_ant, pos-pos_ant).c_str());
+    if(i==F2Y)
+      myP2->Fy=atof(line.substr(pos_ant, pos-pos_ant).c_str());
+    if(i==F2Z)
+      myP2->Fz=atof(line.substr(pos_ant, pos-pos_ant).c_str());
+    pos_ant=pos+1;
+  }//Ya tenemos las posiciones en el piso
+  //Calculamos la posición 3d con respecto a la cabeza
+  myP1->Px=myP1->Fx+pHeight.x;//Hay que tomar en cuenta la pos en el suelo
+  myP1->Py=myP1->Fy+pHeight.y;
+  myP1->Pz=myP1->Fz+pHeight.z;
+  myP2->Px=myP2->Fx+pHeight.x;
+  myP2->Py=myP2->Fy+pHeight.y;
+  myP2->Pz=myP2->Fz+pHeight.z;
+  //cout<<"myP1->Px = "<<myP1->Px<<", myP2->Px = "<<myP2->Px<<endl;
+
+  
 }

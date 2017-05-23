@@ -62,8 +62,9 @@ int main(int argc, char **argv)
     initUndistortRectifyMap(K, distCoeffs, Mat::eye(3, 3, CV_32FC1), Kn, ImageSize, CV_16SC2, Mx, My);
     cout << "Kn = " << Kn << endl << endl;
     Mat I, O;
+    capture>>I;
       //I = imread("chessboard.jpg", 1);
-      I = imread("/home/rajiv/Documentos/seminario3/chessboard1080/chessboard1_1080.jpg", 1);//el 2 es el que presenta más error, el 5
+      //I = imread("/home/rajiv/Documentos/seminario3/chessboard1080/chessboard1_1080.jpg", 1);//el 2 es el que presenta más error, el 5
     //I=imread("/home/rajiv/Documentos/seminario3/logitech720Selec/L_000025.jpg",1);
       remap (I, O, Mx, My, INTER_LINEAR, BORDER_TRANSPARENT);
     //cvNamedWindow("antes",0);
@@ -126,7 +127,7 @@ int main(int argc, char **argv)
     pointsSelect3dTo2D(P, vps2d, K, N, D, dummy);//Con los puntos seleccionados del tablero se halla la intersección en el plano y se proyectan en 2D
 
     //cout<<"Número de marcas verdes: "<<marcas2d.cols<<endl;
-      //capture>>frame;
+      capture>>frame;
     //frame=imread("chessboard.jpg",1);
     //frame=imread("/home/rajiv/Documentos/seminario3/chessboard720/chessboard3_720.jpg", 1);
     frame=O;
