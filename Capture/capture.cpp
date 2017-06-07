@@ -50,7 +50,7 @@ using namespace cv;
 float dimXPix=W/COLS_GRID;
 float dimYPix=L/ROWS_GRID;
 
-char currentPath[100]= "/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/";
+char currentPath[100]= "/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/";
 void *getCoordinate(void *ptr);
 void *getFrame(void *ptr);
 pthread_mutex_t mutex1= PTHREAD_MUTEX_INITIALIZER;
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
   }
 
   int width, height;
-  float rotPT=0;//Rotación en grados de la unidad pan-tilt, negativa por regla de la mano derecha
+  float rotPT=-18.5294;//Rotación en grados de la unidad pan-tilt, negativa por regla de la mano derecha
   rotPT=rotPT*M_PI/180;
   cout<<"ángulo = "<<rotPT<<endl;  
 
@@ -89,13 +89,19 @@ int main(int argc, char **argv)
   ofstream out(argv[2]);
   //Variables para el cálculo de rotación de la mirada
   
-  Point3f N=Point3d(1.225178e-03, 9.153896e-01, 3.956665e-01), nNorm, pTemp2, pHeight;
-  double d= 1.257479e+00;
+  Point3f N=Point3d(-1.513929e-02, 9.542600e-01, 3.126682e-01), nNorm, pTemp2, pHeight;
+  double d= 2.157112;
   float x, y, z, startXZ=0, norma;
   Mat headP;
   norma=norm(N);
   nNorm=Point3f(N.x/norma, N.y/norma, N.z/norma);
-  float heightP=1.7;//Altura de la persona
+
+
+  //***************muy importante**************
+  float heightP=1.63;//Altura de la persona con respecto a los ojos!!!!!!!!!!!!!!!!!!!!!!!
+  //***************muy importante**************
+
+
   pHeight=nNorm*-heightP;//Ahora solo hay que trasladarlo hacia la marca en el piso
   Point pTemp, hP;
   //***********
@@ -128,23 +134,29 @@ int main(int argc, char **argv)
   pthread_create(&thread1, NULL, &getFrame, (void *)message1);
   int contFrames=0;
   char fileNameTemp[100];
-  char fileName[20]= "Imagen";
+  char fileName[20]= "Imagen_Legarda";
   char ext[]=".jpg";
   string line;
   Mat localFrame;
+  int count=0;
+  int posPiso=0;
 
   //Obtiene las coordenadas
   while(getline(in, line))
   {
+    cout<<endl<<"\t\tNúmero de pos. en pantalla = "<<count<<endl;
+    count++;
     getCoordinate(coordinate, line);
     paintGrid(Grid, coordinate, width, height, rotPT, coordinate2d);//Aqui se recupera también la pos 2d de la fig. en pantalla
     imshow("Grid", Grid);
     Grid =Mat::zeros(ROWS_GRID,COLS_GRID, CV_8UC3);
     for(int nPos=0; nPos<2; nPos++)//Dos capturas de rostro para la misma pos. en pantalla
     {
-      cout<<"Captura "<<nPos+1<<" para la pos. en pantalla: "<<coordinate2d<<endl;
+      //cout<<"Captura "<<nPos+1<<" para la pos. en pantalla: "<<coordinate2d<<endl;
 
       bool flagNextImage=false;
+      cout<<"\t\tpos en el piso = "<<posPiso<<endl;
+
       while(!flagNextImage)
       {
         key=waitKey(10);
@@ -182,7 +194,14 @@ int main(int argc, char **argv)
           cout<<"Nombre: "<<fileNameTemp<<endl;
           imwrite(fileNameTemp, localFrame);
           //cout<<"Cols: "<<localFrame.cols<<", Rows: "<<localFrame.rows<<endl;
-          out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP1->phix<<", "<<myP1->phiy<<", "<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+          if(nPos==0)
+          {
+            out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP1->phix<<", "<<myP1->phiy<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+            posPiso++;
+          }
+          else
+            out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP2->phix<<", "<<myP2->phiy<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+
           cout<<"Guardado!!"<<endl;
           //out
           contFrames++;
@@ -257,15 +276,21 @@ void paintGrid(Mat &Grid, Point3f coordinate, int width, int height, float rotPT
   coordinate2d=Point2f(pS.at<float>(0,0), pS.at<float>(1,0));
 #if 1
   //Se cambia el marco de referencia y se pasa a pixeles
-  cout<<"***Marco de referencia esquina superior izquierda de la pantalla***"<<endl;
-  cout<<"x = "<<W/2.0-coordinate2d.x<<", y = "<<coordinate2d.y-(CY+DCU)<<endl;
+  //cout<<"***Marco de referencia esquina superior izquierda de la pantalla***"<<endl;
+  //cout<<"x = "<<W/2.0-coordinate2d.x<<", y = "<<coordinate2d.y-(CY+DCU)<<endl;
   xGrid=(W/2.0-coordinate2d.x)/dimXPix;//Se pasa de m a pix dividiendo entre dimXPix 
   yGrid = (coordinate2d.y-(CY+DCU))/dimYPix;
-  cout<<"xGrid: "<<xGrid<<", yGrid: "<<yGrid<<endl;
-  Mat roi=Grid(Rect(xGrid, yGrid, width, height));
+  //cout<<"xGrid: "<<xGrid<<", yGrid: "<<yGrid<<endl;
+  //Para el pintarrón no es necesario (y no se puede) visualizar 
+  //Mat roi=Grid(Rect(xGrid, yGrid, width, height));
+
+
+
   //roi.setTo(255);
   //circle(Grid, /*Point(20, 20)*/Point(xGrid+CIRCLE_RAD, yGrid+CIRCLE_RAD), CIRCLE_RAD, Scalar(180, 100, 140) ,10);
-  circle(Grid, Point(xGrid+CIRCLE_RAD, yGrid+CIRCLE_RAD), CIRCLE_RAD, Scalar(rand()%256, rand()%256, rand()%256) ,10);
+
+  //Para el pintarrón no es necesario (y no se puede) visualizar 
+  //circle(Grid, Point(xGrid+CIRCLE_RAD, yGrid+CIRCLE_RAD), CIRCLE_RAD, Scalar(rand()%256, rand()%256, rand()%256) ,10);
 #endif
 
 }

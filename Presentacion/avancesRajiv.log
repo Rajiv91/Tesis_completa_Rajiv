@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2016.9.1)  22 APR 2017 12:56
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2016.9.1)  31 MAY 2017 10:24
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1752,7 +1752,7 @@ File: ./pictures/pantalla2.png Graphic file (type QTm)
 <use  "./pictures/pantalla2.png" >
 File: ./pictures/personaMirando.png Graphic file (type QTm)
  <use  "./pictures/personaMirando.png" >)
-Overfull \vbox (16.53288pt too high) detected at line 149
+Overfull \vbox (16.53288pt too high) detected at line 150
  []
 
 [8
@@ -1763,7 +1763,7 @@ Overfull \vbox (16.53288pt too high) detected at line 149
  (./avancesRajiv.vrb
 File: ./pictures/escenario.png Graphic file (type QTm)
  <use  "./pictures/escenario.png" >)
-Overfull \vbox (3.87163pt too high) detected at line 163
+Overfull \vbox (3.87163pt too high) detected at line 164
  []
 
 [9
@@ -1775,15 +1775,15 @@ Overfull \vbox (3.87163pt too high) detected at line 163
 File: ./pictures/directores.png Graphic file (type QTm)
  <use  "./pictures/directores.png" >
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 14.
+(Font)              <9> on input line 16.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 14.
+(Font)              <6> on input line 16.
 LaTeX Font Info:    Font shape `EU1/lmss/m/it' in size <9> not available
-(Font)              Font shape `EU1/lmss/m/sl' tried instead on input line 14.
+(Font)              Font shape `EU1/lmss/m/sl' tried instead on input line 16.
 LaTeX Font Info:    Font shape `EU1/lmss/m/it' in size <6> not available
-(Font)              Font shape `EU1/lmss/m/sl' tried instead on input line 14.
+(Font)              Font shape `EU1/lmss/m/sl' tried instead on input line 16.
 )
-Overfull \vbox (18.93263pt too high) detected at line 185
+Overfull \vbox (18.93263pt too high) detected at line 188
  []
 
 [10
@@ -1851,7 +1851,7 @@ File: ./pictures/pila.png Graphic file (type QTm)
 (./avancesRajiv.vrb
 File: ./pictures/puntos.png Graphic file (type QTm)
  <use  "./pictures/puntos.png" >)
-Overfull \vbox (39.14163pt too high) detected at line 252
+Overfull \vbox (39.14163pt too high) detected at line 254
  []
 
 [15
@@ -1862,7 +1862,7 @@ Overfull \vbox (39.14163pt too high) detected at line 252
  (./avancesRajiv.vrb
 File: ./pictures/rt.png Graphic file (type QTm)
  <use  "./pictures/rt.png" >)
-Overfull \vbox (17.4918pt too high) detected at line 269
+Overfull \vbox (17.4918pt too high) detected at line 278
  []
 
 [16
@@ -1928,9 +1928,70 @@ File: ./pictures/conG0.png Graphic file (type QTm)
 ]
 \openout4 = `avancesRajiv.vrb'.
 
- (./avancesRajiv.vrb) [25
+ (./avancesRajiv.vrb
+File: ./pictures/p1.png Graphic file (type QTm)
+ <use  "./pictures/p1.png" >
+File: ./pictures/p2.png Graphic file (type QTm)
 
-] [26
+<use  "./pictures/p2.png" >
+File: ./pictures/p4_2.png Graphic file (type QTm)
+ <use  "./pictures/p4_2.png" >
+File: ./pictures/p5_2.png Graphic file (type QTm)
+
+<use  "./pictures/p5_2.png" >
+Overfull \hbox (15.36542pt too wide) in paragraph at lines 9--11
+ [][] 
+ []
+
+)
+Overfull \vbox (22.91225pt too high) detected at line 400
+ []
+
+[25
+
+]
+\openout4 = `avancesRajiv.vrb'.
+
+ (./avancesRajiv.vrb
+File: ./pictures/marcasPiso.png Graphic file (type QTm)
+ <use  "./pictures/marcasPiso.png" >) [26
+
+]
+\openout4 = `avancesRajiv.vrb'.
+
+
+(./avancesRajiv.vrb) [27
+
+]
+\openout4 = `avancesRajiv.vrb'.
+
+ (./avancesRajiv.vrb
+File: beamericonarticle.pdf Graphic file (type QTm)
+ <use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+
+<use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+ <use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+
+<use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+ <use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+
+<use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+ <use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+
+<use  "beamericonarticle.pdf" >)
+Overfull \vbox (161.49162pt too high) detected at line 470
+ []
+
+[28
+
+] [29
 
 ]
 \tf@nav=\write9
@@ -1942,27 +2003,27 @@ File: ./pictures/conG0.png Graphic file (type QTm)
 \tf@snm=\write11
 \openout11 = `avancesRajiv.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 397.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 397.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 478.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 478.
  (./avancesRajiv.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 397.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 397.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 478.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 478.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 397.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 478.
  ) 
 Here is how much of TeX's memory you used:
- 48363 strings out of 493638
- 1072823 string characters out of 6146797
- 1204256 words of memory out of 5000000
- 50854 multiletter control sequences out of 15000+600000
+ 48438 strings out of 493638
+ 1074677 string characters out of 6146797
+ 1206518 words of memory out of 5000000
+ 50918 multiletter control sequences out of 15000+600000
  24447 words of font info for 66 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 67i,13n,95p,10404b,558s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,13n,95p,10404b,572s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on avancesRajiv.pdf (26 pages).
+Output written on avancesRajiv.pdf (29 pages).

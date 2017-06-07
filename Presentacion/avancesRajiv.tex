@@ -40,7 +40,7 @@
 	\begin{itemize}
 		\item ¿Por qué una persona mueve su cabeza?
 		\item Importancia de conocer la posición y orientación
-		\item Mediante imágenes capturas de personas es posible conocer la posición y orientación de su cabeza.
+		\item Mediante imágenes capturadas de personas es posible conocer la posición y orientación de su cabeza.
 
 		\begin{figure}[htbp]
 			\centering
@@ -72,10 +72,11 @@
 \begin{frame}[fragile]
 	\frametitle{Aspectos a tomar en cuenta}
 	 \begin{itemize}
-	 	\item Previamente se debió haber localizado el rostro.
+	 	\item Previamente se debió localizar el rostro.
 	 	\item La cabeza humana puede ser modelada como un objeto rígido.
 	 	\item Marco de referencia centrado en la cámara.
 	 	\item Para estimar la mirada con precisión se debe complementar con un sistema seguidor de ojos, [Wang et al, 2009].
+	 	\item Un gran número de enfoques en algún punto del proceso utilizan aprendizaje automático.
 	 \end{itemize}
 	 
 	 \begin{figure}[htbp] 
@@ -164,10 +165,12 @@
 
 \begin{frame}[fragile]
 	\frametitle{Geometría del lugar de experimentación}
+	%Para el algoritmo de entrenamiento se deben capturar varias imágenes de varias personas, conociendo la posición y orientación de sus cabezas y en que posición se encuentra lo que miran, todo esto con respecto a un marco de referencia
 	%\framesubtitle{Ecuaciones que describen el desplazamiento}
 	\begin{itemize}
 		\item 	Ecuaciones que describen el desplazamiento de la figura en pantalla y la mirada de la persona: $\phi_x y \phi_y$
 		\item Cosenos directores
+		%Son los ángulos que forma el vector con sus ejes
 		%Cosenos directores de un vector a – son cosenos de ángulos que forma el vector con positivos semiejes de coordinadas.
 		%Se llaman Cosenos directores del vector Å a los cosenos de los ángulos que forman cada uno de los ejes coordenados. En un plano tridimensional se representan:
 	\end{itemize}
@@ -243,13 +246,19 @@
 		\item Se toman en cuenta todos los parámetros: W, P, S, L, H...
 		\item A cada posición de la figura en pantalla le corresponden dos posiciones en el plano del piso(dos poses de la cabeza)
 		\item El algoritmo genera las posiciones en pantalla y en el plano del piso más significativos
-		\item El marco de referencia está rotado
+		\item El marco de referencia está rotado!
 	\end{itemize}
 	\begin{figure}[htbp]
 		\includegraphics[width=0.7\textwidth]{./pictures/puntos}
 	\end{figure}
-	
 \end{frame}
+%En base al análisis de los ángulos de mirada graficados en secciones anteriores, se desarrolló un algoritmo que genera un grid en el piso, dando saltos en el eje X y Z sobre el plano del piso. 
+%El algoritmo tomando en cuenta la altura de la persona, genera las rotaciones que hay en la mirada de cada punto en el piso contra todas los demás y esto lo genera para cada posición en la pantalla.
+%Al final se desarrolla un algoritmo de "fuerza de bruta" para seleccionar cual es la mejor secuencia (más significativa) de rotaciones de ángulos en la mirada.
+%
+%El algoritmo valida que el rostro esté dentro del campo visual de la cámara mediante la matriz de calibración, y que haya una rotación mínima en cada par de puntos
+%Hay mucho error al utilizar simplemente un flexometro y estar calculando
+%Se optó por hallar como está definido en plano del piso  con respecto a la cámara para proyectar las marcas en el piso y así obtener mediciones más precisas.
 
 \begin{frame}[fragile]
 	\frametitle{Proyección de puntos en el plano del piso}
@@ -367,30 +376,102 @@ Verificación de $R$ y $T$ mediante la intersección las rectas de los puntos de
 	\end{array}
 	\end{eqnarray}
 \end{frame}
+
 \begin{frame}[fragile]
 	\frametitle{Optimización numérica de R y T}
 	\framesubtitle{Resultados}
 	\begin{figure}[htbp]
 		\includegraphics[width=0.6\textwidth]{./pictures/conG0}
 	\end{figure}	
-
 \end{frame}
-	
 
-%\begin{figure}
-%  \centering
-%% \includegraphics[width=6cm,height=6cm]{firstex.png}
-%\end{figure}
-
-
-%\section{Metodología}
 \begin{frame}[fragile]
-\frametitle{Titulo}
-%\setbeamerfont{framesubtitle}{subtitulo}
-a
-
+	\frametitle{Optimización numérica de R y T}
+	\framesubtitle{Recalculando matriz de calibración y corrigiendo la imagen}
+	 \begin{figure}[htbp]
+		 	\centering
+		 	\includegraphics[width=0.5\textwidth]{./pictures/p1}
+		 	\includegraphics[width=0.5\textwidth]{./pictures/p2}
+	 \end{figure}
+	 \begin{figure}[htbp]
+		 	\includegraphics[width=0.5\textwidth]{./pictures/p4_2}
+		 	\includegraphics[width=0.55\textwidth]{./pictures/p5_2}
+	 \end{figure}	
 \end{frame}
-\plain{Questions?}
+
+\begin{frame}[fragile]
+	\frametitle{Proyección de marcas en el plano del piso}
+	\begin{figure}[htbp]
+		\includegraphics[width=1\textwidth]{./pictures/marcasPiso}
+	\end{figure}	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Estado actual del proyecto}
+	\begin{itemize}
+		\item Localizar el rostro en la imagen
+		\item Geometría del lugar de experimentación
+		\item Diseño y fabricación de tarjeta de adquisición de datos
+		\item Algoritmo generador de mejores posiciones en la escena
+		\item Proyección de puntos en el plano
+		\begin{itemize}
+			\item Optimización numérica
+		\end{itemize}
+		\item {\color{red}Captura de datos}
+		\item Red neuronal
+		\begin{itemize}
+			\item Implementación, entrenamiento y resultados
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Referencias}
+		\begin{thebibliography}{14}
+			
+			\bibitem[MT09]{Murphy09}
+			Murphy-Chutorian, E., \& Trivedi, M. M. 
+			\newblock Head pose estimation in computer vision: A survey.
+			\newblock{\em Pattern Analysis and Machine Intelligence, IEEE Transactions on}, 31(4), 607-626, 2009
+			
+			\bibitem[VJ04]{Viola04}
+			Viola, P.,  and Jones, M.
+			\newblock Robust Real-Time Face Detection.
+			\newblock {\em International Journal of Computer Vision}, 57, 137-154, 2004.
+			
+			\bibitem[WS02]{Wang09}
+			Wang, J. G., \& Sung, E.  
+			\newblock Study on eye gaze estimation.
+			\newblock {\em Systems, Man, and Cybernetics, Part B: Cybernetics, IEEE Transactions on}, 32(3), 332-350, 2002.
+			
+			\bibitem[PO98]{Papa98}
+			Papageorgiou, C. P., Oren, M., \& Poggio, T. 
+			\newblock A general framework for object detection. 
+			\newblock {\em In Computer vision, 1998. sixth international conference on}, (pp. 555-562). IEEE., 1998
+			
+			\bibitem[KMM10]{Kalal10}
+			Kalal, Z., Mikolajczyk, K., \& Matas, J. 
+			\newblock Face-tld: Tracking-learning-detection applied to faces. 
+			\newblock {\em In Image Processing (ICIP), 2010 17th IEEE International Conference on} (pp. 3789-3792). IEEE., 2010
+			
+			\bibitem[WZTS]{Wang10}
+			Wang, Q., Zhang, W., Tang, X., \& Shum, H. Y. 
+			\newblock Real-time bayesian 3-d pose tracking. 
+			\newblock {\em Circuits and Systems for Video Technology, IEEE Transactions on} 16(12), 1533-1541, 2006.
+			
+			\bibitem[OJ]{Oh04}
+			Oh, K. S., \& Jung, K.  
+			\newblock GPU implementation of neural networks.
+			\newblock{\em Pattern Recognition} 37(6), 1311-1314, 2004.
+			
+		\end{thebibliography}
+	
+\end{frame}
+
+
+
+\plain{¿Preguntas?}
 
 
 

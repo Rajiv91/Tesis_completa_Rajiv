@@ -1,4 +1,40 @@
-\frametitle{Titulo}
-%\setbeamerfont{framesubtitle}{subtitulo}
-a
+\frametitle{Referencias}
+^^I^^I\begin{thebibliography}{14}
+
+^^I^^I^^I\bibitem[MT09]{Murphy09}
+^^I^^I^^IMurphy-Chutorian, E., \& Trivedi, M. M.
+^^I^^I^^I\newblock Head pose estimation in computer vision: A survey.
+^^I^^I^^I\newblock{\em Pattern Analysis and Machine Intelligence, IEEE Transactions on}, 31(4), 607-626, 2009
+
+^^I^^I^^I\bibitem[VJ04]{Viola04}
+^^I^^I^^IViola, P.,  and Jones, M.
+^^I^^I^^I\newblock Robust Real-Time Face Detection.
+^^I^^I^^I\newblock {\em International Journal of Computer Vision}, 57, 137-154, 2004.
+
+^^I^^I^^I\bibitem[WS02]{Wang09}
+^^I^^I^^IWang, J. G., \& Sung, E.
+^^I^^I^^I\newblock Study on eye gaze estimation.
+^^I^^I^^I\newblock {\em Systems, Man, and Cybernetics, Part B: Cybernetics, IEEE Transactions on}, 32(3), 332-350, 2002.
+
+^^I^^I^^I\bibitem[PO98]{Papa98}
+^^I^^I^^IPapageorgiou, C. P., Oren, M., \& Poggio, T.
+^^I^^I^^I\newblock A general framework for object detection.
+^^I^^I^^I\newblock {\em In Computer vision, 1998. sixth international conference on}, (pp. 555-562). IEEE., 1998
+
+^^I^^I^^I\bibitem[KMM10]{Kalal10}
+^^I^^I^^IKalal, Z., Mikolajczyk, K., \& Matas, J.
+^^I^^I^^I\newblock Face-tld: Tracking-learning-detection applied to faces.
+^^I^^I^^I\newblock {\em In Image Processing (ICIP), 2010 17th IEEE International Conference on} (pp. 3789-3792). IEEE., 2010
+
+^^I^^I^^I\bibitem[WZTS]{Wang10}
+^^I^^I^^IWang, Q., Zhang, W., Tang, X., \& Shum, H. Y.
+^^I^^I^^I\newblock Real-time bayesian 3-d pose tracking.
+^^I^^I^^I\newblock {\em Circuits and Systems for Video Technology, IEEE Transactions on} 16(12), 1533-1541, 2006.
+
+^^I^^I^^I\bibitem[OJ]{Oh04}
+^^I^^I^^IOh, K. S., \& Jung, K.
+^^I^^I^^I\newblock GPU implementation of neural networks.
+^^I^^I^^I\newblock{\em Pattern Recognition} 37(6), 1311-1314, 2004.
+
+^^I^^I\end{thebibliography}
 
