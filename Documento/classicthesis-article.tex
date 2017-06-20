@@ -574,7 +574,7 @@ Antes de pasar a esa etapa es necesario verificar que los parámetros encontrados
 		\begin{eqnarray}
 			r=r_H+\frac{d-<n_{\Pi}, r_H>}{<n_{\Pi},m>}m
 		\end{eqnarray}
-	En este caso las lineas (proyecciones de imgPts) parten de la cámara por lo tanto el vector $rh$ es igual cero, simplificando la ecuación, la intersección queda de la siguiente manera:
+	En este caso las lineas (proyecciones de imgPts) parten de la cámara por lo tanto el vector $rh$ es igual cero, simplificando la ecuación la intersección queda de la siguiente manera:
 		\begin{eqnarray}
 		r=\frac{d}{<n_{\Pi},m>}m
 		\end{eqnarray}	
@@ -589,7 +589,7 @@ El resultado de los dos comprobaciones se pude ver en la imagen 11.5, las marcas
 \end{figure}
 
 Se realizó un análisis de la distancia que hay entre los que se obtiene de los puntos rotados, traslados y proyectados con lo que debiera ser ($imgPts$) en pixeles y se obtuvo que en el primer punto (primera fila de arriba a abajo y la primera columna de izquierda a derecha): 0.27 pixeles de diferencia en el eje $x$ y 0.15 en $Y$, en el último punto (fila 8 y columna 6) y la distancia es de: $52$ pixeles en $X$ y 107 en $Y$.\\
-El error en metros en tres dimensiones con con respecto al primer y último punto es el siguiente: en el primer punto hay una distancia de $0.0002978m$ en $X$, $0.00003559m$ en $Y$ y $0.000467m$ en $Z$; y en el último punto $0.265m$ en $X$, $0.0268$ en $Y$ y $0.128m$ en $Z$. Como se puede observar el error se va expandiendo conforme los puntos se alejan del primer punto. El error en $R$ y $T$ es mucho mayor que el que hay en $n$ y $d$ esto se debe a que estos últimos parámetros se calculan con respecto al primer punto el cual como ya se analizó tiene menos error, sin embargo; es necesario que $R$ y $T$ sean más precisos porque se utilizan bastante en etapas posteriores, por lo que fue necesario optimizar estos parámetros.
+El error en metros en tres dimensiones con con respecto al primer y último punto es el siguiente: en el primer punto hay una distancia de $0.0002978m$ en $X$, $0.00003559m$ en $Y$ y $0.000467m$ en $Z$; y en el último punto $0.265m$ en $X$, $0.0268$ en $Y$ y $0.128m$ en $Z$. Como se puede observar el error se va expandiendo conforme los puntos se alejan del primer punto. El error en $R$ y $T$ es mucho mayor que el que hay en $n$ y $d$ esto se debe a que estos últimos parámetros se calculan con respecto al primer punto el cual como ya se analizó tiene menos error, sin embargo; es necesario que $R$ y $T$ sean más precisos porque se utilizan bastante en etapas posteriores, por lo que es necesario optimizar estos parámetros.
 	
      %los puntos obtenidos y estableciendo la distancia a la que estaban los puntos entre si. La matriz con los puntos reales
        
@@ -612,8 +612,9 @@ Las funciones a optimizar deben tener los parámetros de $R$ y $T$, estar descrit
  	\end{eqnarray}
 Como se explicó anteriormente la $n$ y $d$ del plano dependen de la rotación y traslación por lo que es importante también ir actualizando estos parámetros en cada paso de la optimización. \\
 %No es congruente estar optimizando los 9 parámetros de la matriz de rotación, esto puede generar errores 
-En problemas de optimización numérica la redundancia de las matrices de rotación es incoveniente y a menudo es preferible una representación mínima.
-por lo que se optimizará el eje de rotación y su magnitud del ángulo de rotación, ya que como indica la fórmula de Rodrigues cualquier matriz de rotación se puede realizar mediante la rotación alrededor de un eje fijo $\omega$ por un cierto ángulo $\parallel\omega\parallel$:
+En problemas de optimización numérica la redundancia de las matrices de rotación es inconveniente y a menudo es preferible una representación mínima. La representación más simple la cual está basada en el teorema de Euler dice que cada rotación puede ser descrita por un eje de rotación y un ángulo alrededor de él. Una compacta representación del eje y el ángulo es un vector de rotación de tres dimensiones cuya dirección es el eje y cuya magnitud es el ángulo en radianes.\\
+%La fórmula de rotación de Rodrigues puede ser usada para transformar todo los ve
+Por lo que se optimizará el eje de rotación y su magnitud del ángulo de rotación, ya que como indica la fórmula de Rodrigues cualquier matriz de rotación se puede realizar mediante la rotación alrededor de un eje fijo $\omega$ por un cierto ángulo $\parallel\omega\parallel$:
  	\begin{eqnarray}
  	R=I+\frac{\hat{\omega}}{\parallel\omega\parallel}sin(\parallel\omega\parallel)+ \frac{\hat{\omega}^2}{\parallel\omega\parallel^2}(1-cos(\parallel\omega\parallel))
 	\end{eqnarray}
@@ -701,7 +702,12 @@ Se creó un programa de optimización con Levenberg-Marquardt tomando en cuenta to
 	  %(1-cos(\parallel\omega\parallel))
 	  %sin(\parallel\omega\parallel)
 Se compararon los resultados del mismo modo que en la sección anterior, midiendo la distancia de los puntos en metros rotados y trasladados con la $R$ y $T$ resultantes de la optimización con lo que en realidad debería ser, esto es, los puntos que resultan de la intersección de la proyección de los puntos con el plano del piso. En el primer punto se obtuvo un error de: en $X$ $-0.00145m$, en $Y$ $0.00594m$ y en $Z$ $0.01289m$. En el último en el cual se notaba más el error de la rotación y traslación, ya con la optimización se obtuvieron los siguientes resultados: en $X$ $0.0449m$, en $Y$ $0.0423m$ y en $Z$ $0.1424m$. La mayor diferencia se puede ver el último punto en la coordenada $X$ ya que pasa de una diferencia de $26.5cm$ a $4cm$.
-
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{./pictures/conG0}
+	\caption{Reproyección de puntos}\label{fig: figura}
+\end{figure}
+En la figura 11.6 se puede apreciar la comparación de los puntos después de optimizar y los resultados son superiores a comparación de lo que hay antes de la optimización. Sin embargo, en el último punto (esquina inferior derecha)
 
     
 

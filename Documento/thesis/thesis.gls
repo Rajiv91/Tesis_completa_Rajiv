@@ -1,0 +1,14 @@
+\begin{theglossary} 
+
+ \nomgroup{A}
+
+  \item [{{\bf Glossary}}]\begingroup A list of often difficult or specialized words with their definitions usually placed in technical literature.\nomeqref {1.1}
+		\nompageref{10}
+  \item [{{\bf Neophyte}}]\begingroup A beginner or novice.\nomeqref {1.0}
+		\nompageref{2}
+  \item [{{\bf Tome}}]\begingroup A book, especially a large or scholarly one.\nomeqref {1.1}
+		\nompageref{11}
+  \item [{{\bf WYSIWIG}}]\begingroup An acronymn for {\em `What you see is what you get'} often applied to word processors although many in the \TeX \ community believe that {\em `What you see is all you've got'} is closer to the truth.\nomeqref {1.1}
+		\nompageref{11}
+
+\end{theglossary}
