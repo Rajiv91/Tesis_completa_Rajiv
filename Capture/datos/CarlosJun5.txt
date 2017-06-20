@@ -1,2 +1,0 @@
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000000.jpg, -0.786904, 0.0937105, 1.01405, 1.24535, 0.4375, 0.913345, -0.286012
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000001.jpg, -0.786904, 0.0937105, 1.80095, 1.15164, 0.4375, 0.913345, -0.286012

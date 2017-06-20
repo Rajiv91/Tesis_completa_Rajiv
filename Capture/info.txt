@@ -1,3 +1,10 @@
 /home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun2Rajiv/Imagen000000.jpg, -0.785766, 0.109896, 1.01475, 1.23243, , 0.4375, 0.913345, -0.286012
 
 $Imagen, 
+
+
+Ruta del archivo importante: 
+~/Documentos/seminario2/RotacionesAnalisis/ordenacion/ords/ordMay22.txt
+Ejemplo de ejecución:
+make && ./testCapture ~/Documentos/tercer\ semestre/seminario2/RotacionesAnalisis/ordenacion/ords/ordMay22.txt tempRajiv.txt
+

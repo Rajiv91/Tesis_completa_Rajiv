@@ -14,7 +14,12 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <termios.h>
-//#include "ml.h"
+#include <functions.h>
+#include "ml.h"
+
+#define IM_WIDTH 75
+#define IM_HEIGHT 75
+
 
 
 using namespace std;
@@ -22,81 +27,63 @@ using namespace cv;
 
 int numTrainingPoints=200;
 int numTestPoints=2000;
-int size=200;
-int eq=3;
+//int size=200;
+int eq=0;
 
 
-float evaluate(Mat& predicted, Mat& actual) {
-	assert(predicted.rows == actual.rows);
-	int t = 0;
-	int f = 0;
-	for(int i = 0; i < actual.rows; i++) {
-		float p = predicted.at<float>(i,0);
-		float a = actual.at<float>(i,0);
-		if((p >= 0.0 && a >= 0.0) || (p <= 0.0 &&  a <= 0.0)) {
-			t++;
-		} else {
-			f++;
-		}
-	}
-	return (t * 1.0) / (t + f);
-}
-
-// function to learn
-int f(float x, float y, int equation) {
-	switch(equation) {
-	case 0:
-		return y > sin(x*10) ? -1 : 1;
-		break;
-	case 1:
-		return y > cos(x * 10) ? -1 : 1;
-		break;
-	case 2:
-		return y > 2*x ? -1 : 1;
-		break;
-	case 3:
-		return y > tan(x*10) ? -1 : 1;
-		break;
-	default:
-		return y > cos(x*10) ? -1 : 1;
-	}
-}
-
-Mat labelData(Mat points, int equation) {
-	Mat labels(points.rows, 1, CV_32FC1);
-	for(int i = 0; i < points.rows; i++) {
-			 float x = points.at<float>(i,0);
-			 float y = points.at<float>(i,1);
-			 labels.at<float>(i, 0) = f(x, y, equation);
-		}
-	return labels;
-}
-
-void plot_binary(Mat& data, Mat& classes, string name) {
-	Mat plot(size, size, CV_8UC3);
-	plot.setTo(Scalar(255.0,255.0,255.0));
-	for(int i = 0; i < data.rows; i++) {
-
-		float x = data.at<float>(i,0) * size;
-		float y = data.at<float>(i,1) * size;
-
-		if(classes.at<float>(i, 0) > 0) {
-			circle(plot, Point(x,y), 2, CV_RGB(255,0,0),1);
-		} else {
-			circle(plot, Point(x,y), 2, CV_RGB(0,255,0),1);
-		}
-	}
-	imshow(name, plot);
-        waitKey(0);
-}
 
 int main(int argc, char **argv)
 {
+
+  ifstream in(argv[1]);
+  string line;
+  vector <string> vData;
+  //nFeatures=
+  int colsFile=0;
+  while(getline(in, line))
+    vData.push_back(line);//Guardamos en vData las rutas imágenes y otras características
+
+  random_shuffle (vData.begin(), vData.end());//revolver elementos
+  string firstLine=vData[0];
+  
+  for(int i=0; i<firstLine.length(); i++)//Determina el número de columnas
+  {
+    if(firstLine[i]==',')
+      colsFile++;
+  }
+  colsFile++;
+  int nFeatures=colsFile+(IM_WIDTH*IM_HEIGHT)-3-1;//Le quitamos lo de SX, SY, SZ y el path del archivo
+  int numSamplesTest=20;
+  int numSamplesTraining=vData.size()-numSamplesTest;
+  //cout<<firstLine.length()<<endl<<firstLine<<endl<<colsFile<<endl<<nFeatures<<endl;
+
+  Mat trainingData(numSamplesTraining, nFeatures, CV_32FC1);
+  Mat testData(numSamplesTest, nFeatures, CV_32FC1);
+  //Mat trainingClasses(trainingData.rows, 1, CV_32FC1);
+  Mat trainingClasses(trainingData.rows, 3, CV_32FC1);
+  //Mat testClasses(trainingData.rows, 1, CV_32FC1);
+  Mat testClasses(testData.rows, 3, CV_32FC1);
+
+
+  bool flagFirst=true;
+  int nSample2=0;
+  for(int nSample=0; nSample<vData.size(); nSample++)
+  {
+    if(nSample<numSamplesTraining)//Los de entrenamiento
+      setSample(vData[nSample], trainingData, trainingClasses, nSample, colsFile);//Coloca la muestra en la fila correspondiente
+    else
+    {
+      setSample(vData[nSample], testData, testClasses, nSample2, colsFile);//Coloca la muestra en la fila correspondiente
+      nSample2++;
+    }
+  }
+  //cout<<trainingData<<endl;
+
   CvANN_MLP mlp;
   
   CvTermCriteria criteria;
   CvANN_MLP_TrainParams params;
-  criteria.max_iter = 100;
+  criteria.max_iter = 10000;
   criteria.epsilon = 0.00001f;
   criteria.type = CV_TERMCRIT_ITER | CV_TERMCRIT_EPS;
   params.train_method = CvANN_MLP_TrainParams::BACKPROP;
@@ -105,12 +92,37 @@ int main(int argc, char **argv)
   params.term_crit = criteria;
 
   //Topología de la red
-  Mat layers= Mat(4,1, CV_32SC1);
-  layers.row(0) = cv::Scalar(2);
-  layers.row(1) = cv::Scalar(10);
-  layers.row(2) = cv::Scalar(25);
-  layers.row(3) = cv::Scalar(1);
+  Mat layers= Mat(5,1, CV_32SC1);
+  layers.row(0) = cv::Scalar(trainingData.cols);
+  layers.row(1) = cv::Scalar(20);
+  layers.row(2) = cv::Scalar(20);
+  layers.row(3) = cv::Scalar(20);
+  layers.row(4) = cv::Scalar(trainingClasses.cols);
   mlp.create(layers);
+  //cout<<"size trainingData = "<<trainingData.size()<<endl<<"testData = "<<testData.size()<<endl<<"cols = "<<trainingData.cols<<endl;
+  mlp.train(trainingData, trainingClasses, Mat(), Mat(), params);
+  ///*
+  Mat response(1, trainingClasses.cols, CV_32FC1);
+  Mat predicted(testClasses.rows, testClasses.cols, CV_32F);
+
+  for(int i = 0; i < testData.rows; i++)
+  {
+          Mat response(1, testClasses.cols, CV_32FC1);
+          Mat sample = testData.row(i);
+
+          mlp.predict(sample, response);
+          predicted.at<float>(i,0) = response.at<float>(0,0);
+          predicted.at<float>(i,1) = response.at<float>(0,1);
+          predicted.at<float>(i,2) = response.at<float>(0,2);
+          cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)<<", "<<predicted.at<float>(i,2)<<"---------"
+          << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)<<", "<<testClasses.at<float>(i,2)<<endl;
+          //cout<<predicted.at<float>(i,0)<<"----------\t"<<testClasses.at<float>(i,0)<<endl;
+
+  }
+  cout<<"desempeño = "<<evaluate(predicted, testClasses)<<endl;
+  //cout<<predicted<<endl;
+  //*/
+#if 0
 
 
   Mat trainingData(numTrainingPoints, 2, CV_32FC1);
@@ -133,6 +145,7 @@ int main(int argc, char **argv)
           predicted.at<float>(i,0) = response.at<float>(0,0);
 
   }
+  cout<<predicted<<endl;
 
   cout << "Accuracy_{MLP} = " << evaluate(predicted, testClasses) << endl;
   plot_binary(testData, predicted, "Predictions Backpropagation");
@@ -141,8 +154,7 @@ int main(int argc, char **argv)
 
 
 
-
-
+#endif
   return 0;
 }
 

@@ -1,40 +1,40 @@
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000000.jpg, -0.78464, 0.122684, 1.01539, 1.22211, 0.4375, 0.913345, -0.286012
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000001.jpg, -0.78464, 0.122684, 1.80003, 1.09942, 0.4375, 0.913345, -0.286012
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000002.jpg, 0.778247, 0.0882177, 2.36112, 1.29711, -0.7125, 0.723713, -0.222454
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000003.jpg, 0.778247, 0.0882177, 1.58287, 1.20889, -0.7125, 0.723713, -0.222454
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000004.jpg, -0.375538, 0.173149, 1.13702, 1.1344, 0.9375, 1.2452, -0.397239
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000005.jpg, -0.375538, 0.173149, 1.51256, 0.961251, 0.9375, 1.2452, -0.397239
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000006.jpg, 0.862418, 0.171543, 2.51733, 1.51906, -0.9125, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000007.jpg, 0.862418, 0.171543, 1.65491, 1.34752, -0.9125, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000008.jpg, 0.137703, 0.0426553, 1.22274, 1.1977, 0.4875, 0.865937, -0.270123
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000009.jpg, 0.137703, 0.0426553, 1.08504, 1.15505, 0.4875, 0.865937, -0.270123
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000010.jpg, -0.737109, 0.121397, 0.899668, 1.46175, 0.6375, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000011.jpg, -0.737109, 0.121397, 1.63678, 1.34035, 0.6375, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000012.jpg, -0.272159, 0.0467811, 2.02381, 1.1712, -0.8125, 1.10298, -0.34957
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000013.jpg, -0.272159, 0.0467811, 2.29597, 1.12441, -0.8125, 1.10298, -0.34957
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000014.jpg, -0.207237, 0.0739198, 1.45958, 1.41281, 0.6375, 0.391856, -0.111227
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000015.jpg, -0.207237, 0.0739198, 1.66681, 1.33889, 0.6375, 0.391856, -0.111227
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000016.jpg, 0.24335, 0.00965714, 1.58875, 1.23609, 0.7875, 0.628896, -0.190675
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000017.jpg, 0.24335, 0.00965714, 1.3454, 1.22644, 0.7875, 0.628896, -0.190675
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000018.jpg, -0.0798514, 0.19611, 1.6104, 1.55263, 0.4875, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000019.jpg, -0.0798514, 0.19611, 1.69025, 1.35652, 0.4875, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000020.jpg, -0.0328951, -0.0126699, 1.96474, 1.29219, -0.4125, 0.53408, -0.158896
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000021.jpg, -0.0328951, -0.0126699, 1.99763, 1.30486, -0.4125, 0.53408, -0.158896
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000022.jpg, 0.221693, 0.115384, 2.12455, 1.45859, -0.5625, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000023.jpg, 0.221693, 0.115384, 1.90286, 1.34321, -0.5625, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000024.jpg, -0.0483915, 0.0447942, 1.59665, 1.22991, 0.4375, 0.676304, -0.206564
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000025.jpg, -0.0483915, 0.0447942, 1.64504, 1.18511, 0.4375, 0.676304, -0.206564
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000026.jpg, -0.202226, -0.107373, 1.52201, 1.0956, 0.5875, 0.818529, -0.254233
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000027.jpg, -0.202226, -0.107373, 1.72423, 1.20297, 0.5875, 0.818529, -0.254233
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000028.jpg, -0.41591, -0.146159, 2.18418, 1.36598, -1.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000029.jpg, -0.41591, -0.146159, 2.60009, 1.51214, -1.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000030.jpg, -0.264977, -0.140678, 1.47408, 0.889083, 0.6875, 1.29261, -0.413129
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000031.jpg, -0.264977, -0.140678, 1.73905, 1.02976, 0.6875, 1.29261, -0.413129
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000032.jpg, 0.0165043, -0.0638939, 2.32045, 1.41873, -0.6625, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000033.jpg, 0.0165043, -0.0638939, 2.30395, 1.48262, -0.6625, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000034.jpg, 0.500576, 0.202106, 2.37714, 1.55474, -0.7625, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000035.jpg, 0.500576, 0.202106, 1.87656, 1.35263, -0.7625, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000036.jpg, -0.2243, -0.141907, 1.67647, 1.31654, -0.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000037.jpg, -0.2243, -0.141907, 1.90077, 1.45844, -0.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000038.jpg, 0.035732, -0.152244, 1.65469, 0.902094, 0.0875, 1.2452, -0.397239
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000039.jpg, 0.035732, -0.152244, 1.61895, 1.05434, 0.0875, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000000.jpg, -1.57558, -0.352664, 2.69564, 0.4375, 0.913345, -0.286012
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000001.jpg, 0.824421, 0.176896, 1.19564, 0.4375, 0.913345, -0.286012
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000002.jpg, 0.824421, 0.176896, 1.19564, -0.7125, 0.723713, -0.222454
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000003.jpg, -0.675579, -0.338384, 2.69564, -0.7125, 0.723713, -0.222454
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000004.jpg, -0.675579, -0.338384, 2.69564, 0.9375, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000005.jpg, 0.824421, 0.176896, 1.19564, 0.9375, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000006.jpg, 0.824421, 0.176896, 1.19564, -0.9125, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000007.jpg, -0.675579, -0.338384, 2.69564, -0.9125, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000008.jpg, -0.675579, -0.338384, 2.69564, 0.4875, 0.865937, -0.270123
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000009.jpg, -0.375579, 0.157856, 1.19564, 0.4875, 0.865937, -0.270123
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000010.jpg, -0.375579, 0.157856, 1.19564, 0.6375, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000011.jpg, 0.824421, -0.314594, 2.69564, 0.6375, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000012.jpg, 0.824421, -0.314594, 2.69564, -0.8125, 1.10298, -0.34957
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000013.jpg, 0.524421, 0.270426, 0.895642, -0.8125, 1.10298, -0.34957
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000014.jpg, 0.524421, 0.270426, 0.895642, 0.6375, 0.391856, -0.111227
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000015.jpg, 0.824421, -0.0197042, 1.79564, 0.6375, 0.391856, -0.111227
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000016.jpg, 0.824421, -0.0197042, 1.79564, 0.7875, 0.628896, -0.190675
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000017.jpg, 0.524421, 0.270426, 0.895642, 0.7875, 0.628896, -0.190675
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000018.jpg, 0.524421, 0.270426, 0.895642, 0.4875, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000019.jpg, 0.824421, -0.314594, 2.69564, 0.4875, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000020.jpg, 0.824421, -0.314594, 2.69564, -0.4125, 0.53408, -0.158896
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000021.jpg, 0.224421, 0.167376, 1.19564, -0.4125, 0.53408, -0.158896
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000022.jpg, 0.224421, 0.167376, 1.19564, -0.5625, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000023.jpg, 0.524421, -0.417644, 2.99564, -0.5625, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000024.jpg, 0.524421, -0.417644, 2.99564, 0.4375, 0.676304, -0.206564
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000025.jpg, 0.524421, 0.270426, 0.895642, 0.4375, 0.676304, -0.206564
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000026.jpg, 0.524421, 0.270426, 0.895642, 0.5875, 0.818529, -0.254233
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000027.jpg, 1.12442, -0.408124, 2.99564, 0.5875, 0.818529, -0.254233
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000028.jpg, 1.12442, -0.408124, 2.99564, -1.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000029.jpg, 0.524421, 0.270426, 0.895642, -1.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000030.jpg, 0.524421, 0.270426, 0.895642, 0.6875, 1.29261, -0.413129
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000031.jpg, 1.12442, -0.0149442, 1.79564, 0.6875, 1.29261, -0.413129
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000032.jpg, 1.12442, -0.0149442, 1.79564, -0.6625, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000033.jpg, 0.224421, 0.265666, 0.895642, -0.6625, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000034.jpg, 0.224421, 0.265666, 0.895642, -0.7625, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000035.jpg, 0.224421, -0.422404, 2.99564, -0.7625, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000036.jpg, 0.224421, -0.422404, 2.99564, -0.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000037.jpg, 0.224421, 0.265666, 0.895642, -0.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000038.jpg, 0.224421, 0.265666, 0.895642, 0.0875, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5CarlosD/Imagen_CarlosD000039.jpg, 0.224421, -0.127514, 2.09564, 0.0875, 1.2452, -0.397239

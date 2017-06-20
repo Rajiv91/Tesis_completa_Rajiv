@@ -1,0 +1,9 @@
+Yo = 1.63m *
+Arturo = 1.66m *
+Legarda= 1.63*
+Mili=1.47*
+Geenkel=1.6*
+Angel=1.62*
+Manuel=1.62*
+Carlos David=1.62*
+Omar=1.73*

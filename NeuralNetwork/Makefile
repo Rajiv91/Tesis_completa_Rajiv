@@ -12,7 +12,7 @@ testNet: objs/neuralNet.o
 	g++ -std=c++11 -o $@ $^ $(CFLAGS) $(CLIBS) $(LIBDIRS) $(LIBS)
 
 #we define a rule that applies to all files ending in the .o suffix. The rule says that the .o file depends upon the .c version of the file
-objs/%.o: %.cpp 
+objs/%.o: %.cpp $(INCLUDE)functions.h 
 	g++ -std=c++11 -fPIE -c -o $@ $< $(CLIBS) $(INCLUDEDIR) #$(LIBDIRS) $(LIBS)
 	#g++ -I$(INCLUDE) -c -o objs/main.o main.cpp #Igual funciona
 #-I$(INCLUDE)

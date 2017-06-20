@@ -1,40 +1,40 @@
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000000.jpg, -0.785502, 0.113107, 1.0149, 1.22985, 0.4375, 0.913345, -0.286012
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000001.jpg, -0.785502, 0.113107, 1.80041, 1.11674, 0.4375, 0.913345, -0.286012
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000002.jpg, 0.778909, 0.0920124, 2.36164, 1.31055, -0.7125, 0.723713, -0.222454
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000003.jpg, 0.778909, 0.0920124, 1.58273, 1.21854, -0.7125, 0.723713, -0.222454
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000004.jpg, -0.37569, 0.165897, 1.13638, 1.14208, 0.9375, 1.2452, -0.397239
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000005.jpg, -0.37569, 0.165897, 1.51207, 0.976181, 0.9375, 1.2452, -0.397239
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000006.jpg, 0.859847, 0.174388, 2.51451, 1.53245, -0.9125, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000007.jpg, 0.859847, 0.174388, 1.65466, 1.35806, -0.9125, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000008.jpg, 0.138689, 0.0354393, 1.22239, 1.20644, 0.4875, 0.865937, -0.270123
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000009.jpg, 0.138689, 0.0354393, 1.0837, 1.17101, 0.4875, 0.865937, -0.270123
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000010.jpg, -0.734961, 0.128763, 0.901594, 1.47961, 0.6375, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000011.jpg, -0.734961, 0.128763, 1.63656, 1.35084, 0.6375, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000012.jpg, -0.274475, 0.0405554, 2.02415, 1.17905, -0.8125, 1.10298, -0.34957
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000013.jpg, -0.274475, 0.0405554, 2.29862, 1.1385, -0.8125, 1.10298, -0.34957
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000014.jpg, -0.206754, 0.0877537, 1.45969, 1.44189, 0.6375, 0.391856, -0.111227
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000015.jpg, -0.206754, 0.0877537, 1.66645, 1.35414, 0.6375, 0.391856, -0.111227
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000016.jpg, 0.243649, -0.001495, 1.58854, 1.25044, 0.7875, 0.628896, -0.190675
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000017.jpg, 0.243649, -0.001495, 1.34489, 1.25194, 0.7875, 0.628896, -0.190675
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000018.jpg, -0.0804147, 0.215562, 1.60955, 1.5826, 0.4875, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000019.jpg, -0.0804147, 0.215562, 1.68996, 1.36704, 0.4875, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000020.jpg, -0.0325485, -0.022715, 1.96454, 1.30141, -0.4125, 0.53408, -0.158896
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000021.jpg, -0.0325485, -0.022715, 1.99709, 1.32412, -0.4125, 0.53408, -0.158896
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000022.jpg, 0.219754, 0.12591, 2.12225, 1.47803, -0.5625, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000023.jpg, 0.219754, 0.12591, 1.9025, 1.35211, -0.5625, 0.29704, -0.0794478
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000024.jpg, -0.048246, 0.0282702, 1.59652, 1.23876, 0.4375, 0.676304, -0.206564
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000025.jpg, -0.048246, 0.0282702, 1.64477, 1.21049, 0.4375, 0.676304, -0.206564
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000026.jpg, -0.202688, -0.0926676, 1.52149, 1.11881, 0.5875, 0.818529, -0.254233
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000027.jpg, -0.202688, -0.0926676, 1.72417, 1.21147, 0.5875, 0.818529, -0.254233
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000028.jpg, -0.413296, -0.153605, 2.18378, 1.37354, -1.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000029.jpg, -0.413296, -0.153605, 2.59707, 1.52714, -1.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000030.jpg, -0.26612, -0.135095, 1.4732, 0.905836, 0.6875, 1.29261, -0.413129
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000031.jpg, -0.26612, -0.135095, 1.73932, 1.04093, 0.6875, 1.29261, -0.413129
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000032.jpg, 0.0189149, -0.0745692, 2.31943, 1.42983, -0.6625, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000033.jpg, 0.0189149, -0.0745692, 2.30051, 1.5044, -0.6625, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000034.jpg, 0.49595, 0.213866, 2.37213, 1.57555, -0.7625, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000035.jpg, 0.49595, 0.213866, 1.87618, 1.36168, -0.7625, 0.249632, -0.0635582
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000036.jpg, -0.222138, -0.160539, 1.67627, 1.32588, -0.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000037.jpg, -0.222138, -0.160539, 1.89841, 1.48642, -0.1125, 0.344448, -0.0953374
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000038.jpg, 0.0360388, -0.145324, 1.65493, 0.919319, 0.0875, 1.2452, -0.397239
-/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/Imagen_Legarda000039.jpg, 0.0360388, -0.145324, 1.61889, 1.06464, 0.0875, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000000.jpg, -1.57543, -0.362166, 2.69253, 0.4375, 0.913345, -0.286012
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000001.jpg, 0.824572, 0.167394, 1.19253, 0.4375, 0.913345, -0.286012
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000002.jpg, 0.824572, 0.167394, 1.19253, -0.7125, 0.723713, -0.222454
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000003.jpg, -0.675428, -0.347886, 2.69253, -0.7125, 0.723713, -0.222454
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000004.jpg, -0.675428, -0.347886, 2.69253, 0.9375, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000005.jpg, 0.824572, 0.167394, 1.19253, 0.9375, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000006.jpg, 0.824572, 0.167394, 1.19253, -0.9125, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000007.jpg, -0.675428, -0.347886, 2.69253, -0.9125, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000008.jpg, -0.675428, -0.347886, 2.69253, 0.4875, 0.865937, -0.270123
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000009.jpg, -0.375428, 0.148354, 1.19253, 0.4875, 0.865937, -0.270123
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000010.jpg, -0.375428, 0.148354, 1.19253, 0.6375, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000011.jpg, 0.824572, -0.324096, 2.69253, 0.6375, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000012.jpg, 0.824572, -0.324096, 2.69253, -0.8125, 1.10298, -0.34957
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000013.jpg, 0.524572, 0.260924, 0.892529, -0.8125, 1.10298, -0.34957
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000014.jpg, 0.524572, 0.260924, 0.892529, 0.6375, 0.391856, -0.111227
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000015.jpg, 0.824572, -0.029206, 1.79253, 0.6375, 0.391856, -0.111227
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000016.jpg, 0.824572, -0.029206, 1.79253, 0.7875, 0.628896, -0.190675
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000017.jpg, 0.524572, 0.260924, 0.892529, 0.7875, 0.628896, -0.190675
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000018.jpg, 0.524572, 0.260924, 0.892529, 0.4875, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000019.jpg, 0.824572, -0.324096, 2.69253, 0.4875, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000020.jpg, 0.824572, -0.324096, 2.69253, -0.4125, 0.53408, -0.158896
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000021.jpg, 0.224572, 0.157874, 1.19253, -0.4125, 0.53408, -0.158896
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000022.jpg, 0.224572, 0.157874, 1.19253, -0.5625, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000023.jpg, 0.524572, -0.427146, 2.99253, -0.5625, 0.29704, -0.0794478
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000024.jpg, 0.524572, -0.427146, 2.99253, 0.4375, 0.676304, -0.206564
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000025.jpg, 0.524572, 0.260924, 0.892529, 0.4375, 0.676304, -0.206564
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000026.jpg, 0.524572, 0.260924, 0.892529, 0.5875, 0.818529, -0.254233
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000027.jpg, 1.12457, -0.417626, 2.99253, 0.5875, 0.818529, -0.254233
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000028.jpg, 1.12457, -0.417626, 2.99253, -1.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000029.jpg, 0.524572, 0.260924, 0.892529, -1.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000030.jpg, 0.524572, 0.260924, 0.892529, 0.6875, 1.29261, -0.413129
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000031.jpg, 1.12457, -0.024446, 1.79253, 0.6875, 1.29261, -0.413129
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000032.jpg, 1.12457, -0.024446, 1.79253, -0.6625, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000033.jpg, 0.224572, 0.256164, 0.892529, -0.6625, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000034.jpg, 0.224572, 0.256164, 0.892529, -0.7625, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000035.jpg, 0.224572, -0.431906, 2.99253, -0.7625, 0.249632, -0.0635582
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000036.jpg, 0.224572, -0.431906, 2.99253, -0.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000037.jpg, 0.224572, 0.256164, 0.892529, -0.1125, 0.344448, -0.0953374
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000038.jpg, 0.224572, 0.256164, 0.892529, 0.0875, 1.2452, -0.397239
+/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Legarda/Imagen_Legarda000039.jpg, 0.224572, -0.137016, 2.09253, 0.0875, 1.2452, -0.397239

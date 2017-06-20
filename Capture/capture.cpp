@@ -50,7 +50,6 @@ using namespace cv;
 float dimXPix=W/COLS_GRID;
 float dimYPix=L/ROWS_GRID;
 
-char currentPath[100]= "/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/exp5Legarda/";
 void *getCoordinate(void *ptr);
 void *getFrame(void *ptr);
 pthread_mutex_t mutex1= PTHREAD_MUTEX_INITIALIZER;
@@ -70,8 +69,15 @@ void setRes(VideoCapture& cap);
 void getCoordinate(Point3f& coordinates, string line);
 void getMarkF(P* myP1, P* myP2, Point3f& pHeight, string line);
 
+
+char currentPath[100]= "/home/rajiv/Documentos/TesisMCCRajiv/Capture/pictures/expJun5Omar/";//Directorio para guardar las fotos
 int main(int argc, char **argv)
 {
+  char fileName[20]= "Imagen_Omar";
+  //***************muy importante**************
+  float heightP=1.73;//Altura de la persona con respecto a los ojos!!!!!!!!!!!!!!!!!!!!!!!
+  //***************muy importante**************
+  
   if(argc<3)
   {
     cout<<"Faltan parámetros!!"<<endl;
@@ -97,11 +103,6 @@ int main(int argc, char **argv)
   nNorm=Point3f(N.x/norma, N.y/norma, N.z/norma);
 
 
-  //***************muy importante**************
-  float heightP=1.63;//Altura de la persona con respecto a los ojos!!!!!!!!!!!!!!!!!!!!!!!
-  //***************muy importante**************
-
-
   pHeight=nNorm*-heightP;//Ahora solo hay que trasladarlo hacia la marca en el piso
   Point pTemp, hP;
   //***********
@@ -115,7 +116,7 @@ int main(int argc, char **argv)
   cout<<Grid.cols<<endl;
   cvNamedWindow("Grid",WINDOW_NORMAL);
 
-    //*************Cámara**********
+
     cvNamedWindow("frame",WINDOW_NORMAL);//WINDOW_AUTOSIZE );
     if (!capture.open(1))
     {
@@ -129,12 +130,13 @@ int main(int argc, char **argv)
     }
     setRes(capture);
     capture>>frame;
+    //imshow("tempWind", frame);
+    //waitKey(0);
 
   const char *message1="Iniciando thread 1...";
   pthread_create(&thread1, NULL, &getFrame, (void *)message1);
   int contFrames=0;
   char fileNameTemp[100];
-  char fileName[20]= "Imagen_Legarda";
   char ext[]=".jpg";
   string line;
   Mat localFrame;
@@ -144,6 +146,7 @@ int main(int argc, char **argv)
   //Obtiene las coordenadas
   while(getline(in, line))
   {
+  cout<<"debug..."<<endl;
     cout<<endl<<"\t\tNúmero de pos. en pantalla = "<<count<<endl;
     count++;
     getCoordinate(coordinate, line);
@@ -192,15 +195,19 @@ int main(int argc, char **argv)
           }
           snprintf(fileNameTemp, 99,"%s%s%06d%s",currentPath,fileName,contFrames, ext);
           cout<<"Nombre: "<<fileNameTemp<<endl;
-          imwrite(fileNameTemp, localFrame);
+          //imwrite(fileNameTemp, localFrame);
           //cout<<"Cols: "<<localFrame.cols<<", Rows: "<<localFrame.rows<<endl;
           if(nPos==0)
           {
-            out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP1->phix<<", "<<myP1->phiy<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+            //out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP1->phix<<", "<<myP1->phiy<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+            out<<fileNameTemp<<", "<<myP1->Px<<", "<<myP1->Py<<", "<<myP1->Pz<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
             posPiso++;
           }
           else
-            out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP2->phix<<", "<<myP2->phiy<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+          {
+            //out<<fileNameTemp<<", "<<myRot->thetaX<<", "<<myRot->thetaY<<", "<<myP2->phix<<", "<<myP2->phiy<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+            out<<fileNameTemp<<", "<<myP2->Px<<", "<<myP2->Py<<", "<<myP2->Pz<<", "<<myS->Sx<<", "<<myS->Sy<<", "<<myS->Sz<<endl;
+          }
 
           cout<<"Guardado!!"<<endl;
           //out
@@ -242,13 +249,13 @@ void *getFrame(void *ptr)
   {
       pthread_mutex_lock( &mutex1 );      
       capture>>frame;
-      //flip(frame, frame, 1);
       imshow("nuevo", frame);
       pthread_cond_signal( &condition_var );
       pthread_mutex_unlock( &mutex1 );
       
-      waitKey(15);
+      waitKey(10);
   }
+  cout<<"finalizando hilo de la captura"<<endl;
 }
 
 void paintGrid(Mat &Grid, Point3f coordinate, int width, int height, float rotPT, Point2f& coordinate2d)
