@@ -113,9 +113,9 @@ void Func( void* param, double* x,  double *f, double* J, Mat& Xscn, Mat& Ximg, 
   
   // salida de la funcion
   
-  cout << "A" << endl; cout.flush();
+  //cout << "A" << endl; cout.flush();
   evalFunc(param,x,f, Xscn, Ximg, R, Tr, Nplane, D);
-  cout << "B" << endl; cout.flush();
+  //cout << "B" << endl; cout.flush();
 #if 1
   // calcula el gradiente
   const double EPS=sqrt(DBL_EPSILON);
@@ -222,6 +222,7 @@ void levenbergMain(Mat& R, Mat& Tr, Mat& K, Mat& frame, Mat& Ximg, Mat& scnPts, 
 	//inicializa variables de cómputo
 	dcopy_( N, xo, 1, x, 1 ); 	//posicion inicial
 	Func(dummy,x,f,B, Xscn, Ximg, R, Tr, Nplane, D);			//valores iniciales
+	cout<< " F(X)              : " << (0.5*ddot_(M,f,1,f,1)) << endl; cout.flush();
 
 //Antes del for
     cout<<"Antes del for(;;)"<<endl;
@@ -239,10 +240,10 @@ void levenbergMain(Mat& R, Mat& Tr, Mat& K, Mat& frame, Mat& Ximg, Mat& scnPts, 
       for(int j=0; j<marcas2d.cols; j++)
       {
         for(int i=0; i<vps2d.size(); i++)
-          circle(frameCopy, vps2d[i],5, Scalar(0, 0, 200) ,5);//Se pintan los puntos de las intersecciones
+          circle(frameCopy, vps2d[i],1, Scalar(0, 0, 200) ,2);//Se pintan los puntos de las intersecciones
 
         Point tempPoint(marcas2d.at<double>(0, j), marcas2d.at<double>(1, j));
-        circle(frameCopy, tempPoint,5, Scalar(0, 200, 0) ,10);//Se pintan los puntos rotados y trasladados
+        circle(frameCopy, tempPoint,1, Scalar(0, 200, 0) ,2);//Se pintan los puntos rotados y trasladados
       }
           imshow("frame", frameCopy);
           waitKey();
@@ -338,10 +339,10 @@ void levenbergMain(Mat& R, Mat& Tr, Mat& K, Mat& frame, Mat& Ximg, Mat& scnPts, 
       for(int j=0; j<marcas2d.cols; j++)
       {
         for(int i=0; i<vps2d.size(); i++)
-          circle(frameCopy, vps2d[i],5, Scalar(0, 0, 200) ,5);//Se pintan los puntos de las intersecciones
+          circle(frameCopy, vps2d[i],1, Scalar(0, 0, 200) ,2);//Se pintan los puntos de las intersecciones
 
         Point tempPoint(marcas2d.at<double>(0, j), marcas2d.at<double>(1, j));
-        circle(frameCopy, tempPoint,5, Scalar(0, 200, 0) ,10);//Se pintan los puntos rotados y trasladados
+        circle(frameCopy, tempPoint,1, Scalar(0, 200, 0) ,2);//Se pintan los puntos rotados y trasladados
       }
 
           imshow("frame", frameCopy);
@@ -382,10 +383,10 @@ void levenbergMain(Mat& R, Mat& Tr, Mat& K, Mat& frame, Mat& Ximg, Mat& scnPts, 
       for(int j=0; j<marcas2d.cols; j++)
       {
         for(int i=0; i<vps2d.size(); i++)
-          circle(frameCopy, vps2d[i],5, Scalar(0, 0, 200) ,5);//Se pintan los puntos de las intersecciones
+          circle(frameCopy, vps2d[i],1, Scalar(0, 0, 200) ,2);//Se pintan los puntos de las intersecciones
 
         Point tempPoint(marcas2d.at<double>(0, j), marcas2d.at<double>(1, j));
-        circle(frameCopy, tempPoint,5, Scalar(0, 200, 0) ,10);//Se pintan los puntos rotados y trasladados
+        circle(frameCopy, tempPoint,1, Scalar(0, 200, 0) ,2);//Se pintan los puntos rotados y trasladados
       }
 
           imshow("frame", frameCopy);
