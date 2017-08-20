@@ -3,6 +3,12 @@
 En el presente capítulo se detallarán las etapas y procesos necesarios del sistema para lograr la estimación de la mirada de las personas, esto incluye desde los métodos para el cálculo de los ángulos de mirada de las personas a un objeto en específico, el proceso de generación y selección de las marcas en el piso donde se colocan las personas y las marcas en la pantalla, el proceso de optimización numérica, estimación del plano del piso y finalmente la red neuronal y como se implementa en este proyecto.
 
  \section{Descripción general del sistema}
+ El sistema de estimación de la mirada que se desarrolla en este proyecto de tesis funciona para posiciones discretas de lo que se observa, es decir, se estiman regiones del plano enfrente de las personas. La estructura del sistema ya calibrado y funcionando consta de 3 etapas: 
+ \begin{itemize}
+ 	\item Detección del rostro.- Se utiliza el algoritmo detector de rostros de Viola y Jones para localizar el rostro de la persona en la imagen.
+ 	\item Extracción de características del rostro.- Se extraen las características 3d del rostro que incluyen la posición en 3 dimensiones 
+ \end{itemize}
+ en la escena, y etapa de clasificación de la mirada
 
     \section{Mapeo de coordenadas a ángulos}
     Uno de los problemas que hay que tomar en cuenta y definir en el presente trabajo de tesis antes de realizar los experimentos, es la relación que existe entre la ubicación en metros de lo que está mirando el sujeto de estudio en la pantalla y la pose de la cabeza de esta persona medida en ángulos, tomando en cuenta diversos aspectos como: la estatura de la persona, la distancia de la persona a la pantalla, cuál es el marco de referencia, etc. Esta sección consiste en describir cómo se realiza el mapeo (o la ecuación) de dicho objeto desplegado en pantalla y la orientación de la cabeza, primero se describirá la geometría del escenario. 
@@ -28,7 +34,7 @@ En el presente capítulo se detallarán las etapas y procesos necesarios del sis
     \end{itemize}
     De igual manera el ángulo $\phi_x$ indica el movimiento yaw que la persona realiza al mirar como se traslada el objeto $S$ y el ángulo $\phi_y$ el movimiento pitch.
     
-    \section{Ecuaciones}
+    \section{Ecuaciones de la mirada}
     Una vez definido el escenario y los aspectos a tomar en cuenta, ahora falta demostrar cual es la relación que se puede hallar entre la posición del objeto en la pantalla y la pose de la cabeza mediante los ángulos $\phi_x$ y $\phi_y$.
     
     \subsection{Desviación de $\phi_y$ y $\phi_x$. Primer caso}
