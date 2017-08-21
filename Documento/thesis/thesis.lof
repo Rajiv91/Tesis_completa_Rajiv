@@ -8,43 +8,43 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Caracter\IeC {\'\i }sticas Haar}}{10}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Caracter\IeC {\'\i }sticas tipo Haar sobrepuestas}}{11}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Diagrama de nodos}}{12}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Detecci\IeC {\'o}n de chagas en la sangre mediante el m\IeC {\'e}todo de Viola y Jones}}{12}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Detecci\IeC {\'o}n de chagas en la sangre mediante el m\IeC {\'e}todo de Viola y Jones}}{13}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces }}{14}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces }}{15}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Escenario y aspectos a tomar en cuenta}}{16}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces }}{18}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces }}{18}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces }}{19}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces }}{19}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces }}{23}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces }}{25}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Representaci\IeC {\'o}n de un plano en el espacio}}{26}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces intersecci\IeC {\'o}n de una recta con un plano}}{27}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces }}{16}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces }}{16}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Escenario y aspectos a tomar en cuenta}}{17}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces }}{19}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces }}{20}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces }}{20}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces }}{21}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces }}{24}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces }}{26}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Representaci\IeC {\'o}n de un plano en el espacio}}{28}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces intersecci\IeC {\'o}n de una recta con un plano}}{29}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces }}{31}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces }}{31}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces }}{32}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces }}{33}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces }}{33}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces }}{34}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces tarjeta con el IMU}}{35}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces bater\IeC {\'\i }a recargable}}{35}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces tarjeta receptora de datos}}{36}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces }}{37}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces }}{37}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces }}{38}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces }}{38}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces }}{39}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces }}{40}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces }}{41}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{41}
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{43}
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Correcci\IeC {\'o}n de la imagen}}{43}
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Estimaci\IeC {\'o}n de R y T antes de la optimizaci\IeC {\'o}n}}{44}
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Estimaci\IeC {\'o}n de R y T despu\IeC {\'e}s de la optimizaci\IeC {\'o}n p}}{44}
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Campo visual}}{45}
-\contentsline {figure}{\numberline {5.23}{\ignorespaces Campo visual}}{46}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces }}{33}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces }}{33}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces }}{34}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces }}{35}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces }}{35}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces }}{36}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces tarjeta con el IMU}}{37}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces bater\IeC {\'\i }a recargable}}{37}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces tarjeta receptora de datos}}{38}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces }}{39}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces }}{39}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces }}{40}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces }}{40}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces }}{41}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces }}{42}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces }}{43}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{43}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{45}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Correcci\IeC {\'o}n de la imagen}}{45}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Estimaci\IeC {\'o}n de R y T antes de la optimizaci\IeC {\'o}n}}{46}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Estimaci\IeC {\'o}n de R y T despu\IeC {\'e}s de la optimizaci\IeC {\'o}n p}}{46}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Campo visual}}{47}
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Campo visual}}{48}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

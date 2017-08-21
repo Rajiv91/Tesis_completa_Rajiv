@@ -1,17 +1,24 @@
 \chapter{Metodología}
 
-En el presente capítulo se detallarán las etapas y procesos necesarios del sistema para lograr la estimación de la mirada de las personas, esto incluye desde los métodos para el cálculo de los ángulos de mirada de las personas a un objeto en específico, el proceso de generación y selección de las marcas en el piso donde se colocan las personas y las marcas en la pantalla, el proceso de optimización numérica, estimación del plano del piso y finalmente la red neuronal y como se implementa en este proyecto.
+En el presente capítulo se detallarán las etapas y procesos necesarios del sistema para lograr la estimación de la mirada de las personas, esto incluye desde los métodos para el cálculo de los ángulos de mirada de las personas a un objeto en específico, el proceso de generación y selección de las marcas en el piso donde se colocan las personas y las marcas en la pantalla, el proceso de optimización numérica, estimación del plano del piso y finalmente la red neuronal y como se implementa.
 
  \section{Descripción general del sistema}
- El sistema de estimación de la mirada que se desarrolla en este proyecto de tesis funciona para posiciones discretas de lo que se observa, es decir, se estiman regiones del plano enfrente de las personas. La estructura del sistema ya calibrado y funcionando consta de 3 etapas: 
+ El sistema de estimación de la mirada que se propone en este proyecto de tesis funciona para posiciones discretas de lo que se observa, es decir, se estiman regiones del plano enfrente de las personas. La estructura del sistema ya calibrado y funcionando consta de 3 etapas: 
  \begin{itemize}
  	\item Detección del rostro.- Se utiliza el algoritmo detector de rostros de Viola y Jones para localizar el rostro de la persona en la imagen.
- 	\item Extracción de características del rostro.- Se extraen las características 3d del rostro que incluyen la posición en 3 dimensiones 
+ 	\item Extracción de características del rostro.- Se extraen las características 3d del rostro que incluyen la posición en 3d, y las características de la imagen que ayudan al clasificador
+ 	\item Clasificador.- Se encarga de producir en la salida una región en la pantalla que representa lo que está observando la persona detectada en etapas previas, el algoritmo es una red neuronal artificial de retropropagación entrenada con anterioridad.
  \end{itemize}
- en la escena, y etapa de clasificación de la mirada
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{./pictures/etapas}     	
+\end{figure}
+ Una de las etapas cruciales de este proyecto es la captura precisa de datos, entre esos datos está la ubicación del rostro en tres dimensiones en la escena, para lograr lo anterior se debe conocer el plano del piso en el que las personas habitan, esto es, la ecuación matemática que describe dicho plano, el cual se obtiene a partir de la estimación de la matriz de rotación y traslación que tiene la cámara con respecto al piso. Además en este capítulo se detalla como implementar el algoritmo de Levenberg-Marquardt para optimizar la matriz de rotación y traslación. Otro apartado importante de la metodología incluye determinar en cuales  puntos del piso \sout{en los que vale la pena} que se coloquen las personas para capturar sus datos. 
+ Finalmente se describe como se realiza la implementación de la red neuronal teniendo con las imágenes de los rostros y los datos 3d como vector de características.
+ A continuación en la metodología se describen las herramientas y técnicas necesarias para estimar la ecuación del plano.
 
     \section{Mapeo de coordenadas a ángulos}
-    Uno de los problemas que hay que tomar en cuenta y definir en el presente trabajo de tesis antes de realizar los experimentos, es la relación que existe entre la ubicación en metros de lo que está mirando el sujeto de estudio en la pantalla y la pose de la cabeza de esta persona medida en ángulos, tomando en cuenta diversos aspectos como: la estatura de la persona, la distancia de la persona a la pantalla, cuál es el marco de referencia, etc. Esta sección consiste en describir cómo se realiza el mapeo (o la ecuación) de dicho objeto desplegado en pantalla y la orientación de la cabeza, primero se describirá la geometría del escenario. 
+    Uno de los problemas que hay que tomar en cuenta y definir en el presente trabajo antes de realizar los experimentos, es describir la relación que existe entre la ubicación en metros de lo que está mirando el sujeto de estudio en la pantalla y la pose de la cabeza de esta persona medida en ángulos, tomando en cuenta diversos aspectos como: la estatura de la persona, la distancia de la persona a la pantalla, cuál es el marco de referencia, etc. Esta sección consiste en describir cómo se realiza el mapeo (o la ecuación) de dicho objeto desplegado en pantalla y la orientación de la cabeza, primero se describirá la geometría del escenario. 
     \begin{figure}[htbp]
     	\centering
     	\includegraphics[width=0.5\textwidth]{./pictures/pantalla2}

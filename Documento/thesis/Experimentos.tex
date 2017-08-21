@@ -219,7 +219,7 @@ En este punto del proyecto de tesis ya se han descrito casi todos los elementos 
 	\item Generación de secuencia de instancias (marcas en el piso) óptimas para la captura
 \end{itemize}
 Sin embargo aún falta describir el proceso de captura de datos, los cuales serán utilizados en el algoritmo de entrenamiento. 
-\subsection{Proyección en tiempo real de instancias óptimas para marcar instancias}
+\subsection{Proyección en tiempo real de instancias óptimas para marcar en el piso}
 El protocolo de captura comienza marcando en el piso las instancias óptimas obtenidas mediante el algoritmo descrito en la sección \ref{secGen}, para ello se desarrolló un programa que recibe como entrada las instancias de marcas, las proyecta y pinta en tiempo real sobre lo que esté capturando la cámara, esto se realiza como guía para o referencia al momento de marcarlas físicamente en el piso del laboratorio de experimentación.\\
 
 Como se ha mencionado los puntos se eligieron tomando en cuenta una región limitada en base a análisis previos y con la restricción (entre otras) de que el rostro de la persona $P$ estuviera dentro del campo visual de la cámara. Esto significa que pudieran darse marcas en el piso $F$ que no se encuentran dentro del campo visual de la cámara, por ejemplo aquellas que se encuentran más cercanas a la cámara, imagen \ref{fig: figVisualFieldIm}.
