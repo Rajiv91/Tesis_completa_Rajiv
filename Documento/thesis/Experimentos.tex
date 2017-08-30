@@ -245,6 +245,35 @@ Los resultados del algoritmo anterior se pueden ver en la figura \ref{fig: figMa
 La recta amarilla fue colocada y pintada con respecto a la altura real del sujeto de experimentación que aparece en la misma imagen. La orientación de la recta tomando en cuenta que es ortogonal al plano parece estar correcta esto indica que la estimación de la normal del plano $n$ fue estimada con precisión, sin embargo la longitud de la recta se pasa por 3cm.
 %¿Explicar como es el algoritmo?
 
+\subsection{Captura de datos}
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.65\textwidth]{./pictures/mili}
+	\caption{Imagen obtenida durante la etapa de captura}\label{fig: figMili}
+\end{figure}
 
-
-
+\section{Red neuronal}
+En la sección se describirá todo lo relacionado a la experimentación de la red neuronal, por ejemplo: la etapa de preparación de datos para introducir a la red, entrenamiento, resultados al variar la topología, etc.
+\subsection{Detector de rostros y guardado de los ejemplos útiles}
+La primera etapa de esta sección consiste en preparar las imágenes y datos obtenidos de la captura de datos para introducirlos en la red neuronal (incluyendo $P$ y $S$), esto conlleva que en cada imagen se obtenga y guarde la región (ROI) en donde se encuentra el rostro de las personas, por lo tanto se desarrolló un programa con el algoritmo de Viola y Jones para detectar el rostro y guardar la región donde se encuentre. Hay casos en los que a pesar de que el rostro está visible en la imagen, el algoritmo de Viola y Jones no logra detectar el rostro, en este caso descartamos la imagen, ya que para lograr estimar la mirada de las personas con el sistema que se desarrolla es fundamental previamente el rostro con el algoritmo de Viola y Jones.\\
+En la figura siguiente \ref{fig: figViola} se pueden ver algunos ejemplos de las imágenes capturadas y procesadas con el detector de Viola y Jones.
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.7\textwidth]{./pictures/violaJones}
+	\caption{Imagenes procesadas con Viola y Jones}\label{fig: figViola}
+\end{figure}
+\\En la imagen  \ref{fig: figNoViola} se presenta un falso positivo del algoritmo detector, el cual es rechazado para el conjunto de entrenamiento.
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.7\textwidth]{./pictures/noViola}
+	\caption{Imagen procesada con Viola y Jones}\label{fig: figNoViola}
+\end{figure}
+Del total de las 383 después de procesarlas con el detector se obtuvieron 244 rostros útiles para el conjunto de entrenamiento. En la figura \ref{fig: figFacesLab} se encuentran algunos de los rostros que si se utilizan para el conjunto de entrenamiento.
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.5\textwidth]{./pictures/facesLab}
+	\caption{Imágenes de los rostros guardadas}\label{fig: figFacesLab}
+\end{figure}
+Las resoluciones de los rostros capturados son muy variadas, pero como se mencionó en la sección \ref{inFeature}, se deben redimensionar todas a un estándar, ya que el número de características y neuronas de entrada depende de la resolución de las imágenes. La resolución elegida para estas pruebas fue de: 75x75.
+\subsection{Entrenamiento}
+Ya con los datos listos para el entrenamiento se dividen en dos conjuntos, el de entrenamiento y el de prueba, en una primera iteración se probó con x imágenes o ejemplos de entrenamiento y y de prueba. 

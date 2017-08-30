@@ -416,8 +416,36 @@ En el presente capítulo se detallarán las etapas y procesos necesarios del sis
        	\end{array}
        	\end{eqnarray}
  
- 
-
-
 \section{Red neuronal}
-    
+    El algoritmo clasificador propuesto para esta etapa de la tesis es una red neuronal de propagación hacia atrás, donde las neuronas de entrada es el vector de características y las neuronas de salida representan región en la pantalla que se observa, a continuación se describe como se implementa la red neuronal en el presente proyecto comenzando con el tratamiento de datos incluidas las imágenes para representarlos como el vector de características.
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=.5\textwidth]{./pictures/neuralNet}
+		\caption{Red neuronal artificial}\label{fig: figura}
+	\end{figure}
+	
+\subsection{Vector de características de entrada}\label{inFeature}
+	Con las imágenes y la información capturada se preparan los datos para la red neuronal, para ello se generan dos etapas de tratamiento de datos, la primera consiste de los siguientes pasos:
+	\begin{enumerate}
+		\item Se procesan cada una de las imágenes capturadas con el algoritmo de Viola y Jones para la detección de rostros
+		\item De las imágenes con rostros detectados se extrae la región en la imagen donde se encuentra el rostro mediante un ROI.
+		\item El ROI de la cara de la persona se guarda para posterior análisis junto con los datos de ubicación 3d en las escena del rostro y la ubicación (igual 3d) de lo que estaba observando en pantalla al momento de la captura, esto es: $P$ y $S$
+		\item Finalmente se acompleta la información con la resolución original del ROI del rostro ya que en una etapa posterior es necesario redimensionar todos los rostros a una misma resolución.
+	\end{enumerate}
+	La salida de este proceso tiene por cada rostro un conjunto de 8 datos los cuales son: \textit{la imagen, la dimensión original del rostro}, $P_x$, $P_y$, $P_z$, $S_x$, $S_y$, $S_z$. Utilizar la resolución original del ROI del rostro como una característica del vector, sirve como una indicador de la distancia sobre el eje $Z$ de la persona, más adelanta en la etapa experimental se entrarás más en detalle.
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=.6\textwidth]{./pictures/featureNet}
+			\caption{Características}\label{fig: figura}
+		\end{figure}
+	\\La segunda etapa consiste simplemente en acomodar los datos resultantes del proceso anterior en forma del vector de características que se requiere en las neuronas de entrada de la red. En cada ejemplo de entrenamiento se redimensiona la imagen del rostro a un estándar $dimE$ para todos, en donde cada pixel representa una característica del vector. Por lo tanto al final se obtiene el vector de características con $dimE+4$ elementos, donde los 4 restantes elementos son la dimensión original del rostro y $P$.
+	%Añadir imagen que represente como cada pixel se le asocia una neurona en la entrada
+	
+\subsection{Neuronas de salida}
+En este proyecto cada neurona de salida representa una partición de la pantalla que la persona está observando, esto quiere decir que si por ejemplo si solamente se tienen dos neuronas de salida la pantalla será particionada en dos regiones, durante la etapa experimental se experimentará con diferentes topologías de la red y número de neuronas de salida.
+Con respecto a lo anterior es necesario mapear la figura de lo que observa la persona $S$ (etiqueta) a una neurona de salida, ya que se conocen las dimensiones de la pantalla donde se desplaza $S$, en consecuencia únicamente se determina en que región de la pantalla se encuentra $S$ para cada ejemplo de entrenamiento y se le coloca un uno a esa neurona, en caso contrario se coloca un cero, figura \ref{fig: outNeu}.
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=.5\textwidth]{./pictures/outNeu}
+			\caption{Neuronas de salida}\label{fig: outNeu}
+		\end{figure}

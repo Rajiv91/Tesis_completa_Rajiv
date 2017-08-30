@@ -53,7 +53,7 @@ int main(int argc, char **argv)
   }
   colsFile++;
   int nFeatures=colsFile+(IM_WIDTH*IM_HEIGHT)-3-1;//Le quitamos lo de SX, SY, SZ y el path del archivo
-  int numSamplesTest=20;
+  int numSamplesTest=40;
   int numSamplesTraining=vData.size()-numSamplesTest;
   //cout<<firstLine.length()<<endl<<firstLine<<endl<<colsFile<<endl<<nFeatures<<endl;
 
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
   //Topología de la red
   Mat layers= Mat(5,1, CV_32SC1);
   layers.row(0) = cv::Scalar(trainingData.cols);
-  layers.row(1) = cv::Scalar(20);
+  layers.row(1) = cv::Scalar(30);
   layers.row(2) = cv::Scalar(20);
   layers.row(3) = cv::Scalar(20);
   layers.row(4) = cv::Scalar(trainingClasses.cols);

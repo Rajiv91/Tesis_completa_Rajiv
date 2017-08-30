@@ -21,30 +21,37 @@
 \contentsline {figure}{\numberline {4.9}{\ignorespaces }}{26}
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Representaci\IeC {\'o}n de un plano en el espacio}}{28}
 \contentsline {figure}{\numberline {4.11}{\ignorespaces intersecci\IeC {\'o}n de una recta con un plano}}{29}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Red neuronal artificial}}{31}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Caracter\IeC {\'\i }sticas}}{32}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Neuronas de salida}}{33}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces }}{33}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces }}{33}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces }}{34}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces }}{35}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces }}{35}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces }}{36}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces tarjeta con el IMU}}{37}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces bater\IeC {\'\i }a recargable}}{37}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces tarjeta receptora de datos}}{38}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces }}{39}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces }}{39}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces }}{40}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces }}{40}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces }}{41}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces }}{42}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces }}{43}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{43}
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{45}
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Correcci\IeC {\'o}n de la imagen}}{45}
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Estimaci\IeC {\'o}n de R y T antes de la optimizaci\IeC {\'o}n}}{46}
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Estimaci\IeC {\'o}n de R y T despu\IeC {\'e}s de la optimizaci\IeC {\'o}n p}}{46}
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Campo visual}}{47}
-\contentsline {figure}{\numberline {5.23}{\ignorespaces Campo visual}}{48}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces }}{35}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces }}{35}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces }}{36}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces }}{37}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces }}{37}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces }}{38}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces tarjeta con el IMU}}{39}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces bater\IeC {\'\i }a recargable}}{39}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces tarjeta receptora de datos}}{40}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces }}{41}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces }}{41}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces }}{42}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces }}{42}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces }}{43}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces }}{44}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces }}{45}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{45}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Reproyecci\IeC {\'o}n de puntos}}{47}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Correcci\IeC {\'o}n de la imagen}}{47}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Estimaci\IeC {\'o}n de R y T antes de la optimizaci\IeC {\'o}n}}{48}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Estimaci\IeC {\'o}n de R y T despu\IeC {\'e}s de la optimizaci\IeC {\'o}n p}}{48}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Campo visual}}{49}
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Campo visual}}{50}
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Imagen obtenida durante la etapa de captura}}{51}
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Imagenes procesadas con Viola y Jones}}{52}
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Imagen procesada con Viola y Jones}}{52}
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Im\IeC {\'a}genes de los rostros guardadas}}{52}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
