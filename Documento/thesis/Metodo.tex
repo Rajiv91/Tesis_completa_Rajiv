@@ -443,9 +443,13 @@ En el presente capítulo se detallarán las etapas y procesos necesarios del sis
 	
 \subsection{Neuronas de salida}
 En este proyecto cada neurona de salida representa una partición de la pantalla que la persona está observando, esto quiere decir que si por ejemplo si solamente se tienen dos neuronas de salida la pantalla será particionada en dos regiones, durante la etapa experimental se experimentará con diferentes topologías de la red y número de neuronas de salida.
-Con respecto a lo anterior es necesario mapear la figura de lo que observa la persona $S$ (etiqueta) a una neurona de salida, ya que se conocen las dimensiones de la pantalla donde se desplaza $S$, en consecuencia únicamente se determina en que región de la pantalla se encuentra $S$ para cada ejemplo de entrenamiento y se le coloca un uno a esa neurona, en caso contrario se coloca un cero, figura \ref{fig: outNeu}.
+Con respecto a lo anterior es necesario mapear la figura de lo que observa la persona $S$ (etiqueta) a una neurona de salida, ya que se conocen las dimensiones de la pantalla donde se desplaza $S$, en consecuencia únicamente se determina en que región de la pantalla se encuentra $S$ para cada ejemplo de entrenamiento y se le coloca un uno a esa neurona, en caso contrario se coloca un cero, figura \ref{fig: outNeu}.\\
 		\begin{figure}[htbp]
 			\centering
 			\includegraphics[width=.5\textwidth]{./pictures/outNeu}
 			\caption{Neuronas de salida}\label{fig: outNeu}
 		\end{figure}
+Una vez entrenada la red y cuando se está haciendo la predicción con los datos de prueba, los resultados en el vector de salida no son enteros como las etiquetas en el entrenamiento (1 y 0), la red arroja valores decimales, por lo tanto para tomar una predicción como acertada se elige la neurona con el valor má alto (cercano a uno). Por ejemplo, si la red arrojó el siguiente vector: $[O_1, O_2]=[-0.0555573, 1.05556]$ se elige $O_2$ como la clase resultante por la red neuronal.
+
+
+

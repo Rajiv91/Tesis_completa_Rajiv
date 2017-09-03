@@ -35,6 +35,9 @@ int eq=0;
 int main(int argc, char **argv)
 {
 
+  
+  timespec inicio, fin;
+  double tiempo;
   ifstream in(argv[1]);
   string line;
   vector <string> vData;
@@ -56,14 +59,12 @@ int main(int argc, char **argv)
   int numSamplesTest=40;
   int numSamplesTraining=vData.size()-numSamplesTest;
   //cout<<firstLine.length()<<endl<<firstLine<<endl<<colsFile<<endl<<nFeatures<<endl;
+  int nClasses=2;
 
   Mat trainingData(numSamplesTraining, nFeatures, CV_32FC1);
   Mat testData(numSamplesTest, nFeatures, CV_32FC1);
-  //Mat trainingClasses(trainingData.rows, 1, CV_32FC1);
-  Mat trainingClasses(trainingData.rows, 3, CV_32FC1);
-  //Mat testClasses(trainingData.rows, 1, CV_32FC1);
-  Mat testClasses(testData.rows, 3, CV_32FC1);
-
+  Mat trainingClasses(trainingData.rows, nClasses, CV_32FC1);
+  Mat testClasses(testData.rows, nClasses, CV_32FC1);
 
   bool flagFirst=true;
   int nSample2=0;
@@ -83,7 +84,7 @@ int main(int argc, char **argv)
   
   CvTermCriteria criteria;
   CvANN_MLP_TrainParams params;
-  criteria.max_iter = 10000;
+  criteria.max_iter = 1000;
   criteria.epsilon = 0.00001f;
   criteria.type = CV_TERMCRIT_ITER | CV_TERMCRIT_EPS;
   params.train_method = CvANN_MLP_TrainParams::BACKPROP;
@@ -92,15 +93,17 @@ int main(int argc, char **argv)
   params.term_crit = criteria;
 
   //Topología de la red
-  Mat layers= Mat(5,1, CV_32SC1);
+  Mat layers= Mat(4,1, CV_32SC1);
   layers.row(0) = cv::Scalar(trainingData.cols);
-  layers.row(1) = cv::Scalar(30);
-  layers.row(2) = cv::Scalar(20);
-  layers.row(3) = cv::Scalar(20);
-  layers.row(4) = cv::Scalar(trainingClasses.cols);
+  layers.row(1) = cv::Scalar(50);
+  layers.row(2) = cv::Scalar(10);
+  //layers.row(3) = cv::Scalar(6);
+  layers.row(3) = cv::Scalar(trainingClasses.cols);
   mlp.create(layers);
   //cout<<"size trainingData = "<<trainingData.size()<<endl<<"testData = "<<testData.size()<<endl<<"cols = "<<trainingData.cols<<endl;
+  cout<<"Antes de entrenar..."<<endl;
   mlp.train(trainingData, trainingClasses, Mat(), Mat(), params);
+  cout<<"Entrenamiento completado"<<endl;
   ///*
   Mat response(1, trainingClasses.cols, CV_32FC1);
   Mat predicted(testClasses.rows, testClasses.cols, CV_32F);
@@ -110,16 +113,26 @@ int main(int argc, char **argv)
           Mat response(1, testClasses.cols, CV_32FC1);
           Mat sample = testData.row(i);
 
+          if(i==0)
+	      clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &inicio);
           mlp.predict(sample, response);
+          if(i==0)
+          {
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &fin);
+                 tiempo = (double)(fin.tv_sec - inicio.tv_sec) * 1.0e3    // segundos a milisegundos
+					+ (double)(fin.tv_nsec - inicio.tv_nsec)/1.0e6;      // nanosegundos a milisegundos
+
+          }
           predicted.at<float>(i,0) = response.at<float>(0,0);
           predicted.at<float>(i,1) = response.at<float>(0,1);
-          predicted.at<float>(i,2) = response.at<float>(0,2);
-          cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)<<", "<<predicted.at<float>(i,2)<<"---------"
-          << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)<<", "<<testClasses.at<float>(i,2)<<endl;
+          //predicted.at<float>(i,2) = response.at<float>(0,2);
+          cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)/*<<", "<<predicted.at<float>(i,2)*/<<"---------"
+          << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)/*<<", "<<testClasses.at<float>(i,2)*/<<endl;
           //cout<<predicted.at<float>(i,0)<<"----------\t"<<testClasses.at<float>(i,0)<<endl;
 
   }
   cout<<"desempeño = "<<evaluate(predicted, testClasses)<<endl;
+  cout << endl << "tiempo empleado: " << tiempo << " milisegundos..." << endl << endl;
   //cout<<predicted<<endl;
   //*/
 #if 0

@@ -23,7 +23,7 @@
 #define IM_HEIGHT 75
 #define SCREEN_FIELD 5
 
-#define W 2.375//Pintarrón
+#define W 2.375//Pintarrón en m
 
 using namespace std;
 using namespace cv;
@@ -49,6 +49,7 @@ void saveIm(string& tempS, Mat& trainingData, int nSample, int& nFeature)
   //cout<<"características = "<<nFeature<<endl;
 }
 
+//Etiqueta dependiendo la región de la pantalla en la que se encuentre
 void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses)
 {
   float screenCenter=(float)W/2.0;
@@ -58,7 +59,8 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
   float thirdSegment=screenCenter;
   //|first seg. |second seg| third seg|
   //cout<<"first seg = "<<firstSegment<<endl<<"second seg = "<<secondSegment<<endl<<"third seg = "<<thirdSegment<<endl;
-  if(Sx<firstSegment)
+  //Para 3 segmentos de pantalla
+  /*if(Sx<firstSegment)
   {
     trainingClasses.at<float>(nSample, 0)=1.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
@@ -75,17 +77,20 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
     trainingClasses.at<float>(nSample, 0)=0.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
     trainingClasses.at<float>(nSample, 2)=1.0;
-    
-  }
+  }*/
 
-  /*if(Sx<0)
+
+//Para 2 segmentos en pantalla
+  if(Sx<0)
   {
     trainingClasses.at<float>(nSample, 0)=0.0;
+    trainingClasses.at<float>(nSample, 1)=1.0;
   }
   else
   {
     trainingClasses.at<float>(nSample, 0)=1.0;
-  }*/
+    trainingClasses.at<float>(nSample, 1)=0.0;
+  }
 
   //trainingData.at<float>(nSample, nFeature)=atof(sample.substr(pos_ant, pos-pos_ant).c_str());
 }
