@@ -60,7 +60,7 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
   //|first seg. |second seg| third seg|
   //cout<<"first seg = "<<firstSegment<<endl<<"second seg = "<<secondSegment<<endl<<"third seg = "<<thirdSegment<<endl;
   //Para 3 segmentos de pantalla
-  /*if(Sx<firstSegment)
+  if(Sx<firstSegment)
   {
     trainingClasses.at<float>(nSample, 0)=1.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
@@ -77,11 +77,11 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
     trainingClasses.at<float>(nSample, 0)=0.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
     trainingClasses.at<float>(nSample, 2)=1.0;
-  }*/
+  }
 
 
 //Para 2 segmentos en pantalla
-  if(Sx<0)
+  /*if(Sx<0)
   {
     trainingClasses.at<float>(nSample, 0)=0.0;
     trainingClasses.at<float>(nSample, 1)=1.0;
@@ -90,7 +90,7 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
   {
     trainingClasses.at<float>(nSample, 0)=1.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
-  }
+  }*/
 
   //trainingData.at<float>(nSample, nFeature)=atof(sample.substr(pos_ant, pos-pos_ant).c_str());
 }

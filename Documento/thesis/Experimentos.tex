@@ -277,16 +277,116 @@ Del total de las 383 después de procesarlas con el detector se obtuvieron 244 r
 Las resoluciones de los rostros capturados son muy variadas, pero como se mencionó en la sección \ref{inFeature}, se deben redimensionar todas a un estándar, ya que el número de características y neuronas de entrada depende de dicha resolución. La resolución elegida para estas pruebas fue de 75x75 pixeles.
 
 \subsection{Entrenamiento y pruebas}
-Ya con los datos listos para el algoritmo de clasificación estos se dividen en dos conjuntos, el de entrenamiento y el de prueba, en una primera iteración se probó con 204 imágenes o ejemplos de entrenamiento y 40 de prueba. Primero se experimentó discretizando la pantalla (pintarrón) que observaban los sujetos en 2 secciones de misma longitud, izquierda y derecha. Variando las topologías se obtuvieron los siguientes resultados:
+Ya con los datos listos para el algoritmo de clasificación estos se dividen en dos conjuntos, el de entrenamiento y el de prueba, en una primera iteración se probó con 204 imágenes o ejemplos de entrenamiento y 40 de prueba. 
+
+\subsubsection{Dos neuronas de salida}
+Primero se experimentó discretizando la pantalla (pintarrón) que observaban los sujetos de los experimentos en 2 secciones de misma longitud, partiendo el eje $X$ a la mitad \ref{fig: pint1}. Con una capa oculta se obtuvieron los siguientes resultados:
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.3\textwidth]{./pictures/pint1}
+	\caption{Pintarrón divido en dos secciones}\label{fig: pint1}
+\end{figure}
 \begin{table}[]
 	\centering
-	\caption{My caption}
+	\caption{Una capa oculta}
 	\label{my-label}
 	\begin{tabular}{|l|l|l|}
 		\hline
 		Topología & Eficiencia & Tiempo     \\ \hline
-		2-2       & 0.95       & 0.057077ms \\ \hline
-		2-5       & 0.925      & 0.063579ms \\ \hline
-		2-10      & 0.85       & 0.10723    \\ \hline
-	\end{tabular}
+		2-2       & 95\%       & 0.057077ms \\ \hline
+		5-2       & 92.5\%     & 0.063579ms \\ \hline
+		10-2      & 85\%       & 0.10723ms    \\ \hline
+		25-2      & 97.5\%     & 0.212ms    \\ \hline
+		30-2      & 97.5\%     & 0.279ms    \\ \hline
+		50-2      & 87.5\%     & 0.459ms    \\ \hline
+	\end{tabular}\label{tab:unaCapa2}
 \end{table}
+Se puede apreciar en \ref{tab:unaCapa2} que incluso con una capa oculta y una neurona se consiguen unos resultados de 95\% en tan solo 0.057ms que le toma a un ejemplo propagarse hacia adelante. Los mejores resultados con una capa se obtienen a partir 25 neuronas, sin embargo el tiempo se ve afectado incrementando 3.7 veces más.
+\begin{table}[]
+	\centering
+	\caption{Dos capas ocultas}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo     \\ \hline
+		2-2-2     & 60\%       & 0.060679ms \\ \hline
+		5-2-2     & 95\%       & 0.062157ms \\ \hline
+		5-4-2     & 97.5\%     & 0.050279ms \\ \hline
+		5-5-2     & 97.5\%     & 0.06059ms  \\ \hline
+		10-10-2   & 92.5\%     & 0.115969ms \\ \hline
+		50-10-2   & 97.5\%     & 0.466266ms \\ \hline
+	\end{tabular}\label{tab: dosCapas2}
+\end{table}
+En la tabla \ref{tab: dosCapas2} se puede notar que utilizando dos capas ocultas (5 neuronas en la primera y 4 en la segunda) se producen resultados bastante buenos y en un tiempo menor que el empleado cuando se utiliza solamente una capa oculta.
+\begin{table}[]
+	\centering
+	\caption{Tres capas ocultas}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo     \\ \hline
+		2-2-2-2   & 50\%       & 0.068744ms \\ \hline
+		5-5-5-2   & 62.5\%     & 0.060773ms \\ \hline
+		4-5-5-2   & 95\%       & 0.056476ms \\ \hline
+		5-10-5-2  & 72.5\%     & 0.089464ms \\ \hline
+		5-2-10-2  & 97.5\%     & 0.061379ms \\ \hline
+		50-20-50  & 97.5\%     & 0.548939ms \\ \hline
+	\end{tabular}
+\end{table}\label{tab: tresCapas2}
+En \ref{tab: tresCapas2} se encuentran los resultados de utilizar 3 capas ocultas, aunque se logra el mismo máximo posible de eficiencia que en las topologías anteriores el tiempo empleado es mayor.
+
+\subsubsection{Tres neuronas de salida}
+A continuación se presentan los resultados de utilizar tres clases en la clasificación de la mirada, por lo tanto el en la capa de salida de la neuronal hay tres neuronas. En la figura \ref{fig: pint2} se encuentra ilustrada la segmentación del pintarrón.
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.3\textwidth]{./pictures/pint2}
+	\caption{Pintarrón divido en tres secciones}\label{fig: pint2}
+\end{figure}
+
+\begin{table}[]
+	\centering
+	\caption{Una capa oculta}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo     \\ \hline
+		2-3       & 47.5\%     & 0.055246ms \\ \hline
+		4-3       & 87.5\%     & 0.05233ms  \\ \hline
+		5-3       & 85\%       & 0.063973ms \\ \hline
+		20-3      & 80\%       & 0.182204ms \\ \hline
+	\end{tabular}
+\end{table}\label{tab:unaCapa3}
+Con solo una capa oculta \ref{tab:unaCapa3} el mejor resultado que se obtuvo es 87.5\% utilizando 4 neuronas en dicha capa.
+
+\begin{table}[]
+	\centering
+	\caption{Dos capas ocultas}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo     \\ \hline
+		5-2-3     & 62.5\%     & 0.059546ms \\ \hline
+		3-2-3     & 85\%       & 0.080533ms \\ \hline
+		10-5-3    & 75\%       & 0.104578ms \\ \hline
+		12-10-3   & 95\%       & 0.103967ms \\ \hline
+		18-10-3   & 97.5\%     & 0.168328   \\ \hline
+		20-20-3   & 92.5\%     & 0.163037ms \\ \hline
+	\end{tabular}\label{tab:dosCapas3}
+\end{table}
+En la tabla \ref{tab:dosCapas3} se puede observar que usando dos capas ocultas se obtienen resultados muy superiores a usar solo una capa, incluso se llega a una eficiencia de 97.5\%. Los mejores resultados se consiguen al colocar má de 10 neuronas en las capas ocultas.
+\begin{table}[]
+	\centering
+	\caption{Tres capas ocultas}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología  & Eficiencia & Tiempo     \\ \hline
+		2-2-2-3    & 40\%       & 0.06782ms  \\ \hline
+		10-15-10-3 & 72.5\%     & 0.181769ms \\ \hline
+		10-15-15-3 & 82.5\%     & 0.110591ms \\ \hline
+		18-20-20-3 & 85\%       & 0.190253ms \\ \hline
+		18-25-10-3 & 95\%       & 0.177355ms \\ \hline
+		40-32-15-3 & 95\%       & 0.409067ms \\ \hline
+	\end{tabular}
+\end{table}\label{tab:tresCapas3}
+En \ref{tab:tresCapas3} se puede apreciar que a pesar de haber más neuronas y capas no se alcanzan resultados tan buenos como con dos capas ocultas.

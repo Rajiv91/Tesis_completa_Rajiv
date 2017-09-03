@@ -59,7 +59,7 @@ int main(int argc, char **argv)
   int numSamplesTest=40;
   int numSamplesTraining=vData.size()-numSamplesTest;
   //cout<<firstLine.length()<<endl<<firstLine<<endl<<colsFile<<endl<<nFeatures<<endl;
-  int nClasses=2;
+  int nClasses=3;//Número de clases a utilizar
 
   Mat trainingData(numSamplesTraining, nFeatures, CV_32FC1);
   Mat testData(numSamplesTest, nFeatures, CV_32FC1);
@@ -93,15 +93,15 @@ int main(int argc, char **argv)
   params.term_crit = criteria;
 
   //Topología de la red
-  Mat layers= Mat(4,1, CV_32SC1);
+  Mat layers= Mat(5,1, CV_32SC1);
   layers.row(0) = cv::Scalar(trainingData.cols);
-  layers.row(1) = cv::Scalar(50);
-  layers.row(2) = cv::Scalar(10);
-  //layers.row(3) = cv::Scalar(6);
-  layers.row(3) = cv::Scalar(trainingClasses.cols);
+  layers.row(1) = cv::Scalar(40);
+  layers.row(2) = cv::Scalar(32);
+  layers.row(3) = cv::Scalar(15);
+  layers.row(4) = cv::Scalar(trainingClasses.cols);
   mlp.create(layers);
   //cout<<"size trainingData = "<<trainingData.size()<<endl<<"testData = "<<testData.size()<<endl<<"cols = "<<trainingData.cols<<endl;
-  cout<<"Antes de entrenar..."<<endl;
+  cout<<"entrenando..."<<endl;
   mlp.train(trainingData, trainingClasses, Mat(), Mat(), params);
   cout<<"Entrenamiento completado"<<endl;
   ///*
@@ -110,25 +110,25 @@ int main(int argc, char **argv)
 
   for(int i = 0; i < testData.rows; i++)
   {
-          Mat response(1, testClasses.cols, CV_32FC1);
-          Mat sample = testData.row(i);
+        Mat response(1, testClasses.cols, CV_32FC1);
+        Mat sample = testData.row(i);
 
-          if(i==0)
-	      clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &inicio);
-          mlp.predict(sample, response);
-          if(i==0)
-          {
-            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &fin);
-                 tiempo = (double)(fin.tv_sec - inicio.tv_sec) * 1.0e3    // segundos a milisegundos
-					+ (double)(fin.tv_nsec - inicio.tv_nsec)/1.0e6;      // nanosegundos a milisegundos
+        if(i==0)
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &inicio);
+        mlp.predict(sample, response);
+        if(i==0)
+        {
+          clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &fin);
+               tiempo = (double)(fin.tv_sec - inicio.tv_sec) * 1.0e3    // segundos a milisegundos
+                                      + (double)(fin.tv_nsec - inicio.tv_nsec)/1.0e6;      // nanosegundos a milisegundos
 
-          }
-          predicted.at<float>(i,0) = response.at<float>(0,0);
-          predicted.at<float>(i,1) = response.at<float>(0,1);
-          //predicted.at<float>(i,2) = response.at<float>(0,2);
-          cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)/*<<", "<<predicted.at<float>(i,2)*/<<"---------"
-          << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)/*<<", "<<testClasses.at<float>(i,2)*/<<endl;
-          //cout<<predicted.at<float>(i,0)<<"----------\t"<<testClasses.at<float>(i,0)<<endl;
+        }
+        predicted.at<float>(i,0) = response.at<float>(0,0);
+        predicted.at<float>(i,1) = response.at<float>(0,1);
+        predicted.at<float>(i,2) = response.at<float>(0,2);
+        cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)<<", "<<predicted.at<float>(i,2)<<"---------"
+        << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)<<", "<<testClasses.at<float>(i,2)<<endl;
+        //cout<<predicted.at<float>(i,0)<<"----------\t"<<testClasses.at<float>(i,0)<<endl;
 
   }
   cout<<"desempeño = "<<evaluate(predicted, testClasses)<<endl;
