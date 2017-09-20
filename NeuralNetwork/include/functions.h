@@ -24,6 +24,11 @@
 #define SCREEN_FIELD 5
 
 #define W 2.375//Pintarrón en m
+#define L 1.17
+#define CY .2
+#define DCU 0.06
+#define MAX_Y 1.2452
+
 
 using namespace std;
 using namespace cv;
@@ -49,7 +54,7 @@ void saveIm(string& tempS, Mat& trainingData, int nSample, int& nFeature)
   //cout<<"características = "<<nFeature<<endl;
 }
 
-//Etiqueta dependiendo la región de la pantalla en la que se encuentre
+//Etiqueta dependiendo la región de la pantalla en la que se encuentre la coordenada original
 void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses)
 {
   float screenCenter=(float)W/2.0;
@@ -60,7 +65,7 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
   //|first seg. |second seg| third seg|
   //cout<<"first seg = "<<firstSegment<<endl<<"second seg = "<<secondSegment<<endl<<"third seg = "<<thirdSegment<<endl;
   //Para 3 segmentos de pantalla
-  if(Sx<firstSegment)
+  /*if(Sx<firstSegment)
   {
     trainingClasses.at<float>(nSample, 0)=1.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
@@ -77,8 +82,7 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
     trainingClasses.at<float>(nSample, 0)=0.0;
     trainingClasses.at<float>(nSample, 1)=0.0;
     trainingClasses.at<float>(nSample, 2)=1.0;
-  }
-
+  }*/
 
 //Para 2 segmentos en pantalla
   /*if(Sx<0)
@@ -92,6 +96,36 @@ void labelScreen(float Sx, float Sy, float Sz, int nSample, Mat& trainingClasses
     trainingClasses.at<float>(nSample, 1)=0.0;
   }*/
 
+  //Para 4 clases
+  float centerY=MAX_Y /2+CY;
+  if(Sx<0 and Sy<centerY)//esquina superior izquierda
+  {
+    trainingClasses.at<float>(nSample, 0)=1.0;
+    trainingClasses.at<float>(nSample, 1)=0.0;
+    trainingClasses.at<float>(nSample, 2)=0.0;
+    trainingClasses.at<float>(nSample, 3)=0.0;
+  }
+  else if(Sx<0 and Sy>=centerY)//esquina inferior izquierda
+  {
+    trainingClasses.at<float>(nSample, 0)=0.0;
+    trainingClasses.at<float>(nSample, 1)=1.0;
+    trainingClasses.at<float>(nSample, 2)=0.0;
+    trainingClasses.at<float>(nSample, 3)=0.0;
+  }
+  else if(Sx>=0 and Sy>=centerY)//esquina inferior derecha
+  {
+    trainingClasses.at<float>(nSample, 0)=0.0;
+    trainingClasses.at<float>(nSample, 1)=0.0;
+    trainingClasses.at<float>(nSample, 2)=1.0;
+    trainingClasses.at<float>(nSample, 3)=0.0;
+  }
+  else// if(Sx>=0 and Sy<centerY)//esquina superior derecha
+  {
+    trainingClasses.at<float>(nSample, 0)=0.0;
+    trainingClasses.at<float>(nSample, 1)=0.0;
+    trainingClasses.at<float>(nSample, 2)=0.0;
+    trainingClasses.at<float>(nSample, 3)=1.0;
+  }
   //trainingData.at<float>(nSample, nFeature)=atof(sample.substr(pos_ant, pos-pos_ant).c_str());
 }
 

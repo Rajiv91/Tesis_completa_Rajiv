@@ -31,7 +31,6 @@ int numTestPoints=2000;
 int eq=0;
 
 
-
 int main(int argc, char **argv)
 {
 
@@ -59,7 +58,7 @@ int main(int argc, char **argv)
   int numSamplesTest=40;
   int numSamplesTraining=vData.size()-numSamplesTest;
   //cout<<firstLine.length()<<endl<<firstLine<<endl<<colsFile<<endl<<nFeatures<<endl;
-  int nClasses=3;//Número de clases a utilizar
+  int nClasses=4;//Número de clases a utilizar
 
   Mat trainingData(numSamplesTraining, nFeatures, CV_32FC1);
   Mat testData(numSamplesTest, nFeatures, CV_32FC1);
@@ -95,9 +94,9 @@ int main(int argc, char **argv)
   //Topología de la red
   Mat layers= Mat(5,1, CV_32SC1);
   layers.row(0) = cv::Scalar(trainingData.cols);
-  layers.row(1) = cv::Scalar(40);
-  layers.row(2) = cv::Scalar(32);
-  layers.row(3) = cv::Scalar(15);
+  layers.row(1) = cv::Scalar(25);//Buenos resultados con 2 capas ocultas: 3-3, mejores con 20-15, 30-10,  25-16, 24-16=87.5, 
+  layers.row(2) = cv::Scalar(20);
+  layers.row(3) = cv::Scalar(25);
   layers.row(4) = cv::Scalar(trainingClasses.cols);
   mlp.create(layers);
   //cout<<"size trainingData = "<<trainingData.size()<<endl<<"testData = "<<testData.size()<<endl<<"cols = "<<trainingData.cols<<endl;
@@ -126,8 +125,9 @@ int main(int argc, char **argv)
         predicted.at<float>(i,0) = response.at<float>(0,0);
         predicted.at<float>(i,1) = response.at<float>(0,1);
         predicted.at<float>(i,2) = response.at<float>(0,2);
-        cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)<<", "<<predicted.at<float>(i,2)<<"---------"
-        << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)<<", "<<testClasses.at<float>(i,2)<<endl;
+        predicted.at<float>(i,3) = response.at<float>(0,3);
+        cout<<predicted.at<float>(i,0)<<", "<<predicted.at<float>(i,1)<<", "<<predicted.at<float>(i,2)<<", "<<predicted.at<float>(i,3)<<"---------"
+        << testClasses.at<float>(i,0)<<", "<<testClasses.at<float>(i,1)<<", "<<testClasses.at<float>(i,2)<<", "<<testClasses.at<float>(i,3)<<endl;
         //cout<<predicted.at<float>(i,0)<<"----------\t"<<testClasses.at<float>(i,0)<<endl;
 
   }

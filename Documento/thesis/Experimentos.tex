@@ -278,7 +278,7 @@ Las resoluciones de los rostros capturados son muy variadas, pero como se mencio
 
 \subsection{Entrenamiento y pruebas}
 Ya con los datos listos para el algoritmo de clasificación estos se dividen en dos conjuntos, el de entrenamiento y el de prueba, en una primera iteración se probó con 204 imágenes o ejemplos de entrenamiento y 40 de prueba. 
-
+%%Explicar la eficiencia
 \subsubsection{Dos neuronas de salida}
 Primero se experimentó discretizando la pantalla (pintarrón) que observaban los sujetos de los experimentos en 2 secciones de misma longitud, partiendo el eje $X$ a la mitad \ref{fig: pint1}. Con una capa oculta se obtuvieron los siguientes resultados:
 \begin{figure}[htbp] 
@@ -330,9 +330,9 @@ En la tabla \ref{tab: dosCapas2} se puede notar que utilizando dos capas ocultas
 		4-5-5-2   & 95\%       & 0.056476ms \\ \hline
 		5-10-5-2  & 72.5\%     & 0.089464ms \\ \hline
 		5-2-10-2  & 97.5\%     & 0.061379ms \\ \hline
-		50-20-50  & 97.5\%     & 0.548939ms \\ \hline
-	\end{tabular}
-\end{table}\label{tab: tresCapas2}
+		50-20-50-2  & 97.5\%     & 0.548939ms \\ \hline
+	\end{tabular}\label{tab: tresCapas2}
+\end{table}
 En \ref{tab: tresCapas2} se encuentran los resultados de utilizar 3 capas ocultas, aunque se logra el mismo máximo posible de eficiencia que en las topologías anteriores el tiempo empleado es mayor.
 
 \subsubsection{Tres neuronas de salida}
@@ -354,8 +354,8 @@ A continuación se presentan los resultados de utilizar tres clases en la clasif
 		4-3       & 87.5\%     & 0.05233ms  \\ \hline
 		5-3       & 85\%       & 0.063973ms \\ \hline
 		20-3      & 80\%       & 0.182204ms \\ \hline
-	\end{tabular}
-\end{table}\label{tab:unaCapa3}
+	\end{tabular}\label{tab:unaCapa3}
+\end{table}
 Con solo una capa oculta \ref{tab:unaCapa3} el mejor resultado que se obtuvo es 87.5\% utilizando 4 neuronas en dicha capa.
 
 \begin{table}[]
@@ -376,7 +376,7 @@ Con solo una capa oculta \ref{tab:unaCapa3} el mejor resultado que se obtuvo es 
 En la tabla \ref{tab:dosCapas3} se puede observar que usando dos capas ocultas se obtienen resultados muy superiores a usar solo una capa, incluso se llega a una eficiencia de 97.5\%. Los mejores resultados se consiguen al colocar má de 10 neuronas en las capas ocultas.
 \begin{table}[]
 	\centering
-	\caption{Tres capas ocultas}
+	\caption{3 capas ocultas}
 	\label{my-label}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -387,6 +387,119 @@ En la tabla \ref{tab:dosCapas3} se puede observar que usando dos capas ocultas s
 		18-20-20-3 & 85\%       & 0.190253ms \\ \hline
 		18-25-10-3 & 95\%       & 0.177355ms \\ \hline
 		40-32-15-3 & 95\%       & 0.409067ms \\ \hline
-	\end{tabular}
-\end{table}\label{tab:tresCapas3}
-En \ref{tab:tresCapas3} se puede apreciar que a pesar de haber más neuronas y capas no se alcanzan resultados tan buenos como con dos capas ocultas.
+	\end{tabular}\label{tab:tresCapas3}
+\end{table}
+En \ref{tab:tresCapas3} se puede apreciar que a pesar de haber más neuronas y capas no se alcanzan resultados tan buenos como con dos capas ocultas. De los experimentos con tres clases se puede concluir que se alcanzan resultados bastante buenos como los obtenidos con solo dos clases: 97.5\%
+
+\subsubsection{Cuatro neuronas de salida}
+En esta sección se presentan los resultados de utilizar cuatro clases en la clasificación de la mirada, llevando a cabo una partición de la pantalla como la de la figura \ref{fig: pint3}.
+
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=.3\textwidth]{./pictures/pint3}
+	\caption{Pintarrón divido en cuatro secciones}\label{fig: pint3}
+\end{figure}
+
+En \ref{tab:unaCapa4} se presentan los resultados de utilizar una capa oculta, en seguida se puede apreciar que los resultados son inferiores que los obtenidos en los experimentos anteriores con un número menor de clases, ya que en el mejor de los casos se obtiene un 80\% de eficiencia en 0.122ms.
+\begin{table}[]
+	\centering
+	\caption{Una capa oculta}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo  \\ \hline
+		2-4       & 67.5\%     & 0.053ms \\ \hline
+		5-4       & 72.5\%     & 0.105ms \\ \hline
+		12-4      & 80\%       & 0.122ms \\ \hline
+		19-4      & 67.5\%     & 0.19ms  \\ \hline
+		27-4      & 60\%       & 0.27ms  \\ \hline
+	\end{tabular}\label{tab:unaCapa4}
+\end{table}
+
+En la tabla \ref{tab:dosCapa4} se puede observar que la red neuronal tiene un mejor desempeño al utilizar dos capas ocultas y sobre todo si se utilizan en ellas mas de 20 neuronas, llegando incluso a una eficiencia hasta 92.5\%.
+
+\begin{table}[]
+	\centering
+	\caption{Dos capas ocultas}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo   \\ \hline
+		5-3-4     & 72.5\%     & 0.064ms  \\ \hline
+		20-12-4   & 85\%       & 0.3167ms \\ \hline
+		25-16-4   & 92.5\%     & 0.213ms  \\ \hline
+		30-9-4    & 90\%       & 0.29ms   \\ \hline
+		30-20-4   & 90\%       & 0.282ms  \\ \hline
+	\end{tabular}\label{tab:dosCapa4}
+\end{table}
+
+Utilizando tres capas ocultas el desempeño del algoritmo decae y lo máximo que se puede obtener es 87.5\% de eficiencia con una topología $22-20-20-4$ en 0.157ms, tabla \ref{tab:tresCapa4}.
+\begin{table}[]
+	\centering
+	\caption{3 capas ocultas}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología  & Eficiencia & Tiempo  \\ \hline
+		5-12-19-4  & 67.5\%     & 0.78ms  \\ \hline
+		20-15-20-4 & 77.5\%     & 0.164ms \\ \hline
+		22-20-20-4 & 87.5\%     & 0.157ms \\ \hline
+		20-15-17-4 & 80\%       & 0.424ms \\ \hline
+		25-9-10-4  & 72.5\%     & 0.26ms  \\ \hline
+	\end{tabular} \label{tab:tresCapa4}
+\end{table}
+
+\subsubsection{Entrenamiento y experimentos con descriptores HOG}
+A continuación se presentan los resultados de la red neuronal con una metodología similar a la anterior pero en lugar de utilizar toda la imagen del rostro(de 75x75 pixeles) como vector de características, se utilizan los descriptores HOG, con ello se busca un tiempo de propagación de la red menor y una eficiencia superior. El vector de características de la red pasa de 5629 elementos a 2029.
+%Hacer referencia al marco teórico cuando se habla de hog, en metodología se explican los parámetros de hog
+%Decir que el entrenamiento es más rápido
+
+En la tabla \ref{Hog2Clases} se pueden apreciar los experimentos de utilizar dos neuronas de salida (2 segmentos en la pantalla), los resultados son muy superiores ya que so logra 100\% de eficiencia con tan solo una capa oculta de 5 neuronas en tan solo 0.025ms, tal eficiencia no se logró con ninguna topología con 2 clases utilizando toda la imagen como vector de características. En ese caso la mayor eficiencia fue de 97.5\% y se obtuvo con una oculta de 25 neuronas en 0.212ms.
+\begin{table}[]
+	\centering
+	\caption{Dos clases utilizando descriptores HOG}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo   \\ \hline
+		2-2       & 97.5\%     & 0.024ms  \\ \hline
+		5-2       & 100\%      & 0.025ms  \\ \hline
+		2-2-2     & 97.5\%     & 0.0235ms \\ \hline
+		5-2-2     & 100\%      & 0.0438ms \\ \hline
+		2-2-2-2   & 100\%      & 0.029ms  \\ \hline
+	\end{tabular}\label{Hog2Clases}
+\end{table}
+
+Los resultados de utilizar 3 neuronas de salida se encuentran en \ref{Hog3Clases}, sin utilizar HOG lo máximo de eficiencia que se lograba con 3 clases era 97.5\% ahora con HOG se alcanza hasta un 100\% usando 3 capas ocultas. Incluso con una capa se alcanza 97.5\% mientras que en los experimentos anteriores (sin HOG) lo máximo obtenido con una capa era 80\%.
+
+\begin{table}[]
+	\centering
+	\caption{3 clases utilizando descriptores HOG}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología  & Eficiencia & Tiempo    \\ \hline
+		2-3        & 95\%       & 0.0289ms  \\ \hline
+		27-3       & 97.5\%     & 0.084ms   \\ \hline
+		5-2-3      & 95\%       & 0.0415ms  \\ \hline
+		10-3-3     & 97.5\%     & 0.065ms   \\ \hline
+		10-15-10-3 & 100\%      & 0.06558ms \\ \hline
+	\end{tabular}\label{Hog3Clases}
+\end{table}
+
+
+
+\begin{table}[]
+	\centering
+	\caption{4 clases utilizando descriptores HOG}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Topología & Eficiencia & Tiempo   \\ \hline
+		2-4       & 85\%       & 0.096ms  \\ \hline
+		27-4      & 90\%       & 0.117ms  \\ \hline
+		7-26-4    & 92.5\%     & 0.0595ms \\ \hline
+		9-20-4    & 95\%       & 0.0386ms \\ \hline
+		9-5-21-4  & 95\%       & 0.0415ms \\ \hline
+	\end{tabular}\label{Hog4Clases}
+\end{table}
