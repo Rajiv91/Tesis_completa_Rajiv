@@ -432,7 +432,7 @@ En el presente capítulo se detallarán las etapas y procesos necesarios del sis
 		\item El ROI de la cara de la persona se guarda para posterior análisis junto con los datos de ubicación 3d en las escena del rostro y la ubicación (igual 3d) de lo que estaba observando en pantalla al momento de la captura, esto es: $P$ y $S$
 		\item Finalmente se acompleta la información con la resolución original del ROI del rostro ya que en una etapa posterior es necesario redimensionar todos los rostros a una misma resolución.
 	\end{enumerate}
-	La salida de este proceso tiene por cada rostro un conjunto de 8 datos los cuales son: \textit{la imagen, la dimensión original del rostro}, $P_x$, $P_y$, $P_z$, $S_x$, $S_y$, $S_z$. Utilizar la resolución original del ROI del rostro como una característica del vector, sirve como una indicador de la distancia sobre el eje $Z$ de la persona, más adelanta en la etapa experimental se entrarás más en detalle.
+	La salida de este proceso tiene por cada rostro un conjunto de 8 datos los cuales son: \textit{la imagen, la dimensión original del rostro}, $P_x$, $P_y$, $P_z$, $S_x$, $S_y$, $S_z$. Utilizar la resolución original del ROI del rostro como una característica del vector, sirve como una indicador de la distancia sobre el eje $Z$ de la persona.%, más adelanta en la etapa experimental se entrarás más en detalle.
 		\begin{figure}[htbp]
 			\centering
 			\includegraphics[width=.6\textwidth]{./pictures/featureNet}
@@ -440,6 +440,20 @@ En el presente capítulo se detallarán las etapas y procesos necesarios del sis
 		\end{figure}
 	\\La segunda etapa consiste simplemente en acomodar los datos resultantes del proceso anterior en forma del vector de características que se requiere en las neuronas de entrada de la red. En cada ejemplo de entrenamiento se redimensiona la imagen del rostro a un estándar $dimE$ para todos, en donde cada pixel representa una característica del vector. Por lo tanto al final se obtiene el vector de características con $dimE+4$ elementos, donde los 4 restantes elementos son la dimensión original del rostro y $P$.
 	%Añadir imagen que represente como cada pixel se le asocia una neurona en la entrada
+
+\subsubsection{HOG}
+El otro vector de características con el que se experimenta se compone de los descriptores HOG, es decir, en vez de utilizar la imagen del rostro completa como vector, se utilizan los descriptores HOG extraídos del rostro. Con ello se busca mejorar la precisión de la clasificación (porcentaje de aciertos) y minimizar el tiempo que le toma a la red neuronal propagarse, ya que como se mencionó en el capítulo 3 este tipo de descriptores extraen la información útil y desechan la extraña.\\
+
+En cuanto a la implementación del vector de descriptores HOG, los parámetros más importantes a considerar para su cálculo  en los ejemplos de entrenamiento de los rostros son los siguientes:
+\begin{itemize}
+	\item $winSize$.- Este parámetro es la dimensión de la ventana sobre la cual el descriptor es calculado. Usualmente se coloca la misma dimensión que el de la imagen
+	\item $blockSize$.- Es el tamaño de las celdas en las cuales se calculan los histogramas que se van desplazando a través de la imagen. Este parámetro se usa para contrarrestar la variación en la iluminación, un tamaño de bloque grande hace que los cambios de iluminación locales sean menos significativos, mientras que los bloques pequeños le dan más peso a las variaciones locales de iluminación.
+	\item $cellSize$.- La elección de este elemento está basado en la escala de las características importantes para realizar la clasificación. Un tamaño pequeño de éste podría resultar en un vector de características muy extenso, mientras que un valor grande para $cellSize$ podría no capturar información relevante.
+	\item $nbin$.- Es el tamaño de los intervalos contenedores ``bins'' en el histograma de gradientes.
+\end{itemize}
+
+
+
 	
 \subsection{Neuronas de salida}
 En este proyecto cada neurona de salida representa una partición de la pantalla que la persona está observando, esto quiere decir que si por ejemplo si solamente se tienen dos neuronas de salida la pantalla será particionada en dos regiones, durante la etapa experimental se experimentará con diferentes topologías de la red y número de neuronas de salida.
@@ -450,6 +464,7 @@ Con respecto a lo anterior es necesario mapear la figura de lo que observa la pe
 			\caption{Neuronas de salida}\label{fig: outNeu}
 		\end{figure}
 Una vez entrenada la red y cuando se está haciendo la predicción con los datos de prueba, los resultados en el vector de salida no son enteros como las etiquetas en el entrenamiento (1 y 0), la red arroja valores decimales, por lo tanto para tomar una predicción como acertada se elige la neurona con el valor má alto (cercano a uno). Por ejemplo, si la red arrojó el siguiente vector: $[O_1, O_2]=[-0.0555573, 1.05556]$ se elige $O_2$ como la clase resultante por la red neuronal.
+
 
 
 

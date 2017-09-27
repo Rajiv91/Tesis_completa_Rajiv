@@ -58,9 +58,8 @@
    \section{Optimización numérica y Levenberg-Marquardt}
    \section{Aprendizaje Automático}
    \section{Redes neuronales artificiales}
-   \section{Descriptores HOG}
-
-   Se comenzará esta sección describiendo de manera general qué es un descriptor de características ``feature descriptor'' y luego se hará mención en específico de los descriptores tipo HOUGH. Una descriptor de características de una imagen o de una región de una imagen es que simplifica la imagen extrayendo información útil y desechando toda la información extraña.
+   \section{Descriptores HOG} \label{HOGMarco}
+   Se comenzará esta sección describiendo de manera general qué es un descriptor de características ``feature descriptor'' y luego se detallará en específico los descriptores tipo HOUGH. Un descriptor de características de una imagen o de una región de ella es aquel que simplifica la representación de dicha imagen extrayendo información útil y desechando toda la información extraña.
    Tipicamente un descriptor convierte una imagen de tamaño igual a $ancho$ x $largo$ x $3$ (canales) a un vector de características de longitud $n$, en el artículo original [Dalal et al, 2005] se utiliza como ejemplo una imagen de tamaño 64 x 128 x 3 por lo que la longitud del vector $n$ es de 3780. A partir de ahora se utilizará como ejemplo las mismas dimensiones que las utilizadas en el artículo original, sin embargo, hay que tener en cuenta que se puede utilizar HOG para cualquier dimensión en las imágenes.\\
    %%Qué tipos de características son "útiles para nuestro proyecto"
    La siguiente pregunta que sale a la vista es ¿qué tipo de características son útiles para la etapa de clasificación del presente trabajo de tesis?. Al utilizar el descriptor de características se busca que cumpla los siguientes requisitos:

@@ -450,7 +450,15 @@ Utilizando tres capas ocultas el desempeño del algoritmo decae y lo máximo que
 \end{table}
 
 \subsubsection{Entrenamiento y experimentos con descriptores HOG}
-A continuación se presentan los resultados de la red neuronal con una metodología similar a la anterior pero en lugar de utilizar toda la imagen del rostro(de 75x75 pixeles) como vector de características, se utilizan los descriptores HOG, con ello se busca un tiempo de propagación de la red menor y una eficiencia superior. El vector de características de la red pasa de 5629 elementos a 2029.
+A continuación se presentan los resultados de la red neuronal con una metodología similar a la anterior pero en lugar de utilizar toda la imagen del rostro(de 75x75 pixeles) como vector de características, se utilizan los descriptores HOG, con ello se busca un tiempo de propagación de la red menor y una eficiencia superior. 
+Los valores de los parámetros utilizados para generar el vector de características son en algunos casos los mismos que los utilzados en el ejemplo de la sección \ref{HOGMarco} y del artículo original:
+\begin{itemize}
+	\item $winSize$.- Es el tamaño del rostros ya redimensionado: 75x75 pixeles
+	\item $blockSize$.- 15x15
+	\item $cellSize$.- 5x5
+	\item $nbin$.- El autor de HOG recomienda utilizar un valor de 9 para capturar gradientes entre 0 y 180 grados como en este caso
+\end{itemize}
+ Tomando en cuenta los parámetros anteriores el vector de características HOG resultante para la red neuronal pasa de 5629 a 2029 elementos.
 %Hacer referencia al marco teórico cuando se habla de hog, en metodología se explican los parámetros de hog
 %Decir que el entrenamiento es más rápido
 
