@@ -1,6 +1,6 @@
 \chapter{Marco teórico}
 
-	Para realizar la estimación de la mirada de las personas en un plano virtual enfrente de ellas es necesario saber algunos conceptos, definiciones y algunos conocimientos que sirvan de apoyo al desarrollo del presente trabajo de tesis. En este capítulo se describen las bases para llevar a cabo el proyecto, dichas bases consisten principalmente de visión computacional, geometría proyectiva, algoritmos de aprendizaje supervisado, algoritmos de optimización numérica....
+	Para realizar la estimación de la mirada de las personas en un plano virtual enfrente de ellas es necesario conocer algunos conceptos, definiciones y algunos conocimientos que sirvan de apoyo al desarrollo del presente trabajo de tesis. En este capítulo se describen las bases para llevar a cabo el proyecto, dichas bases consisten principalmente de visión computacional, geometría proyectiva, algoritmos de aprendizaje supervisado, algoritmos de optimización numérica....
 
    %Añadir un parrafo de lo que aporta el de nosotros (plano)
    %Tomando en cuenta las consideraciones anteriores 
@@ -58,4 +58,117 @@
    \section{Optimización numérica y Levenberg-Marquardt}
    \section{Aprendizaje Automático}
    \section{Redes neuronales artificiales}
+   \section{Descriptores HOG}
+
+   Se comenzará esta sección describiendo de manera general qué es un descriptor de características ``feature descriptor'' y luego se hará mención en específico de los descriptores tipo HOUGH. Una descriptor de características de una imagen o de una región de una imagen es que simplifica la imagen extrayendo información útil y desechando toda la información extraña.
+   Tipicamente un descriptor convierte una imagen de tamaño igual a $ancho$ x $largo$ x $3$ (canales) a un vector de características de longitud $n$, en el artículo original [Dalal et al, 2005] se utiliza como ejemplo una imagen de tamaño 64 x 128 x 3 por lo que la longitud del vector $n$ es de 3780. A partir de ahora se utilizará como ejemplo las mismas dimensiones que las utilizadas en el artículo original, sin embargo, hay que tener en cuenta que se puede utilizar HOG para cualquier dimensión en las imágenes.\\
+   %%Qué tipos de características son "útiles para nuestro proyecto"
+   La siguiente pregunta que sale a la vista es ¿qué tipo de características son útiles para la etapa de clasificación del presente trabajo de tesis?. Al utilizar el descriptor de características se busca que cumpla los siguientes requisitos:
+   \begin{itemize}
+		\item Ayudar a que las imágenes con rostros (pueden ser de diferentes personas) que miran la misma región en pantalla sean agrupados en el mismo conjunto
+		\item Ayudar a que las imágenes con rostros que miran diferentes regiones en pantalla sean agrupados en conjuntos diferentes
+   \end{itemize}
+En los descriptores HOG, la distribución (histograma) de las direcciones de los gradientes (gradientes orientados) son usados como características. Los gradientes (derivadas en $x$ y $y$) de una imagen son útiles porque la magnitud de los gradientes es mayor alrededor de los bordes y las esquinas (regiones con cambios abruptos de intensidad) y es bien conocido que los bordes y las esquinas ofrecen mucha más información sobre la forma del objeto que las regiones planas.
+
+\subsection{Cálculo del histograma de gradientes orientados}
+A continuación se describirá como se realiza el cálculo del descriptor HOG tomando como ejemplo una región de la imagen \ref{fig: hogExample} para detectar peatones, como en el artículo original.
+
+  \begin{figure}[htbp]
+     	\centering
+     	\includegraphics[width=0.5\textwidth]{./pictures/hogExample}
+     	\caption{Imagen de ejemplo para HOG}\label{fig: hogExample}
+  \end{figure}
+  
+ \subsubsection{Paso 1: Preprocesamiento y normalización}
+ El descriptor HOG es calculado en una región de la imagen de 64x128, generalmente dichas regiones son analizadas a multiples escalas y en muchas locaciones, la única restricción es que las regiones siendo analizadas tengan una proporción fija. En este caso, las regiones necesitan tener una proporción de 1:2. Por ejemplo, ellas pueden ser 100x200, 128x256 pero no 101x205.\\
+ En la figura \ref{fig: hogExample} se puede observar que se eligión una imagen de 720x475 y en ella se seleccionón una región de 100x200 para calcular el descriptor HOG, esta región se redimensionó a 64x128.
+
+ \subsubsection{Paso 2: Calcular los gradientes de la imagen}
+ Para calcular el descriptor HOG es necesario calcular primero los gradientes horizontales y verticales, esto se logra facilmente filtrando la imagen con los siguientes kernels:
+  \begin{figure}[htbp]
+  	\centering
+  	\includegraphics[width=0.3\textwidth]{./pictures/hogFilter}
+  	\caption{Kernels}\label{fig: hogFilter}
+  \end{figure} 
+  
+  La magnitud y dirección del gradiente se obtienen aplicando las siguientes fórmulas:
+  	\begin{eqnarray}
+	  	g-\sqrt{g^2_x+g^2_y} \\
+	  	\theta-arctan\frac{g_y}{g_x}
+  	\end{eqnarray}
+ En la figura \ref{fig: hogFilter} se observan los resultados de los gradientes:
+  \begin{figure}[htbp]
+  	\centering
+  	\includegraphics[width=0.5\textwidth]{./pictures/hogGradients}
+  	\caption{Izquierda:  valor absoluto del gradiente x. Centro: valor absoluto del gradiente y. Derecha: magnitud del gradiente}\label{fig: hogFilter}
+  \end{figure}  
+  Nótese que la magnitud del gradiente se intensifica donde sea que haya cambios bruscos de intensidad y ninguno de los gradientes anteriores se intensifica en las regiones suaves de la imagen.\\
+  Los gradientes de la imagen remueven bastante información no esencial y destaca los contornos, por ejemplo, en la imagen de los gradientes \ref{fig: hogFilter} se pudiera deducir facilmente que es una persona corriendo.\\
+  En HOG, en cada pixel, el gradiente tiene una magnitud y una dirección. La magnitud del gradiente de un pixel es el máximo de la magnitud de los gradientes los tres canales (en imágenes RGB), y el ángulo es el ángulo correspondiente al máximo gradiente.
+   
+   \subsubsection{Paso 3: Cálculo del Histograma de gradientes}
+   En este paso la región seleccionada es dividida en celdas de 8x8 y un histograma de gradientes es calculado para cada celda de 8x8. El criterio para la selección de la dimensión de las celdas (8x8), se realiza en base a la dimension del objeto en la imagen que se quiere analizar, tomando el ejemplo del corredor (cuya dimensión es de 64x128), las celdas de 8x8 son lo suficientemente grandes para capturar características interesantes (el rostro, la parte superior de la cabeza, etc.)
+   
+     \begin{figure}[htbp]
+     	\centering
+     	\includegraphics[width=0.5\textwidth]{./pictures/hog8x8}
+     	\caption{Valores de los gradientes de celda 8x8}\label{fig: hog8x8}
+     \end{figure}
+     En la figura \ref{fig: hog8x8} se presenta una celda del objeto analizado con los valores de sus gradientes, en el cuadro del centro se pueden apreciar los pixeles en una celda con flechas sobrepuestas mostrando la dirección y magnitud de los gradientes. Nótese como la dirección de la flecha apunta hacia la dirección del cambio de intensidad y la magnitud muestra que tan grande es la diferencia.\\
+     A continuación se crea el histograma de gradientes de las celdas de 8x8, el histograma contiene 9 bins correspondientes a los ángulos 0, 20, 40...160. En \ref{fig: hogCalc} se encuentra el proceso del cálculo del histograma, la selección del bin (celda del arreglo) está basado en la dirección y el valor que va dentro del bin es la magnitud del gradiente.
+     
+\begin{figure}[htbp]
+   	\centering
+   	\includegraphics[width=0.5\textwidth]{./pictures/hogHist}
+   	\caption{Cálculo histograma de gradientes}\label{fig: hogCalc}
+\end{figure}
+     La contribución de todos los pixeles in la celda de 8x8 son sumados para crear el histograma de 9 bins, para la celda de la figura \ref{fig: hog8x8} el histograma final se encuentra en la imagen \ref{fig: finalHist}, se puede notar que hay más en los bins cerca de los 0 y 180 grados, esto indica que los gradientes están apuntando arriba o abajo.
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.5\textwidth]{./pictures/finalHist}
+ 	\caption{Histograma final de celda de 8x8}\label{fig: finalHist}
+ \end{figure}    
+     
+ \subsubsection{Paso4: Normalización del bloque de 16x16}
+ El histograma creado en las etapas anteriores está basado en los gradientes de la imagen, sin embargo, los gradientes en una imagen son sensibles a las variaciones de luz, para contrarrestar este problema en el artículo original de HOG [Dalal et al, 2005] el autor recomienda normalizar el histograma, él propone cuatro diferentes tipos de normalizaciones donde la más común es la normalización con la norma L2 o euclídea. Además, Dalal sugiere realizar la normalización en  bloques mayores del histograma correspondiente a la celda de 8x8 ya que de acuerdo a sus experimentos se obtienen resultados superiores.\\
+ %So effective local contrast normalization turns out to be essential for good performance. We evaluated a number of different normalization schemes. Most of them are based on grouping cells into larger spatial blocks and contrast normalizing each block separately. The final descriptor  is then the vector of all components of the normalized cell  responses from all of the blocks in the detection window. This may seem redundant but good normalization is  critical and including overlap significantly improves the performance
+ En el ejemplo del corredor y siguiendo las instrucciones de investigación original, se concatenan cuatro histogramas de 8x8 (histograma de 9x1) para formar un bloque de 16x16 y en consecuencia obtener un vector normalizado de 36x1. Luego, la ventana (bloque de 16x16) es desplazado cada 8 pixeles y de nuevo se calcula el vector normalizado. En la figura \ref{fig: hog16x16Block} se puede apreciar el proceso anterior del desplazamiento de la ventana
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.6\textwidth]{./pictures/hog16x16Block}
+ 	\caption{Normalización enllevada a cabo desplazando los bloques de 16x16}\label{fig: hog16x16Block}
+ \end{figure}      
+     
+  \subsubsection{Paso 5. Cálculo del vector de características HOG}
+  El vector final de características para la región seleccionada se obtiene de la concatenación de los vectores de dimensión de 36x1,  tomando en consideración que hay 7 posiciones horizontales posibles de la región de la imagen, 15 verticales y cada bloque tiene un longitud de 36 elementos, el vector final tiene: 7*15*36=3780 elementos.\\
+  Para la visualización unicamente se grafican los histogramas normalizados de 9x1 en las celdas de 8x8, imagen \ref{fig: hogVis}. Se puede percibir que las direcciones dominantes del histograma capturan la forma de la persona.
+   \begin{figure}[htbp]
+   	\centering
+   	\includegraphics[width=0.3\textwidth]{./pictures/hogVis}
+   	\caption{}\label{fig: hogVis}
+   \end{figure}
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 

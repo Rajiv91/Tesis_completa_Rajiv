@@ -488,7 +488,7 @@ Los resultados de utilizar 3 neuronas de salida se encuentran en \ref{Hog3Clases
 \end{table}
 
 
-
+En \ref{Hog4Clases} se pueden apreciar los resultados de utilizar 4 neuronas de salida en la red neuronal y con los descriptores HOG como parte del vector de características. Los resultados son superiores a utilizar toda la imagen como características ya que el mejor de esos resultados con 4 clases era de 92.5\% en 0.213ms con una topología de 25-16-4 y ahora con HOG se llega incluso a 95\% de efeciciencia en 0.0415ms y dos capas ocultas.
 \begin{table}[]
 	\centering
 	\caption{4 clases utilizando descriptores HOG}
@@ -503,3 +503,5 @@ Los resultados de utilizar 3 neuronas de salida se encuentran en \ref{Hog3Clases
 		9-5-21-4  & 95\%       & 0.0415ms \\ \hline
 	\end{tabular}\label{Hog4Clases}
 \end{table}
+
+Se puede concluir que al utilizar los descriptores HOG como parte del vector de caracteríticas se obtienen resultados superiores en todos los casos de clasificación y en mucho menor tiempo. Además, no está descrito en las tablas pero el tiempo empleado en el entrenamiento utilizando HOG es mucho menor ya que pasa de un tiempo promedio de 1 minuto (sin HOG) a 5s.
